@@ -1,18 +1,18 @@
 # Changelog
 
-## v0.1.0-alpha.1
+## v0.4.0-alpha.1
 
 ### Added
-- Repository foundation
-- FastAPI application
-- Configuration management
-- Logging
-- SQLite database
-- SQLAlchemy integration
-- User model
-- User repository
-- User service
-- User API
-- Health endpoint
-- Root endpoint
-- Automated API tests
+- Document model
+- Document schemas
+- Document repository
+- Document service
+- Document CRUD foundation
+- File upload infrastructure
+- File download endpoint
+- File storage manager
+- Document search
+- Case-wise document listing
+- Document deletion
+- Automatic file cleanup
+- Comprehensive document tests

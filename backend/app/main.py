@@ -11,6 +11,9 @@ from app.api.v1.ai import router as ai_router
 from app.api.v1.research import router as research_router
 from app.api.v1.workspace import router as workspace_router
 from app.api.v1.clients import router as clients_router
+from app.api.v1.dashboard import router as dashboard_router
+from app.api.v1.drafting import router as drafting_router
+from app.api.v1.workflow import router as workflow_router
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.database.init_db import init_database
@@ -43,6 +46,9 @@ app.include_router(ai_router)
 app.include_router(research_router)
 app.include_router(workspace_router)
 app.include_router(clients_router)
+app.include_router(dashboard_router)
+app.include_router(drafting_router)
+app.include_router(workflow_router)
 
 
 @app.get("/")

@@ -1,15 +1,15 @@
 # Changelog
 
-## v0.7.0-alpha.1
+## v0.8.0-alpha.1
 
 ### Added
-- Hearing management
-- Task management
-- Workspace API
-- Advocate notes
-- Evidence management
-- Bookmarks
-- Document annotations
-- Client management
-- Contact logs
-- Workspace architecture verification
+- Cause list foundation
+- Court schedule foundation
+- Litigation timeline
+- Dashboard statistics
+- AI legal drafting engine
+- Draft templates
+- Reminder engine
+- Case analytics
+- Workflow dashboard
+- Court intelligence architecture verification

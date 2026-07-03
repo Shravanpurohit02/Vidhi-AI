@@ -16,6 +16,9 @@ __all__ = [
     "Annotation",
     "Client",
     "ContactLog",
+    "CauseList",
+    "CourtSchedule",
+    "LitigationTimeline",
 ]
 
 from app.models.note import Note
@@ -24,3 +27,6 @@ from app.models.bookmark import Bookmark
 from app.models.annotation import Annotation
 from app.models.client import Client
 from app.models.contact_log import ContactLog
+from app.models.cause_list import CauseList
+from app.models.court_schedule import CourtSchedule
+from app.models.litigation_timeline import LitigationTimeline

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 
+from app.auth.password import hash_password
 from app.repositories.user_repository import UserRepository
 
 
@@ -13,9 +14,11 @@ class UserService:
         if existing:
             raise ValueError("Email already exists")
 
+        hashed_password = hash_password(password)
+
         return UserRepository.create(
             db=db,
             full_name=full_name,
             email=email,
-            password=password,
+            password=hashed_password,
         )

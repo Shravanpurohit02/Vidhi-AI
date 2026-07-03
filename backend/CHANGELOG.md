@@ -1,17 +1,20 @@
 # Changelog
 
-## v0.9.0-alpha.1
+## v1.0.0-beta.1
 
 ### Added
-- Persistent vector storage
-- Embedding cache
-- Hybrid lexical + semantic search
-- BM25 search
-- Hybrid ranking
-- Knowledge indexing
-- Judgment summarization
-- Precedent extraction
-- Citation graph
-- Explainable AI
-- Legal reasoning API
-- AI platform architecture verification
+- Alembic configuration
+- Docker support
+- Docker Compose
+- Makefile
+- Environment template
+- Readiness endpoint
+- Background job framework
+- Job queue
+- Document indexing jobs
+- Email jobs
+- Reminder jobs
+- API key security foundation
+- Metrics collection
+- Audit logging
+- Production architecture verification

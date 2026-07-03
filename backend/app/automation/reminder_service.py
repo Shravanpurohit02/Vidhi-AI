@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 from app.models.hearing import Hearing
 from app.models.task import Task
@@ -9,7 +9,7 @@ class ReminderService:
     @staticmethod
     def upcoming_hearings(db):
 
-        now = datetime.utcnow()
+        now = datetime.now(UTC)
 
         return (
             db.query(Hearing)

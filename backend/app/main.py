@@ -15,6 +15,8 @@ from app.api.v1.dashboard import router as dashboard_router
 from app.api.v1.drafting import router as drafting_router
 from app.api.v1.workflow import router as workflow_router
 from app.api.v1.reasoning import router as reasoning_router
+from app.api.v1.jobs import router as jobs_router
+from app.api.v1.system import router as system_router
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.database.init_db import init_database
@@ -51,6 +53,8 @@ app.include_router(dashboard_router)
 app.include_router(drafting_router)
 app.include_router(workflow_router)
 app.include_router(reasoning_router)
+app.include_router(jobs_router)
+app.include_router(system_router)
 
 
 @app.get("/")
@@ -62,6 +66,16 @@ async def root():
         "message": "Vidhi AI API is running."
     }
 
+
+
+
+@app.get("/ready")
+async def readiness():
+    return {
+        "status": "ready",
+        "database": "ok",
+        "application": "ready"
+    }
 
 @app.get("/health")
 async def health():

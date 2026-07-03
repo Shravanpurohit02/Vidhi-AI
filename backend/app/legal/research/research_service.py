@@ -1,5 +1,5 @@
 from uuid import uuid4
-from datetime import datetime
+from datetime import UTC, datetime
 
 from app.ai.services.ai_service import AIService
 from app.legal.entities.entity_extractor import LegalEntityExtractor
@@ -19,7 +19,7 @@ class LegalResearchService:
         self.history = ResearchHistory()
         self.session = ResearchSession(
             id=str(uuid4()),
-            created_at=datetime.utcnow(),
+            created_at=datetime.now(UTC),
         )
 
     def research(self, question: str):

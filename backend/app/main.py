@@ -7,6 +7,7 @@ from app.api.v1.profile import router as profile_router
 from app.api.v1.auth import router as auth_router
 from app.api.v1.cases import router as cases_router
 from app.api.v1.documents import router as documents_router
+from app.api.v1.ai import router as ai_router
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.database.init_db import init_database
@@ -35,6 +36,7 @@ app.include_router(profile_router)
 app.include_router(auth_router)
 app.include_router(cases_router)
 app.include_router(documents_router)
+app.include_router(ai_router)
 
 
 @app.get("/")

@@ -1,18 +1,18 @@
 # Changelog
 
-## v0.4.0-alpha.1
+## v0.5.0-alpha.1
 
 ### Added
-- Document model
-- Document schemas
-- Document repository
-- Document service
-- Document CRUD foundation
-- File upload infrastructure
-- File download endpoint
-- File storage manager
-- Document search
-- Case-wise document listing
-- Document deletion
-- Automatic file cleanup
-- Comprehensive document tests
+- AI provider abstraction
+- Mock AI provider
+- Prompt management
+- Retrieval-Augmented Generation (RAG) foundation
+- Text chunking
+- Embedding abstraction
+- In-memory vector store
+- Document ingestion pipeline
+- AI chat endpoint
+- Conversation memory
+- Citation engine
+- Provider configuration foundation
+- AI architecture tests

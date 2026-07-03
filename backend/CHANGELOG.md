@@ -1,18 +1,18 @@
 # Changelog
 
-## v0.5.0-alpha.1
+## v0.6.0-alpha.1
 
 ### Added
-- AI provider abstraction
-- Mock AI provider
-- Prompt management
-- Retrieval-Augmented Generation (RAG) foundation
-- Text chunking
-- Embedding abstraction
-- In-memory vector store
-- Document ingestion pipeline
-- AI chat endpoint
-- Conversation memory
-- Citation engine
-- Provider configuration foundation
-- AI architecture tests
+- Legal corpus architecture
+- Judgment model
+- Citation extraction engine
+- Legal parser
+- Knowledge base
+- Legal entity recognition
+- Semantic search foundation
+- Legal research engine
+- Research session management
+- Research history
+- Context ranking
+- Legal research REST API
+- Architecture verification tests

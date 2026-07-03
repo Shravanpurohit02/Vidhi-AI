@@ -1,0 +1,44 @@
+[project]
+name = "vidhi-ai"
+version = "0.1.0-alpha.1"
+description = "Production-grade Legal AI Platform"
+readme = "../README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Shravan" }
+]
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "alembic",
+    "pydantic",
+    "python-dotenv",
+    "python-jose",
+    "python-multipart",
+    "passlib",
+    "httpx",
+    "rich",
+    "loguru"
+]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true

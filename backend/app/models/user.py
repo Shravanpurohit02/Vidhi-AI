@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.database import Base
 
@@ -14,8 +14,8 @@ class User(Base):
     email: Mapped[str] = mapped_column(
         String(255),
         unique=True,
-        index=True,
         nullable=False,
+        index=True,
     )
 
     hashed_password: Mapped[str] = mapped_column(
@@ -26,5 +26,10 @@ class User(Base):
     is_active: Mapped[bool] = mapped_column(
         Boolean,
         default=True,
-        nullable=False,
+    )
+
+    cases = relationship(
+        "Case",
+        back_populates="owner",
+        cascade="all, delete-orphan",
     )

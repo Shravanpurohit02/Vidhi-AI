@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from app.api.v1.users import router as users_router
 from app.api.v1.profile import router as profile_router
 from app.api.v1.auth import router as auth_router
+from app.api.v1.cases import router as cases_router
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.database.init_db import init_database
@@ -31,6 +32,7 @@ app = FastAPI(
 app.include_router(users_router)
 app.include_router(profile_router)
 app.include_router(auth_router)
+app.include_router(cases_router)
 
 
 @app.get("/")

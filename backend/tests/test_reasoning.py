@@ -2,23 +2,23 @@ from fastapi.testclient import TestClient
 
 from app.main import app
 
-client = TestClient(app)
-
 
 def test_reasoning():
 
-    response = client.post(
-        "/reasoning/analyze",
-        json={
-            "text": """
-            Article 21 protects life.
+    with TestClient(app) as client:
 
-            (1978) 1 SCC 248
+        response = client.post(
+            "/reasoning/analyze",
+            json={
+                "text": """
+Article 21 protects life.
 
-            AIR 1978 SC 597
-            """
-        },
-    )
+(1978) 1 SCC 248
+
+AIR 1978 SC 597
+"""
+            },
+        )
 
     assert response.status_code == 200
 
@@ -27,6 +27,9 @@ def test_reasoning():
     assert "answer" in body
     assert "reasoning" in body
     assert "citations" in body
+    assert "provider" in body
+    assert "processing_time" in body
+    assert "generated_at" in body
 
 
 def test_citation_graph():

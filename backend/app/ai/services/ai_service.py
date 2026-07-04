@@ -3,13 +3,25 @@ from app.ai.citations.citation_engine import CitationEngine
 from app.ai.memory.conversation import ConversationMemory
 from app.ai.prompts.system import LEGAL_SYSTEM_PROMPT
 from app.ai.providers.mock_provider import MockAIProvider
+from app.ai.providers.registry import registry
+from app.ai.providers.loader import load_providers
+from app.ai.providers.provider_selector import selector
 from app.ai.retrieval.retriever import Retriever
 
 
 class AIService:
 
     def __init__(self):
-        self.provider = MockAIProvider()
+        if "mock" not in registry.providers():
+            registry.register(
+                "mock",
+                MockAIProvider(),
+            )
+
+        try:
+            self.provider = registry.get(DEFAULT_PROVIDER)
+        except Exception:
+            self.provider = selector.select()
         self.retriever = Retriever()
         self.memory = ConversationMemory()
 

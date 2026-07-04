@@ -1,0 +1,6 @@
+CASE_IMPORTED = "case.imported"
+CASE_UPDATED = "case.updated"
+CASE_SYNCED = "case.synced"
+DOCUMENT_UPLOADED = "document.uploaded"
+ORDER_IMPORTED = "order.imported"
+HEARING_UPDATED = "hearing.updated"

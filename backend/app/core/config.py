@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -25,6 +26,27 @@ class Settings(BaseSettings):
         env_file=".env",
         case_sensitive=True,
     )
+
+    @field_validator("APP_ENV")
+    @classmethod
+    def validate_app_env(cls, value: str) -> str:
+        value = value.lower()
+        allowed = {"development", "testing", "staging", "production"}
+        if value not in allowed:
+            raise ValueError(
+                f"APP_ENV must be one of: {', '.join(sorted(allowed))}"
+            )
+        return value
+
+    @field_validator("DEBUG")
+    @classmethod
+    def validate_debug(cls, value: bool, info):
+        env = info.data.get("APP_ENV", "development").lower()
+        if env == "production" and value:
+            raise ValueError(
+                "DEBUG must be False when APP_ENV=production"
+            )
+        return value
 
 
 @lru_cache

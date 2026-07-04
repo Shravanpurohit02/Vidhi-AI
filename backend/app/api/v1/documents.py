@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
+from fastapi import APIRouter, Body, Depends, File, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
@@ -41,3 +41,22 @@ def delete_document(
         return {"message": "Document deleted successfully"}
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+
+
+@router.post("/process/{document_id}")
+def process_document(
+    document_id: int,
+    text: str = Body(..., embed=True),
+    db: Session = Depends(get_db),
+):
+    try:
+        return DocumentService.process_document(
+            db,
+            document_id,
+            text,
+        )
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        )

@@ -1,7 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
 
 from app.legal.drafting.drafting_service import DraftingService
+from app.legal.drafting.schemas.draft_request import (
+    DraftRequest,
+)
+from app.legal.drafting.schemas.draft_response import (
+    DraftResponse,
+)
 
 router = APIRouter(
     prefix="/drafting",
@@ -11,14 +16,13 @@ router = APIRouter(
 service = DraftingService()
 
 
-class DraftRequest(BaseModel):
-    template: str
-    facts: str
-    relief: str = ""
-
-
-@router.post("/generate")
-def generate(request: DraftRequest):
+@router.post(
+    "/generate",
+    response_model=DraftResponse,
+)
+def generate(
+    request: DraftRequest,
+):
 
     try:
         return service.generate(

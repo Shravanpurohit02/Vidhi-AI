@@ -1,11 +1,22 @@
-FROM python:3.13-slim
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY . .
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY pyproject.toml ./
+COPY README.md ./README.md
+
+RUN pip install --upgrade pip && \
+    pip install .
+
+COPY . .
 
 EXPOSE 8000
 
-CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

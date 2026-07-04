@@ -1,12 +1,6 @@
-from enum import Enum
+import os
 
-
-class AIProvider(str, Enum):
-    MOCK = "mock"
-    OPENAI = "openai"
-    OLLAMA = "ollama"
-    GEMINI = "gemini"
-    ANTHROPIC = "anthropic"
-
-
-DEFAULT_PROVIDER = AIProvider.MOCK
+DEFAULT_PROVIDER = os.getenv(
+    "DEFAULT_LLM_PROVIDER",
+    "mock",
+).lower()

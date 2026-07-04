@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import get_current_user
 from app.database.database import get_db
+from app.models.user import User
 from app.schemas.case import CaseCreate, CaseUpdate, CaseResponse
 from app.services.case_service import CaseService
 
@@ -9,9 +11,16 @@ router = APIRouter(prefix="/cases", tags=["Cases"])
 
 
 @router.post("/", response_model=CaseResponse, status_code=201)
-def create_case(case: CaseUpdate, db: Session = Depends(get_db)):
+def create_case(
+    case: CaseCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     try:
-        return CaseService.create_case(db, case.model_dump())
+        data = case.model_dump()
+        data["owner_id"] = current_user.id
+        data["status"] = "Draft"
+        return CaseService.create_case(db, data)
     except ValueError as exc:
         raise HTTPException(status_code=409, detail=str(exc))
 
@@ -21,16 +30,12 @@ def list_cases(db: Session = Depends(get_db)):
     return CaseService.list_cases(db)
 
 
-
 @router.get("/search", response_model=list[CaseResponse])
 def search_cases(
     q: str = Query(..., min_length=1),
     db: Session = Depends(get_db),
 ):
     return CaseService.search_cases(db, q)
-
-
-
 
 
 @router.get("/statistics")
@@ -46,6 +51,7 @@ def filter_cases_by_status(
     db: Session = Depends(get_db),
 ):
     return CaseService.filter_by_status(db, status)
+
 
 @router.get("/{case_id}", response_model=CaseResponse)
 def get_case(case_id: int, db: Session = Depends(get_db)):
@@ -78,4 +84,3 @@ def delete_case(case_id: int, db: Session = Depends(get_db)):
         return {"message": "Case deleted successfully"}
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
-

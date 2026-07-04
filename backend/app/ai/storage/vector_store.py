@@ -54,3 +54,19 @@ class PersistentVectorStore:
         )
 
         return cursor.fetchall()
+
+    def close(self):
+        if self.conn:
+            self.conn.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        self.close()
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass

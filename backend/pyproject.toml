@@ -2,7 +2,7 @@
 name = "vidhi-ai"
 version = "0.1.0-alpha.1"
 description = "Production-grade Legal AI Platform"
-readme = "../README.md"
+readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 

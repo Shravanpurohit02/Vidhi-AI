@@ -1,40 +1,37 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from app.ai.services.ai_service import AIService
+from app.agents.base.context import AgentContext
+from app.agents.base.registry import AgentRegistry
+from app.orchestrator.router import AgentRouter
+from app.orchestrator.executor import AgentExecutor
+
 
 router = APIRouter(
     prefix="/ai",
-    tags=["Artificial Intelligence"],
+    tags=["AI"],
 )
 
-service = AIService()
+
+class AIRequest(BaseModel):
+    query: str
+    user_id: int | None = 1
 
 
-class ChatRequest(BaseModel):
-    message: str
+registry = AgentRegistry()
 
-
-class IngestRequest(BaseModel):
-    text: str
-    metadata: dict = {}
-
-
-@router.post("/ingest")
-def ingest_document(request: IngestRequest):
-    service.ingest_document(
-        request.text,
-        request.metadata,
-    )
-    return {"status": "indexed"}
+router_instance = AgentRouter(registry)
+executor = AgentExecutor(router_instance)
 
 
 @router.post("/chat")
-def chat(request: ChatRequest):
-    return service.ask(request.message)
+async def ai_chat(request: AIRequest):
 
+    context = AgentContext(
+        user_id=request.user_id,
+    )
 
-@router.delete("/memory")
-def clear_memory():
-    service.memory.clear()
-    return {"status": "cleared"}
+    return await executor.execute(
+        request.query,
+        context,
+    )

@@ -1,15 +1,22 @@
 name: Backend CI
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
-      - master
+      - main
       - develop
+
   pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
       - uses: actions/checkout@v4
@@ -25,17 +32,13 @@ jobs:
           pip install pytest mypy ruff black
 
       - name: Ruff
-        run: |
-          ruff check app tests
+        run: ruff check app tests
 
       - name: Black
-        run: |
-          black --check app tests
+        run: black --check app tests
 
       - name: MyPy
-        run: |
-          mypy app
+        run: mypy app
 
       - name: Tests
-        run: |
-          pytest -q
+        run: pytest -q

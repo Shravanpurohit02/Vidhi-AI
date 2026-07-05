@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 REQUIRED_FILES = [
     "app/models/cause_list.py",
     "app/models/court_schedule.py",

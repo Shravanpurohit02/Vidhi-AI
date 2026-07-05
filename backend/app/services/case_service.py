@@ -19,7 +19,7 @@ class CaseService:
 
     @staticmethod
     def list_cases(db: Session):
-        return CaseRepository.get_all(db)
+        return CaseRepository.list(db)
 
     @staticmethod
     def get_case(db: Session, case_id: int):
@@ -48,16 +48,13 @@ class CaseService:
 
         CaseRepository.delete(db, case)
 
-
     @staticmethod
     def search_cases(db: Session, query: str):
         return CaseRepository.search(db, query)
 
-
     @staticmethod
     def filter_by_status(db: Session, status: str):
         return CaseRepository.get_by_status(db, status)
-
 
     @staticmethod
     def get_statistics(db: Session):

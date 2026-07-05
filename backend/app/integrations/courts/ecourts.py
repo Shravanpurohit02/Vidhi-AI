@@ -2,7 +2,6 @@ import json
 import re
 
 from app.court.captcha import captcha_service
-from app.court.parser import court_parser
 from app.court.session import BASE_URL, session_manager
 from app.integrations.courts.bootstrap import bootstrap_service
 
@@ -39,20 +38,14 @@ class ECourtsProvider:
 
         payload = dict(data.hidden_fields)
 
-        payload.update({
-            "cino": cnr.strip().upper(),
-            "fcaptcha_code": captcha.strip(),
-            "ajax_req": "true",
-            "app_token": data.app_token,
-        })
-
-        print("="*80)
-        print("POST URL:", BASE_URL + "/?p=cnr_status/searchByCNR/")
-        print("APP TOKEN:", repr(data.app_token))
-        print("HIDDEN FIELDS:", data.hidden_fields)
-        print("PAYLOAD:", payload)
-        print("COOKIES:", session.cookies.get_dict())
-        print("="*80)
+        payload.update(
+            {
+                "cino": cnr.strip().upper(),
+                "fcaptcha_code": captcha.strip(),
+                "ajax_req": "true",
+                "app_token": data.app_token,
+            }
+        )
 
         response = session.post(
             BASE_URL + "/?p=cnr_status/searchByCNR/",
@@ -88,15 +81,19 @@ class ECourtsProvider:
                 }
 
         except Exception:
-            pass
+            body = None
 
-        m = re.search(r'(\{"errormsg".*)', text, re.S)
+        match = re.search(
+            r'(\{"errormsg".*)',
+            text,
+            re.S,
+        )
 
-        if m:
+        if match:
             return {
                 "success": True,
                 "provider": "ecourts",
-                "raw": json.loads(m.group(1)),
+                "raw": json.loads(match.group(1)),
             }
 
         return {

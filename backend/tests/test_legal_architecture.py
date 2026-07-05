@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 REQUIRED_FILES = [
     "app/legal/models/judgment.py",
     "app/legal/citations/extractor.py",

@@ -30,35 +30,29 @@ class LegalParser:
             from docx import Document
         except ImportError as exc:
             raise RuntimeError(
-                "DOCX parsing requires the optional "
-                "'python-docx' package."
+                "DOCX parsing requires the optional " "'python-docx' package."
             ) from exc
 
         document = Document(str(path))
 
-        return "\n".join(
-            paragraph.text
-            for paragraph in document.paragraphs
-        )
+        return "\n".join(paragraph.text for paragraph in document.paragraphs)
 
     def parse(self, path: str):
-        path = Path(path)
+        file_path = Path(path)
 
-        suffix = path.suffix.lower()
+        suffix = file_path.suffix.lower()
 
         if suffix in {".txt", ".md"}:
-            text = self._read_text(path)
+            text = self._read_text(file_path)
 
         elif suffix == ".pdf":
-            text = self._read_pdf(path)
+            text = self._read_pdf(file_path)
 
         elif suffix == ".docx":
-            text = self._read_docx(path)
+            text = self._read_docx(file_path)
 
         else:
-            raise ValueError(
-                f"Unsupported file type: {suffix}"
-            )
+            raise ValueError(f"Unsupported file type: {suffix}")
 
         return {
             "text": text,

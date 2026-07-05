@@ -31,7 +31,7 @@ class CourtAgent(BaseAgent):
             "import",
         )
 
-        return any(k in query.lower() for k in keywords)
+        return any(keyword in query.lower() for keyword in keywords)
 
     async def execute(
         self,
@@ -42,20 +42,33 @@ class CourtAgent(BaseAgent):
         intent = self.parser.parse(query)
 
         if intent.intent == "search_by_cnr":
-            return await self.search_tool.execute(
+            tool_result = await self.search_tool.execute(
                 cnr=intent.cnr,
             )
 
-        if intent.intent == "search_by_case":
-            return await self.search_tool.execute(
+        elif intent.intent == "search_by_case":
+            tool_result = await self.search_tool.execute(
                 case_number=intent.case_number,
                 year=intent.year,
             )
 
+        else:
+            return AgentResult(
+                success=False,
+                message="Court request understood but not yet implemented.",
+                metadata={
+                    "intent": intent.intent,
+                },
+            )
+
         return AgentResult(
-            success=False,
-            message="Court request understood but not yet implemented.",
-            data={
-                "intent": intent.intent,
-            },
+            success=tool_result.success,
+            message=tool_result.message,
+            answer="Court search completed." if tool_result.success else "",
+            tool_calls=[
+                {
+                    "tool": self.search_tool.name,
+                }
+            ],
+            data=tool_result.data,
         )

@@ -10,5 +10,4 @@ class BaseLLM(ABC):
         self,
         prompt: str,
         system: str = "",
-    ) -> str:
-        ...
+    ) -> str: ...

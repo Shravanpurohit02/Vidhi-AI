@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 
 from loguru import logger
 
@@ -14,7 +15,10 @@ logger.add(
     level="INFO",
 )
 
-logger.add(lambda msg: print(msg, end=""), level="INFO")
+logger.add(
+    sys.stdout,
+    level="INFO",
+)
 
 
 def get_logger():

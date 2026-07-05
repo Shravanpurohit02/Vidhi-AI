@@ -20,9 +20,7 @@ def test_hybrid_search():
         },
     )
 
-    results = HybridSearch().search(
-        "Article 21"
-    )
+    results = HybridSearch().search("Article 21")
 
     assert len(results) >= 1
 
@@ -36,6 +34,4 @@ def test_embedding_cache():
         {},
     )
 
-    assert manager.cache.get(
-        "Cache Test"
-    ) is not None
+    assert manager.cache.get("Cache Test") is not None

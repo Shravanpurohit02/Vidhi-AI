@@ -1,6 +1,3 @@
-from textwrap import wrap
-
-
 class TextChunker:
 
     def __init__(
@@ -28,8 +25,6 @@ class TextChunker:
             len(text),
             step,
         ):
-            chunks.append(
-                text[i:i+self.chunk_size]
-            )
+            chunks.append(text[i : i + self.chunk_size])
 
         return chunks

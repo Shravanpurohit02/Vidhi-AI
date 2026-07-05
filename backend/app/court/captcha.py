@@ -1,17 +1,10 @@
-import traceback
-
 from app.court.session import BASE_URL, session_manager
 
 
 class CaptchaService:
 
     def fetch(self, session_id: str) -> bytes:
-
         session = session_manager.get(session_id)
-
-        print("=" * 80)
-        print("SESSION COOKIES")
-        print(session.cookies.get_dict())
 
         try:
             response = session.get(
@@ -24,16 +17,11 @@ class CaptchaService:
                 timeout=30,
             )
 
-            print("STATUS:", response.status_code)
-            print("HEADERS:", response.headers.get("Content-Type"))
-
             response.raise_for_status()
-
             return response.content
 
-        except Exception:
-            traceback.print_exc()
-            raise
+        except Exception as exc:
+            raise RuntimeError("Failed to fetch eCourts CAPTCHA.") from exc
 
 
 captcha_service = CaptchaService()

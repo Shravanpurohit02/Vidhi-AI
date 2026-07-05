@@ -29,9 +29,7 @@ def test_chat_contains_citations():
 
     response = client.post(
         "/ai/chat",
-        json={
-            "message": "Explain Article 21."
-        },
+        json={"message": "Explain Article 21."},
     )
 
     body = response.json()

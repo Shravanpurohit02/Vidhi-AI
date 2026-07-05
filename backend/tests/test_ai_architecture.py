@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 REQUIRED_FILES = [
     "app/ai/config.py",
     "app/ai/interfaces/base_provider.py",

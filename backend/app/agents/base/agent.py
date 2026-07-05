@@ -14,13 +14,11 @@ class BaseAgent(ABC):
         self,
         query: str,
         context: AgentContext,
-    ) -> bool:
-        ...
+    ) -> bool: ...
 
     @abstractmethod
     async def execute(
         self,
         query: str,
         context: AgentContext,
-    ) -> AgentResult:
-        ...
+    ) -> AgentResult: ...

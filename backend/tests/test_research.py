@@ -20,9 +20,7 @@ def test_research_endpoint():
 
     response = client.post(
         "/research/",
-        json={
-            "question": "Explain Article 21."
-        },
+        json={"question": "Explain Article 21."},
     )
 
     assert response.status_code == 200

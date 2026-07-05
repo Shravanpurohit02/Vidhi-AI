@@ -49,11 +49,20 @@ class PersistentVectorStore:
 
     def all(self):
 
-        cursor = self.conn.execute(
-            "SELECT text,metadata,embedding FROM vectors"
-        )
+        cursor = self.conn.execute("SELECT text, metadata, embedding FROM vectors")
 
-        return cursor.fetchall()
+        rows = []
+
+        for text, metadata, embedding in cursor.fetchall():
+            rows.append(
+                {
+                    "text": text,
+                    "metadata": json.loads(metadata),
+                    "embedding": json.loads(embedding),
+                }
+            )
+
+        return rows
 
     def close(self):
         if self.conn:

@@ -12,7 +12,7 @@ class HybridRanker:
 
         for result in lexical + semantic:
 
-            text = result[0]
+            text = result.get("text", "")
 
             if text in seen:
                 continue

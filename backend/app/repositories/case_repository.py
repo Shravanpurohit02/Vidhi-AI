@@ -15,7 +15,7 @@ class CaseRepository:
         return case
 
     @staticmethod
-    def get_all(db: Session):
+    def list(db: Session):
         return db.query(Case).order_by(Case.id.desc()).all()
 
     @staticmethod
@@ -53,32 +53,21 @@ class CaseRepository:
         db.delete(case)
         db.commit()
 
-
     @staticmethod
     def get_by_status(db: Session, status: str):
         return (
-            db.query(Case)
-            .filter(Case.status == status)
-            .order_by(Case.id.desc())
-            .all()
+            db.query(Case).filter(Case.status == status).order_by(Case.id.desc()).all()
         )
-
 
     @staticmethod
     def get_statistics(db: Session):
         total = db.query(Case).count()
 
-        draft = db.query(Case).filter(
-            Case.status == "Draft"
-        ).count()
+        draft = db.query(Case).filter(Case.status == "Draft").count()
 
-        open_cases = db.query(Case).filter(
-            Case.status == "Open"
-        ).count()
+        open_cases = db.query(Case).filter(Case.status == "Open").count()
 
-        closed = db.query(Case).filter(
-            Case.status == "Closed"
-        ).count()
+        closed = db.query(Case).filter(Case.status == "Closed").count()
 
         return {
             "total": total,

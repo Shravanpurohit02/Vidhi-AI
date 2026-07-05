@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 REQUIRED_FILES = [
     "app/jobs/job.py",
     "app/workers/job_queue.py",

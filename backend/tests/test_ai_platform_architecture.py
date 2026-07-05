@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 REQUIRED_FILES = [
     "app/ai/storage/vector_store.py",
     "app/ai/cache/embedding_cache.py",

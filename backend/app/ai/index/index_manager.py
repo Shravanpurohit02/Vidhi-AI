@@ -1,5 +1,5 @@
 from app.ai.cache.embedding_cache import EmbeddingCache
-from app.ai.embeddings.mock import MockEmbeddingProvider
+from app.ai.embeddings.embedding_selector import selector
 from app.ai.storage.vector_store import PersistentVectorStore
 
 
@@ -7,7 +7,7 @@ class IndexManager:
 
     def __init__(self):
 
-        self.embedder = MockEmbeddingProvider()
+        self.embedder = selector.select()
         self.store = PersistentVectorStore()
         self.cache = EmbeddingCache()
 

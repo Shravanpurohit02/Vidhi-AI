@@ -26,5 +26,9 @@ class AgentExecutor:
             "agent": agent.name,
             "success": result.success,
             "message": result.message,
+            "answer": result.answer,
+            "sources": result.sources,
+            "tool_calls": result.tool_calls,
+            "metadata": result.metadata,
             "data": result.data,
         }

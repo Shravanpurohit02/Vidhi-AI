@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class HearingCreate(BaseModel):
@@ -14,4 +14,4 @@ class HearingResponse(HearingCreate):
     id: int
     status: str
 
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)

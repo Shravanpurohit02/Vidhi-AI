@@ -11,21 +11,18 @@ authors = [
 ]
 
 dependencies = [
-    "fastapi==0.139.0",
-    "uvicorn==0.49.0",
-    "sqlalchemy==2.0.51",
-    "alembic==1.18.5",
-    "pydantic==2.13.4",
-    "pydantic-settings==2.14.2",
-    "python-dotenv==1.2.2",
-    "python-jose==3.5.0",
-    "python-multipart==0.0.32",
-    "passlib==1.7.4",
-    "httpx==0.28.1",
-    "rich==15.0.0",
-    "loguru==0.7.3",
-    "pypdf==6.14.2",
-    "openai==2.44.0",
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "alembic",
+    "pydantic",
+    "python-dotenv",
+    "python-jose",
+    "python-multipart",
+    "passlib",
+    "httpx",
+    "rich",
+    "loguru"
 ]
 
 [build-system]

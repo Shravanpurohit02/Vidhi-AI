@@ -41,12 +41,12 @@ class KnowledgeBase:
         self,
         directory: str,
     ):
-        directory = Path(directory)
+        directory_path = Path(directory)
 
         processed = []
         failed = []
 
-        for file in directory.rglob("*"):
+        for file in directory_path.rglob("*"):
 
             if (
                 not file.is_file()
@@ -79,20 +79,15 @@ class KnowledgeBase:
         self,
         directory: str,
     ):
-        directory = Path(directory)
+        directory_path = Path(directory)
 
         files = [
             f
-            for f in directory.rglob("*")
-            if (
-                f.is_file()
-                and f.suffix.lower() in self.SUPPORTED_EXTENSIONS
-            )
+            for f in directory_path.rglob("*")
+            if (f.is_file() and f.suffix.lower() in self.SUPPORTED_EXTENSIONS)
         ]
 
         return {
-            "supported_extensions": sorted(
-                self.SUPPORTED_EXTENSIONS
-            ),
+            "supported_extensions": sorted(self.SUPPORTED_EXTENSIONS),
             "documents": len(files),
         }

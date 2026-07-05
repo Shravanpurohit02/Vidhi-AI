@@ -9,9 +9,7 @@ def test_ai_chat():
 
     response = client.post(
         "/ai/chat",
-        json={
-            "message": "What is Article 21?"
-        },
+        json={"message": "What is Article 21?"},
     )
 
     assert response.status_code == 200

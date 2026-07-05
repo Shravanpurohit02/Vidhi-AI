@@ -17,9 +17,7 @@ def test_processing_pipeline():
         exist_ok=True,
     )
 
-    Path("storage/documents/test.txt").write_text(
-        "Article 21 protects life."
-    )
+    Path("storage/documents/test.txt").write_text("Article 21 protects life.")
 
     result = DocumentTasks.process_uploaded_document(
         DummyDocument(),

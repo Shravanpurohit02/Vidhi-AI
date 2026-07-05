@@ -11,8 +11,4 @@ class MockLLM(BaseLLM):
         system: str = "",
     ) -> str:
 
-        return (
-            "Mock LLM Response\n\n"
-            f"System: {system}\n\n"
-            f"Prompt: {prompt}"
-        )
+        return "Mock LLM Response\n\n" f"System: {system}\n\n" f"Prompt: {prompt}"

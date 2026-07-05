@@ -47,9 +47,7 @@ class OpenAICompatibleProvider(BaseAIProvider):
     def _client(self):
 
         if not self.api_key:
-            raise RuntimeError(
-                f"{self._name} API key not configured."
-            )
+            raise RuntimeError(f"{self._name} API key not configured.")
 
         return OpenAI(
             api_key=self.api_key,

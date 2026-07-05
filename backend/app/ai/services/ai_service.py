@@ -12,6 +12,8 @@ from app.ai.retrieval.retriever import Retriever
 class AIService:
 
     def __init__(self):
+        load_providers()
+
         if "mock" not in registry.providers():
             registry.register(
                 "mock",
@@ -34,9 +36,7 @@ class AIService:
 
         contexts = self.retriever.retrieve(question)
 
-        context_text = "\n\n".join(
-            item["text"] for item in contexts
-        )
+        context_text = "\n\n".join(item["text"] for item in contexts)
 
         citations = CitationEngine.build(contexts)
 

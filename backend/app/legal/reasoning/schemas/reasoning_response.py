@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ReasoningResponse(BaseModel):
@@ -8,7 +8,7 @@ class ReasoningResponse(BaseModel):
 
     reasoning: str
 
-    citations: list[str] = []
+    citations: list[str] = Field(default_factory=list)
 
     provider: str = ""
 

@@ -28,11 +28,7 @@ def login(
     credentials: LoginRequest,
     db: Session = Depends(get_db),
 ):
-    user = (
-        db.query(User)
-        .filter(User.email == credentials.email)
-        .first()
-    )
+    user = db.query(User).filter(User.email == credentials.email).first()
 
     if user is None:
         raise HTTPException(

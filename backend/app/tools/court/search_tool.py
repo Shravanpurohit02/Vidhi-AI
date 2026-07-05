@@ -13,10 +13,18 @@ class CourtSearchTool(BaseTool):
 
     async def execute(self, **kwargs) -> ToolResult:
 
-        if "cnr" in kwargs:
-            result = await self.provider.search_by_cnr(kwargs["cnr"])
+        if kwargs.get("cnr"):
+            result = await self.provider.search_by_cnr(
+                kwargs["cnr"],
+            )
+
+        elif kwargs.get("case_number"):
+            result = await self.provider.search_case(
+                **kwargs,
+            )
+
         else:
-            result = await self.provider.search_case(**kwargs)
+            raise ValueError("Either 'cnr' or 'case_number' must be provided.")
 
         return ToolResult(
             success=True,

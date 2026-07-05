@@ -22,8 +22,6 @@ class EventBus:
         results = []
 
         for handler in self._handlers[event]:
-            results.append(
-                await handler(payload)
-            )
+            results.append(await handler(payload))
 
         return results

@@ -19,7 +19,7 @@ class DocumentRepository:
         return db.query(Document).filter(Document.id == document_id).first()
 
     @staticmethod
-    def list_all(db: Session):
+    def list(db: Session):
         return db.query(Document).order_by(Document.id.desc()).all()
 
     @staticmethod

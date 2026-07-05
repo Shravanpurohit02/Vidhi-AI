@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi.responses import Response
 
 from app.court.captcha import captcha_service
@@ -21,9 +21,7 @@ service = CourtService()
     "/captcha",
     responses={
         200: {
-            "content": {
-                "image/png": {}
-            },
+            "content": {"image/png": {}},
             "description": "Official eCourts CAPTCHA image",
         }
     },

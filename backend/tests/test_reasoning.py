@@ -9,15 +9,13 @@ def test_reasoning():
 
         response = client.post(
             "/reasoning/analyze",
-            json={
-                "text": """
+            json={"text": """
 Article 21 protects life.
 
 (1978) 1 SCC 248
 
 AIR 1978 SC 597
-"""
-            },
+"""},
         )
 
     assert response.status_code == 200

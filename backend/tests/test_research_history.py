@@ -9,9 +9,7 @@ def test_research_history():
 
     client.post(
         "/research/",
-        json={
-            "question": "Explain Article 21."
-        },
+        json={"question": "Explain Article 21."},
     )
 
     response = client.get("/research/history")

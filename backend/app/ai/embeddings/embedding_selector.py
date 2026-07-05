@@ -1,3 +1,4 @@
+from app.ai.embeddings.loader import load_embeddings
 from app.ai.embeddings.registry import registry
 
 
@@ -8,9 +9,9 @@ class EmbeddingSelector:
     ]
 
     def select(self):
+        load_embeddings()
 
         for provider_name in self.PRIORITY:
-
             try:
                 provider = registry.get(provider_name)
 
@@ -18,11 +19,9 @@ class EmbeddingSelector:
                     return provider
 
             except Exception:
-                pass
+                continue
 
-        raise RuntimeError(
-            "No embedding provider available."
-        )
+        raise RuntimeError("No embedding provider available.")
 
 
 selector = EmbeddingSelector()

@@ -2,7 +2,6 @@ from pathlib import Path
 
 import pytest
 
-
 REQUIRED_FILES = [
     "app/models/case.py",
     "app/schemas/case.py",

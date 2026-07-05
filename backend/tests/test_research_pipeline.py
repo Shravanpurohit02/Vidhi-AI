@@ -7,9 +7,7 @@ def test_pipeline():
 
     pipeline = ResearchPipeline()
 
-    result = pipeline.execute(
-        "Explain consideration in contract law."
-    )
+    result = pipeline.execute("Explain consideration in contract law.")
 
     assert "answer" in result
     assert "citations" in result

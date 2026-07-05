@@ -1,5 +1,5 @@
 from app.ai.chunking.chunker import TextChunker
-from app.ai.embeddings.mock import MockEmbeddingProvider
+from app.ai.embeddings.embedding_selector import selector
 from app.ai.vectorstore.memory import MemoryVectorStore
 
 
@@ -7,7 +7,7 @@ class Retriever:
 
     def __init__(self):
         self.chunker = TextChunker()
-        self.embedder = MockEmbeddingProvider()
+        self.embedder = selector.select()
         self.store = MemoryVectorStore()
 
     def index_document(

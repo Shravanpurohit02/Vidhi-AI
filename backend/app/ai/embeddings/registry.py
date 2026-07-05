@@ -21,9 +21,7 @@ class EmbeddingRegistry:
         provider = self._providers.get(name.lower())
 
         if provider is None:
-            raise ValueError(
-                f"Embedding provider '{name}' not registered."
-            )
+            raise ValueError(f"Embedding provider '{name}' not registered.")
 
         return provider
 

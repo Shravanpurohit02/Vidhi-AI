@@ -6,7 +6,7 @@ class LegalRanker:
             contexts,
             key=lambda item: (
                 len(item.get("text", "")),
-                item.get("metadata", {}).get("source", "")
+                item.get("metadata", {}).get("source", ""),
             ),
             reverse=True,
         )

@@ -5,18 +5,14 @@ from app.auth.security import (
 
 
 def test_create_access_token():
-    token = create_access_token(
-        {"sub": "shravan@example.com"}
-    )
+    token = create_access_token({"sub": "shravan@example.com"})
 
     assert isinstance(token, str)
     assert len(token) > 20
 
 
 def test_decode_access_token():
-    token = create_access_token(
-        {"sub": "shravan@example.com"}
-    )
+    token = create_access_token({"sub": "shravan@example.com"})
 
     payload = decode_access_token(token)
 

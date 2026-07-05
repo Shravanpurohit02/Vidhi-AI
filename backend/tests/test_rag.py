@@ -33,8 +33,6 @@ def test_retrieve():
         {},
     )
 
-    results = r.retrieve(
-        "Article 21"
-    )
+    results = r.retrieve("Article 21")
 
     assert len(results) > 0

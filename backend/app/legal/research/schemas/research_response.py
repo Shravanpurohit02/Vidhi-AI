@@ -17,13 +17,13 @@ class ResearchResponse(BaseModel):
 
     summary: str
 
-    entities: dict = {}
+    entities: dict = Field(default_factory=dict)
 
     contexts_found: int = 0
 
-    citations: list[Citation] = []
+    citations: list[Citation] = Field(default_factory=list)
 
-    sources: list[str] = []
+    sources: list[str] = Field(default_factory=list)
 
     confidence: float = Field(
         default=0.0,

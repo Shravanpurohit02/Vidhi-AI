@@ -27,9 +27,7 @@ class ProviderRegistry:
         provider = self._providers.get(name.lower())
 
         if provider is None:
-            raise ValueError(
-                f"Provider '{name}' is not registered."
-            )
+            raise ValueError(f"Provider '{name}' is not registered.")
 
         return provider
 

@@ -1,8 +1,10 @@
-import app.models
 from sqlalchemy import text
 
 from app.core.config import settings
+from app.core.logging import get_logger
 from app.database.database import Base, engine
+
+logger = get_logger()
 
 
 def init_database():
@@ -20,12 +22,12 @@ def init_database():
     if settings.APP_ENV.lower() == "production":
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
-        print("Database connection verified.")
-        print("Run 'alembic upgrade head' before starting production.")
+        logger.info("Database connection verified.")
+        logger.info("Run 'alembic upgrade head' before starting production.")
         return
 
     Base.metadata.create_all(bind=engine)
-    print("Development database initialized successfully.")
+    logger.info("Development database initialized successfully.")
 
 
 if __name__ == "__main__":

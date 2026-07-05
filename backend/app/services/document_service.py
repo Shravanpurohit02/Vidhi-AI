@@ -4,6 +4,9 @@ from app.document_processing import DocumentProcessingService
 from app.tasks.document_tasks import DocumentTasks
 from app.repositories.document_repository import DocumentRepository
 from app.utils.file_storage import FileStorage
+from app.core.logging import get_logger
+
+logger = get_logger()
 
 
 class DocumentService:
@@ -19,13 +22,13 @@ class DocumentService:
                 document,
             )
         except Exception:
-            pass
+            logger.exception("Document post-processing failed")
 
         return document
 
     @staticmethod
     def list_documents(db: Session):
-        return DocumentRepository.list_all(db)
+        return DocumentRepository.list(db)
 
     @staticmethod
     def get_document(db: Session, document_id: int):

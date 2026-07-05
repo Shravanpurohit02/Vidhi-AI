@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ClientCreate(BaseModel):
@@ -11,4 +11,4 @@ class ClientCreate(BaseModel):
 class ClientResponse(ClientCreate):
     id: int
 
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)

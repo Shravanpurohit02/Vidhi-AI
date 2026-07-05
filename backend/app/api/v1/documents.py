@@ -1,11 +1,9 @@
-from fastapi import APIRouter, Body, Depends, File, HTTPException, Query, UploadFile
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
 from app.schemas.document import DocumentResponse
 from app.services.document_service import DocumentService
-from app.utils.file_storage import FileStorage
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
 

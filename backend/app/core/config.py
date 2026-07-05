@@ -33,9 +33,7 @@ class Settings(BaseSettings):
         value = value.lower()
         allowed = {"development", "testing", "staging", "production"}
         if value not in allowed:
-            raise ValueError(
-                f"APP_ENV must be one of: {', '.join(sorted(allowed))}"
-            )
+            raise ValueError(f"APP_ENV must be one of: {', '.join(sorted(allowed))}")
         return value
 
     @field_validator("DEBUG")
@@ -43,9 +41,7 @@ class Settings(BaseSettings):
     def validate_debug(cls, value: bool, info):
         env = info.data.get("APP_ENV", "development").lower()
         if env == "production" and value:
-            raise ValueError(
-                "DEBUG must be False when APP_ENV=production"
-            )
+            raise ValueError("DEBUG must be False when APP_ENV=production")
         return value
 
 

@@ -16,7 +16,4 @@ class MockAIProvider(BaseAIProvider):
         prompt: str,
         system_prompt: str | None = None,
     ) -> str:
-        return (
-            "Mock AI Response\n\n"
-            f"Prompt: {prompt}"
-        )
+        return "Mock AI Response\n\n" f"Prompt: {prompt}"

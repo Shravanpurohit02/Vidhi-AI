@@ -5,21 +5,15 @@ class BM25Search:
         query: str,
         documents,
     ):
-        query_words = {
-            word.lower()
-            for word in query.split()
-        }
+        query_words = {word.lower() for word in query.split()}
 
         scored = []
 
         for doc in documents:
 
-            text = doc[0]
+            text = doc.get("text", "")
 
-            score = sum(
-                word.lower() in text.lower()
-                for word in query_words
-            )
+            score = sum(word in text.lower() for word in query_words)
 
             scored.append(
                 (
@@ -29,11 +23,8 @@ class BM25Search:
             )
 
         scored.sort(
-            reverse=True,
             key=lambda x: x[0],
+            reverse=True,
         )
 
-        return [
-            item[1]
-            for item in scored
-        ]
+        return [item[1] for item in scored]

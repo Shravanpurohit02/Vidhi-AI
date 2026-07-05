@@ -8,6 +8,4 @@ class PrecedentExtractor:
 
     def extract(self, text: str):
 
-        return {
-            "precedents": self.extractor.extract(text)
-        }
+        return {"precedents": self.extractor.extract(text)}

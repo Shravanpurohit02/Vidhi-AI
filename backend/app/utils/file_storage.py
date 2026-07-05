@@ -12,7 +12,7 @@ class FileStorage:
 
     @staticmethod
     def save(upload: UploadFile):
-        suffix = Path(upload.filename).suffix.lower()
+        suffix = Path(upload.filename or "").suffix.lower()
 
         filename = f"{uuid4().hex}{suffix}"
 

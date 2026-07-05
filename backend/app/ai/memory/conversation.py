@@ -1,10 +1,11 @@
 from collections import deque
+from typing import Deque
 
 
 class ConversationMemory:
 
     def __init__(self, max_messages: int = 20):
-        self.messages = deque(maxlen=max_messages)
+        self.messages: Deque[dict[str, str]] = deque(maxlen=max_messages)
 
     def add(self, role: str, content: str):
         self.messages.append(

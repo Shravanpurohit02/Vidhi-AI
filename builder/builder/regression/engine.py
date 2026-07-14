@@ -1,0 +1,256 @@
+from pathlib import Path
+import subprocess
+import sys
+
+from builder.patch import engine as patch
+from builder.review import engine as review
+from builder.pipeline import engine as pipeline
+from builder.execution.context import ExecutionContext
+from builder.execution.executor import executor
+from builder.autonomous_runtime import engine as runtime_engine
+from builder.regression.models import RegressionResult
+
+
+class RegressionEngine:
+
+    EXPECTED_PIPELINE = [
+        "changeset",
+        "output",
+        "semantic",
+        "planning",
+        "impact",
+        "validation",
+        "testing",
+        "finalization",
+    ]
+
+    def run(self):
+
+        result = RegressionResult()
+
+        self._patch_suite(result)
+        self._review_suite(result)
+        self._output_suite(result)
+        self._pipeline_suite(result)
+        self._cli_suite(result)
+        self._execution_suite(result)
+        self._runtime_suite(result)
+
+        return result
+
+    def _record(self, result, name, passed):
+        result.total += 1
+        if passed:
+            result.passed += 1
+            result.tests.append(f"{name}: PASS")
+        else:
+            result.failed += 1
+            result.tests.append(f"{name}: FAIL")
+
+    def _patch_suite(self, result):
+
+        tmp = Path(".builder/temp/regression_patch_test.py")
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+
+        original = "def value():\n    return 1\n"
+        updated = "def value():\n    return 2\n"
+
+        tmp.write_text(original, encoding="utf-8")
+
+        try:
+            p = patch.create(str(tmp), updated)
+
+            ok = patch.validate(p) and patch.compile(p)
+
+            if ok:
+                patch.commit(p)
+                ok = tmp.read_text(encoding="utf-8") == updated
+
+                patch.rollback(p)
+                ok = ok and (
+                    tmp.read_text(encoding="utf-8") == original
+                )
+
+            self._record(result, "Patch", ok)
+
+        except Exception:
+            self._record(result, "Patch", False)
+
+        finally:
+            tmp.unlink(missing_ok=True)
+
+    def _review_suite(self, result):
+
+        try:
+            tasks = review.list()
+
+            if not tasks:
+                self._record(result, "Review", False)
+                return
+
+            task = tasks[0]
+
+            review.approve(
+                task.id,
+                reviewer="regression",
+            )
+
+            refreshed = review.list()[0]
+
+            ok = (
+                refreshed.status == "approved"
+                and refreshed.reviewer == "regression"
+            )
+
+            self._record(result, "Review", ok)
+
+        except Exception:
+            self._record(result, "Review", False)
+
+    def _output_suite(self, result):
+
+        try:
+
+            output = Path(".builder/output")
+
+            ok = any(
+                (d / "metadata.json").exists()
+                and (d / "objective.md").exists()
+                for d in output.iterdir()
+                if d.is_dir()
+            )
+
+            self._record(result, "Output", ok)
+
+        except Exception:
+
+            self._record(result, "Output", False)
+
+    def _pipeline_suite(self, result):
+
+        try:
+
+            r = pipeline.start(
+                "Regression Pipeline Test",
+                str(Path.cwd()),
+            )
+
+            stages = r.stages
+
+            ok = (
+                stages == self.EXPECTED_PIPELINE
+                and len(stages) == len(set(stages))
+            )
+
+            self._record(result, "Pipeline", ok)
+
+        except Exception:
+
+            self._record(result, "Pipeline", False)
+
+
+
+
+    def _cli_suite(self, result):
+
+        try:
+
+            cmd = [
+                sys.executable,
+                "-m",
+                "builder",
+                "status",
+            ]
+
+            proc = subprocess.run(
+                cmd,
+                env={
+                    "PYTHONPATH": ".builder",
+                    **__import__("os").environ,
+                },
+                capture_output=True,
+                text=True,
+            )
+
+            ok = (
+                proc.returncode == 0
+                and "VIDHI BUILDER STATUS" in proc.stdout
+            )
+
+            self._record(result, "CLI", ok)
+
+        except Exception:
+
+            self._record(result, "CLI", False)
+
+
+
+
+    def _execution_suite(self, result):
+
+        try:
+
+            ctx = ExecutionContext(
+                plan_id="regression-plan",
+                worker_id="regression-worker",
+                job_id="regression-job",
+            )
+
+            execution = executor.execute(ctx)
+
+            ok = (
+                execution.success is True
+                and execution.message == "completed"
+                and len(execution.failed_stages) == 0
+                and execution.validation.get("failed", 0) == 0
+                and execution.testing.get("failed", 0) == 0
+                and len(execution.artifacts) > 0
+                and bool(execution.changeset)
+                and ctx.plan_id == "regression-plan"
+                and ctx.worker_id == "regression-worker"
+                and ctx.job_id == "regression-job"
+            )
+
+            self._record(result, "Execution", ok)
+
+        except Exception:
+
+            self._record(result, "Execution", False)
+
+
+
+
+    def _runtime_suite(self, result):
+
+        try:
+
+            runtime = runtime_engine.execute(
+                "Runtime Regression",
+                ".",
+            )
+
+            ok = (
+                runtime.success is True
+                and runtime.completed is True
+                and runtime.context.attempts >= 1
+                and len(runtime.history) > 0
+                and runtime.context.metadata.get("events", 0) > 0
+                and bool(runtime.context.metadata.get("metrics"))
+            )
+
+            self._record(
+                result,
+                "Autonomous Runtime",
+                ok,
+            )
+
+        except Exception:
+
+            self._record(
+                result,
+                "Autonomous Runtime",
+                False,
+            )
+
+
+engine = RegressionEngine()

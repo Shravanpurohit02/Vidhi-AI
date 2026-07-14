@@ -1,0 +1,72 @@
+import json
+from datetime import datetime
+from pathlib import Path
+from uuid import uuid4
+
+from builder.output.writer import writer
+
+
+class OutputEngine:
+
+    def create(
+        self,
+        objective: str,
+        workspace: str,
+        metadata: dict | None = None,
+    ):
+
+        run_id = uuid4().hex
+
+        root = Path(".builder/output") / run_id
+        root.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        meta = {
+            "id": run_id,
+            "builder_version": "0.1.0-alpha.1",
+            "objective": objective,
+            "workspace": workspace,
+            "created_at": datetime.utcnow().isoformat(),
+        }
+
+        if metadata:
+            meta.update(metadata)
+
+        writer.write(
+            root,
+            "metadata.json",
+            meta,
+        )
+
+        writer.write(
+            root,
+            "objective.md",
+            objective,
+        )
+
+        latest = Path(".builder/output/latest")
+        latest.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        writer.write(
+            latest,
+            "latest_run.json",
+            {
+                "run_id": run_id,
+                "path": str(root),
+                "created_at": meta["created_at"],
+            },
+        )
+
+        return {
+            "id": run_id,
+            "path": str(root),
+            "metadata": meta,
+        }
+
+
+engine = OutputEngine()

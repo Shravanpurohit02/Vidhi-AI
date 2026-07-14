@@ -1,0 +1,4058 @@
+{
+  "app/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/activity/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/activity/service.py": {
+    "classes": [
+      {
+        "name": "ActivityService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/base/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "agent",
+      "context",
+      "result",
+      "task",
+      "registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/base/agent.py": {
+    "classes": [
+      {
+        "name": "BaseAgent",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "abc",
+      "app.agents.base.context",
+      "app.agents.base.result"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/base/context.py": {
+    "classes": [
+      {
+        "name": "AgentContext",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "AgentContext"
+    ],
+    "pydantic_models": []
+  },
+  "app/agents/base/exceptions.py": {
+    "classes": [
+      {
+        "name": "AgentError",
+        "bases": [
+          "Exception"
+        ]
+      },
+      {
+        "name": "AgentRegistrationError",
+        "bases": [
+          "AgentError"
+        ]
+      },
+      {
+        "name": "AgentNotFoundError",
+        "bases": [
+          "AgentError"
+        ]
+      },
+      {
+        "name": "AgentExecutionError",
+        "bases": [
+          "AgentError"
+        ]
+      },
+      {
+        "name": "AgentValidationError",
+        "bases": [
+          "AgentError"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/base/registry.py": {
+    "classes": [
+      {
+        "name": "AgentRegistry",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "typing",
+      "app.agents.base.agent",
+      "app.agents.base.exceptions"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/base/result.py": {
+    "classes": [
+      {
+        "name": "AgentResult",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "AgentResult"
+    ],
+    "pydantic_models": []
+  },
+  "app/agents/base/task.py": {
+    "classes": [
+      {
+        "name": "AgentTask",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "AgentTask"
+    ],
+    "pydantic_models": []
+  },
+  "app/agents/bootstrap.py": {
+    "classes": [],
+    "functions": [
+      "bootstrap_agents"
+    ],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/court/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/court/agent.py": {
+    "classes": [
+      {
+        "name": "CourtAgent",
+        "bases": [
+          "BaseAgent"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.agents.court.parser",
+      "app.tools.court.search_tool"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/court/parser.py": {
+    "classes": [
+      {
+        "name": "CourtIntent",
+        "bases": []
+      },
+      {
+        "name": "CourtIntentParser",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "re",
+      "dataclasses"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "CourtIntent"
+    ],
+    "pydantic_models": []
+  },
+  "app/agents/court/workflow.py": {
+    "classes": [
+      {
+        "name": "WorkflowStep",
+        "bases": []
+      },
+      {
+        "name": "CourtWorkflow",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "WorkflowStep"
+    ],
+    "pydantic_models": []
+  },
+  "app/agents/drafting/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/drafting/agent.py": {
+    "classes": [
+      {
+        "name": "DraftingAgent",
+        "bases": [
+          "BaseAgent"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.agents.drafting.parser",
+      "app.legal.drafting.drafting_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/drafting/parser.py": {
+    "classes": [
+      {
+        "name": "DraftRequest",
+        "bases": []
+      },
+      {
+        "name": "DraftRequestParser",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "app.legal.templates.templates"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/reasoning/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/reasoning/agent.py": {
+    "classes": [
+      {
+        "name": "ReasoningAgent",
+        "bases": [
+          "BaseAgent"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.legal.reasoning.reasoning_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/research/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/research/agent.py": {
+    "classes": [
+      {
+        "name": "ResearchAgent",
+        "bases": [
+          "BaseAgent"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.legal.research.research_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/agents/workflow/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/bm25/bm25.py": {
+    "classes": [
+      {
+        "name": "BM25Search",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/cache/embedding_cache.py": {
+    "classes": [
+      {
+        "name": "EmbeddingCache",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "hashlib"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/chunking/chunker.py": {
+    "classes": [
+      {
+        "name": "TextChunker",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/citations/citation_engine.py": {
+    "classes": [
+      {
+        "name": "CitationEngine",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/config/__init__.py": {
+    "classes": [],
+    "functions": [
+      "_env"
+    ],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "os"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/config.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "os"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/core/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "exceptions",
+      "provider",
+      "request",
+      "response",
+      "capabilities",
+      "health",
+      "types",
+      "registry",
+      "loader",
+      "manager",
+      "health_monitor",
+      "router",
+      "routing",
+      "selector",
+      "failover",
+      "dispatcher",
+      "stream",
+      "stream_manager",
+      "embeddings",
+      "embedding_manager",
+      "reranker",
+      "reranker_manager",
+      "metrics",
+      "telemetry",
+      "provider_config",
+      "config_manager",
+      "provider_factory",
+      "bootstrap",
+      "provider_pool",
+      "provider_priority"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/core/capabilities.py": {
+    "classes": [
+      {
+        "name": "Capability",
+        "bases": [
+          "str",
+          "Enum"
+        ]
+      },
+      {
+        "name": "ProviderCapabilities",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "enum",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ProviderCapabilities"
+    ]
+  },
+  "app/ai/core/exceptions.py": {
+    "classes": [
+      {
+        "name": "AIProviderError",
+        "bases": [
+          "Exception"
+        ]
+      },
+      {
+        "name": "AuthenticationError",
+        "bases": [
+          "AIProviderError"
+        ]
+      },
+      {
+        "name": "RateLimitError",
+        "bases": [
+          "AIProviderError"
+        ]
+      },
+      {
+        "name": "ProviderUnavailableError",
+        "bases": [
+          "AIProviderError"
+        ]
+      },
+      {
+        "name": "InvalidRequestError",
+        "bases": [
+          "AIProviderError"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/core/health.py": {
+    "classes": [
+      {
+        "name": "ProviderHealth",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ProviderHealth"
+    ]
+  },
+  "app/ai/core/metrics.py": {
+    "classes": [
+      {
+        "name": "TokenUsageMetrics",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "ProviderMetrics",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "TokenUsageMetrics",
+      "ProviderMetrics"
+    ]
+  },
+  "app/ai/core/provider_config.py": {
+    "classes": [
+      {
+        "name": "ProviderConfig",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ProviderConfig"
+    ]
+  },
+  "app/ai/core/request.py": {
+    "classes": [
+      {
+        "name": "AIRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "typing",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "AIRequest"
+    ]
+  },
+  "app/ai/core/response.py": {
+    "classes": [
+      {
+        "name": "TokenUsage",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "AIResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "typing",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "TokenUsage",
+      "AIResponse"
+    ]
+  },
+  "app/ai/core/types.py": {
+    "classes": [
+      {
+        "name": "FinishReason",
+        "bases": [
+          "str",
+          "Enum"
+        ]
+      },
+      {
+        "name": "ProviderStatus",
+        "bases": [
+          "str",
+          "Enum"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "enum"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/base.py": {
+    "classes": [
+      {
+        "name": "BaseEmbeddingProvider",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "abc"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/embedding_selector.py": {
+    "classes": [
+      {
+        "name": "EmbeddingSelector",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.embeddings.loader",
+      "app.ai.embeddings.registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/loader.py": {
+    "classes": [],
+    "functions": [
+      "load_embeddings"
+    ],
+    "async_functions": [],
+    "imports": [
+      "app.ai.embeddings.mock",
+      "app.ai.embeddings.registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/mock.py": {
+    "classes": [
+      {
+        "name": "MockEmbeddingProvider",
+        "bases": [
+          "BaseEmbeddingProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.embeddings.base"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/registry.py": {
+    "classes": [
+      {
+        "name": "EmbeddingRegistry",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.embeddings.base"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/embeddings/service.py": {
+    "classes": [
+      {
+        "name": "EmbeddingService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.providers.provider_selector"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/index/index_manager.py": {
+    "classes": [
+      {
+        "name": "IndexManager",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.cache.embedding_cache",
+      "app.ai.embeddings.embedding_selector",
+      "app.ai.storage.vector_store"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/interfaces/base_provider.py": {
+    "classes": [
+      {
+        "name": "BaseAIProvider",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "abc",
+      "collections.abc",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/memory/conversation.py": {
+    "classes": [
+      {
+        "name": "ConversationMemory",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "collections",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/prompts/system.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/anthropic_provider.py": {
+    "classes": [
+      {
+        "name": "AnthropicProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/cerebras_provider.py": {
+    "classes": [
+      {
+        "name": "CerebrasProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/gemini_provider.py": {
+    "classes": [
+      {
+        "name": "GeminiProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/groq_provider.py": {
+    "classes": [
+      {
+        "name": "GroqProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/huggingface_provider.py": {
+    "classes": [
+      {
+        "name": "HuggingFaceProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/loader.py": {
+    "classes": [],
+    "functions": [
+      "_register",
+      "load_providers",
+      "available_providers",
+      "healthy_providers"
+    ],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.providers.registry",
+      "app.ai.providers.nvidia_provider",
+      "app.ai.providers.groq_provider",
+      "app.ai.providers.gemini_provider",
+      "app.ai.providers.anthropic_provider",
+      "app.ai.providers.openrouter_provider",
+      "app.ai.providers.mistral_provider",
+      "app.ai.providers.cerebras_provider",
+      "app.ai.providers.huggingface_provider",
+      "app.ai.providers.ollama_provider",
+      "app.ai.providers.mock_provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/mistral_provider.py": {
+    "classes": [
+      {
+        "name": "MistralProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/mock_provider.py": {
+    "classes": [
+      {
+        "name": "MockAIProvider",
+        "bases": [
+          "BaseAIProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.interfaces.base_provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/nvidia_provider.py": {
+    "classes": [
+      {
+        "name": "NVIDIAProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/ollama_provider.py": {
+    "classes": [
+      {
+        "name": "OllamaProvider",
+        "bases": [
+          "BaseAIProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "httpx",
+      "app.ai.interfaces.base_provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/openai_compatible.py": {
+    "classes": [
+      {
+        "name": "OpenAICompatibleProvider",
+        "bases": [
+          "BaseAIProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "os",
+      "time",
+      "collections.abc",
+      "typing",
+      "openai",
+      "app.ai.interfaces.base_provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/openrouter_provider.py": {
+    "classes": [
+      {
+        "name": "OpenRouterProvider",
+        "bases": [
+          "OpenAICompatibleProvider"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/provider_selector.py": {
+    "classes": [
+      {
+        "name": "ProviderSelector",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.providers.registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/providers/registry.py": {
+    "classes": [
+      {
+        "name": "ProviderRegistry",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.interfaces.base_provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/ranking/hybrid_ranker.py": {
+    "classes": [
+      {
+        "name": "HybridRanker",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/reranker/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/reranker/reranker.py": {
+    "classes": [
+      {
+        "name": "Reranker",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/reranker/service.py": {
+    "classes": [
+      {
+        "name": "RerankerService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.providers.provider_selector"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/retrieval/retriever.py": {
+    "classes": [
+      {
+        "name": "Retriever",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.chunking.chunker",
+      "app.ai.embeddings.embedding_selector",
+      "app.ai.vectorstore.memory"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/search/hybrid_search.py": {
+    "classes": [
+      {
+        "name": "HybridSearch",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.bm25.bm25",
+      "app.ai.ranking.hybrid_ranker",
+      "app.ai.reranker.reranker",
+      "app.ai.storage.vector_store"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/services/ai_service.py": {
+    "classes": [
+      {
+        "name": "AIService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.config",
+      "app.ai.citations.citation_engine",
+      "app.ai.memory.conversation",
+      "app.ai.prompts.system",
+      "app.ai.providers.loader",
+      "app.ai.providers.provider_selector",
+      "app.ai.retrieval.retriever"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/services/chat_service.py": {
+    "classes": [
+      {
+        "name": "ChatService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "typing",
+      "app.ai.services.routing_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/services/conversation_service.py": {
+    "classes": [
+      {
+        "name": "ConversationService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "typing",
+      "app.ai.services.routing_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/services/routing_service.py": {
+    "classes": [
+      {
+        "name": "RoutingService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "__future__",
+      "app.ai.providers.loader",
+      "app.ai.providers.provider_selector"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/storage/vector_store.py": {
+    "classes": [
+      {
+        "name": "PersistentVectorStore",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "json",
+      "sqlite3",
+      "pathlib"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/ai/vectorstore/memory.py": {
+    "classes": [
+      {
+        "name": "MemoryVectorStore",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/analytics/case_analytics.py": {
+    "classes": [
+      {
+        "name": "CaseAnalytics",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "app.models.case",
+      "app.models.document",
+      "app.models.hearing",
+      "app.models.task"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/ai.py": {
+    "classes": [
+      {
+        "name": "AIRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "IngestRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [
+      "ingest",
+      "clear_memory",
+      "ai_chat"
+    ],
+    "imports": [
+      "typing",
+      "fastapi",
+      "pydantic",
+      "app.agents.base.context",
+      "app.agents.base.registry",
+      "app.agents.court.agent",
+      "app.ai.services.ai_service",
+      "app.orchestrator.executor",
+      "app.orchestrator.router"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "AIRequest",
+      "IngestRequest"
+    ]
+  },
+  "app/api/v1/auth.py": {
+    "classes": [
+      {
+        "name": "LoginRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "TokenResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [
+      "login"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "pydantic",
+      "sqlalchemy.orm",
+      "app.auth.password",
+      "app.auth.security",
+      "app.database.database",
+      "app.models.user"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "LoginRequest",
+      "TokenResponse"
+    ]
+  },
+  "app/api/v1/cases.py": {
+    "classes": [],
+    "functions": [
+      "create_case",
+      "list_cases",
+      "search_cases",
+      "case_statistics",
+      "filter_cases_by_status",
+      "get_case",
+      "update_case",
+      "delete_case"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.auth.dependencies",
+      "app.database.database",
+      "app.models.user",
+      "app.schemas.case",
+      "app.services.case_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/clients.py": {
+    "classes": [],
+    "functions": [
+      "create_client",
+      "list_clients"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.schemas.client",
+      "app.services.client_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/dashboard.py": {
+    "classes": [],
+    "functions": [
+      "summary"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.services.dashboard_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/documents.py": {
+    "classes": [],
+    "functions": [
+      "list_documents",
+      "search_documents",
+      "documents_for_case",
+      "delete_document",
+      "process_document"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.schemas.document",
+      "app.services.document_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/drafting.py": {
+    "classes": [],
+    "functions": [
+      "generate"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.legal.drafting.drafting_service",
+      "app.legal.drafting.schemas.draft_request",
+      "app.legal.drafting.schemas.draft_response"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/jobs.py": {
+    "classes": [],
+    "functions": [
+      "status"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.workers.job_queue"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/profile.py": {
+    "classes": [],
+    "functions": [
+      "my_profile"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.auth.dependencies",
+      "app.models.user"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/reasoning.py": {
+    "classes": [],
+    "functions": [
+      "analyze"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.legal.reasoning.reasoning_service",
+      "app.legal.reasoning.schemas.reasoning_request",
+      "app.legal.reasoning.schemas.reasoning_response"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/research.py": {
+    "classes": [],
+    "functions": [
+      "research",
+      "history",
+      "clear_history"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.legal.research.research_service",
+      "app.legal.research.schemas.research_request",
+      "app.legal.research.schemas.research_response"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/system.py": {
+    "classes": [],
+    "functions": [
+      "get_metrics",
+      "get_audit"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "app.audit.audit_log",
+      "app.monitoring.metrics"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/users.py": {
+    "classes": [],
+    "functions": [
+      "create_user"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.schemas.user",
+      "app.services.user_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/workflow.py": {
+    "classes": [],
+    "functions": [
+      "dashboard"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.workflows.schemas.dashboard_response",
+      "app.workflows.workflow_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/api/v1/workspace.py": {
+    "classes": [],
+    "functions": [
+      "create_hearing",
+      "hearings",
+      "create_task",
+      "tasks"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "sqlalchemy.orm",
+      "app.database.database",
+      "app.schemas.hearing",
+      "app.schemas.task",
+      "app.services.workspace_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/audit/audit_log.py": {
+    "classes": [
+      {
+        "name": "AuditLog",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/auth/dependencies.py": {
+    "classes": [],
+    "functions": [
+      "get_current_user"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi",
+      "fastapi.security",
+      "sqlalchemy.orm",
+      "app.auth.security",
+      "app.database.database",
+      "app.models.user"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/auth/password.py": {
+    "classes": [],
+    "functions": [
+      "hash_password",
+      "verify_password"
+    ],
+    "async_functions": [],
+    "imports": [
+      "hashlib",
+      "secrets",
+      "passlib.context"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/auth/security.py": {
+    "classes": [],
+    "functions": [
+      "create_access_token",
+      "decode_access_token"
+    ],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "jose",
+      "app.core.config"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/automation/reminder_service.py": {
+    "classes": [
+      {
+        "name": "ReminderService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "app.models.hearing",
+      "app.models.task"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/core/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/core/config.py": {
+    "classes": [
+      {
+        "name": "Settings",
+        "bases": [
+          "BaseSettings"
+        ]
+      }
+    ],
+    "functions": [
+      "get_settings"
+    ],
+    "async_functions": [],
+    "imports": [
+      "functools",
+      "pydantic",
+      "pydantic_settings"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/core/logging.py": {
+    "classes": [],
+    "functions": [
+      "get_logger"
+    ],
+    "async_functions": [],
+    "imports": [
+      "pathlib",
+      "sys",
+      "loguru"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/api.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [
+      "captcha",
+      "search_by_cnr",
+      "import_case"
+    ],
+    "imports": [
+      "fastapi",
+      "fastapi.responses",
+      "app.court.captcha",
+      "app.court.schemas",
+      "app.court.service",
+      "app.court.session"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/captcha.py": {
+    "classes": [
+      {
+        "name": "CaptchaService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.court.session"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/models.py": {
+    "classes": [
+      {
+        "name": "CourtCase",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "CourtCase"
+    ],
+    "pydantic_models": []
+  },
+  "app/court/parser.py": {
+    "classes": [
+      {
+        "name": "CourtParser",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/provider.py": {
+    "classes": [
+      {
+        "name": "CourtProvider",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.integrations.courts.ecourts"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/schemas.py": {
+    "classes": [
+      {
+        "name": "CaptchaResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "SearchByCNRRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "SearchCaseRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "ImportCourtCaseRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "CaptchaResponse",
+      "SearchByCNRRequest",
+      "SearchCaseRequest",
+      "ImportCourtCaseRequest"
+    ]
+  },
+  "app/court/service.py": {
+    "classes": [
+      {
+        "name": "CourtService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.court.provider"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/court/session.py": {
+    "classes": [
+      {
+        "name": "SessionData",
+        "bases": []
+      },
+      {
+        "name": "CourtSessionManager",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "secrets",
+      "threading",
+      "time",
+      "dataclasses",
+      "requests"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "SessionData"
+    ],
+    "pydantic_models": []
+  },
+  "app/database/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/database/database.py": {
+    "classes": [
+      {
+        "name": "Base",
+        "bases": [
+          "DeclarativeBase"
+        ]
+      }
+    ],
+    "functions": [
+      "get_db"
+    ],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.core.config"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/database/init_db.py": {
+    "classes": [],
+    "functions": [
+      "init_database"
+    ],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "app.core.config",
+      "app.core.logging",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/dependencies/database.py": {
+    "classes": [],
+    "functions": [
+      "db_session"
+    ],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/document_processing/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "document_processing_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/document_processing/document_processing_service.py": {
+    "classes": [
+      {
+        "name": "DocumentProcessingService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "app.ai.services.ai_service",
+      "app.legal.citations.extractor",
+      "app.legal.entities.entity_extractor",
+      "app.legal.reasoning.summarizer",
+      "app.document_processing.schemas.document_analysis"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/document_processing/schemas/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/document_processing/schemas/document_analysis.py": {
+    "classes": [
+      {
+        "name": "DocumentAnalysis",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "DocumentAnalysis"
+    ]
+  },
+  "app/events/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/events/bus.py": {
+    "classes": [
+      {
+        "name": "EventBus",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "collections",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/events/events.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/base.py": {
+    "classes": [
+      {
+        "name": "BaseCourtProvider",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "abc"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/bootstrap.py": {
+    "classes": [
+      {
+        "name": "ECourtsBootstrap",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "re",
+      "bs4",
+      "app.court.session"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/ecourts.py": {
+    "classes": [
+      {
+        "name": "ECourtsProvider",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "json",
+      "re",
+      "app.court.captcha",
+      "app.court.session",
+      "app.integrations.courts.bootstrap"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/models/case.py": {
+    "classes": [
+      {
+        "name": "CourtCase",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "CourtCase"
+    ],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/provider_registry.py": {
+    "classes": [
+      {
+        "name": "CourtProviderRegistry",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.integrations.courts.ecourts"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/integrations/courts/service.py": {
+    "classes": [
+      {
+        "name": "CourtIntegrationService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.integrations.courts.provider_registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/jobs/job.py": {
+    "classes": [
+      {
+        "name": "Job",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "datetime",
+      "uuid"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "Job"
+    ],
+    "pydantic_models": []
+  },
+  "app/legal/citations/extractor.py": {
+    "classes": [
+      {
+        "name": "CitationExtractor",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "re"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/drafting/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/drafting/drafting_service.py": {
+    "classes": [
+      {
+        "name": "DraftingService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "time",
+      "app.ai.services.ai_service",
+      "app.legal.drafting.schemas.draft_response",
+      "app.legal.templates.templates"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/drafting/schemas/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/drafting/schemas/draft_request.py": {
+    "classes": [
+      {
+        "name": "DraftRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "DraftRequest"
+    ]
+  },
+  "app/legal/drafting/schemas/draft_response.py": {
+    "classes": [
+      {
+        "name": "DraftResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "DraftResponse"
+    ]
+  },
+  "app/legal/entities/entity_extractor.py": {
+    "classes": [
+      {
+        "name": "LegalEntityExtractor",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "re"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/explainability/explainer.py": {
+    "classes": [
+      {
+        "name": "ExplainabilityEngine",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/graphs/citation_graph.py": {
+    "classes": [
+      {
+        "name": "CitationGraph",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/history/history.py": {
+    "classes": [
+      {
+        "name": "ResearchHistory",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/knowledge/corpus/corpus_manager.py": {
+    "classes": [
+      {
+        "name": "CorpusManager",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.legal.knowledge.knowledge_base"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/knowledge/knowledge_base.py": {
+    "classes": [
+      {
+        "name": "KnowledgeBase",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pathlib",
+      "app.ai.services.ai_service",
+      "app.legal.parsers.legal_parser"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/models/judgment.py": {
+    "classes": [
+      {
+        "name": "Judgment",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "datetime"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "Judgment"
+    ],
+    "pydantic_models": []
+  },
+  "app/legal/parsers/legal_parser.py": {
+    "classes": [
+      {
+        "name": "LegalParser",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pathlib",
+      "pypdf",
+      "app.legal.citations.extractor"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/precedents/precedent_extractor.py": {
+    "classes": [
+      {
+        "name": "PrecedentExtractor",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.legal.citations.extractor"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/ranking/ranker.py": {
+    "classes": [
+      {
+        "name": "LegalRanker",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/reasoning/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/reasoning/reasoning_service.py": {
+    "classes": [
+      {
+        "name": "ReasoningService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "time",
+      "app.ai.services.ai_service",
+      "app.legal.explainability.explainer",
+      "app.legal.precedents.precedent_extractor",
+      "app.legal.reasoning.schemas.reasoning_response",
+      "app.legal.reasoning.summarizer"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/reasoning/schemas/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/reasoning/schemas/reasoning_request.py": {
+    "classes": [
+      {
+        "name": "ReasoningRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ReasoningRequest"
+    ]
+  },
+  "app/legal/reasoning/schemas/reasoning_response.py": {
+    "classes": [
+      {
+        "name": "ReasoningResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ReasoningResponse"
+    ]
+  },
+  "app/legal/reasoning/summarizer.py": {
+    "classes": [
+      {
+        "name": "JudgmentSummarizer",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/core/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/core/research_orchestrator.py": {
+    "classes": [
+      {
+        "name": "ResearchOrchestrator",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "time",
+      "datetime",
+      "app.legal.research.pipeline.research_pipeline",
+      "app.legal.research.schemas.research_response"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/pipeline/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/pipeline/research_pipeline.py": {
+    "classes": [
+      {
+        "name": "ResearchPipeline",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.services.ai_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/research_service.py": {
+    "classes": [
+      {
+        "name": "LegalResearchService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "time",
+      "uuid",
+      "app.ai.services.ai_service",
+      "app.legal.entities.entity_extractor",
+      "app.legal.history.history",
+      "app.legal.ranking.ranker",
+      "app.legal.research.schemas.research_response",
+      "app.legal.search.semantic_search",
+      "app.legal.session.session"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/schemas/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/research/schemas/research_request.py": {
+    "classes": [
+      {
+        "name": "ResearchRequest",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ResearchRequest"
+    ]
+  },
+  "app/legal/research/schemas/research_response.py": {
+    "classes": [
+      {
+        "name": "Citation",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "ResearchResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "Citation",
+      "ResearchResponse"
+    ]
+  },
+  "app/legal/search/semantic_search.py": {
+    "classes": [
+      {
+        "name": "SemanticSearch",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.ai.services.ai_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/legal/session/session.py": {
+    "classes": [
+      {
+        "name": "ResearchSession",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "datetime"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "ResearchSession"
+    ],
+    "pydantic_models": []
+  },
+  "app/legal/templates/templates.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/llm/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/llm/base.py": {
+    "classes": [
+      {
+        "name": "BaseLLM",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "abc"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/llm/mock.py": {
+    "classes": [
+      {
+        "name": "MockLLM",
+        "bases": [
+          "BaseLLM"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.llm.base"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/llm/service.py": {
+    "classes": [
+      {
+        "name": "LLMService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.llm.mock"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/main.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [
+      "lifespan",
+      "root",
+      "readiness",
+      "health"
+    ],
+    "imports": [
+      "contextlib",
+      "fastapi",
+      "fastapi.middleware.cors",
+      "app.api.v1.users",
+      "app.api.v1.profile",
+      "app.api.v1.auth",
+      "app.api.v1.cases",
+      "app.api.v1.documents",
+      "app.api.v1.ai",
+      "app.api.v1.research",
+      "app.api.v1.workspace",
+      "app.api.v1.clients",
+      "app.api.v1.dashboard",
+      "app.api.v1.drafting",
+      "app.api.v1.workflow",
+      "app.api.v1.reasoning",
+      "app.api.v1.jobs",
+      "app.api.v1.system",
+      "app.core.config",
+      "app.core.logging",
+      "app.database.init_db"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.models.user",
+      "app.models.case",
+      "app.models.document",
+      "app.models.hearing",
+      "app.models.task",
+      "app.models.note",
+      "app.models.evidence",
+      "app.models.bookmark",
+      "app.models.annotation",
+      "app.models.client",
+      "app.models.contact_log",
+      "app.models.cause_list",
+      "app.models.court_schedule",
+      "app.models.litigation_timeline"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/annotation.py": {
+    "classes": [
+      {
+        "name": "Annotation",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/bookmark.py": {
+    "classes": [
+      {
+        "name": "Bookmark",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/case.py": {
+    "classes": [
+      {
+        "name": "Case",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/cause_list.py": {
+    "classes": [
+      {
+        "name": "CauseList",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/client.py": {
+    "classes": [
+      {
+        "name": "Client",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/contact_log.py": {
+    "classes": [
+      {
+        "name": "ContactLog",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/court_schedule.py": {
+    "classes": [
+      {
+        "name": "CourtSchedule",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/document.py": {
+    "classes": [
+      {
+        "name": "Document",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/evidence.py": {
+    "classes": [
+      {
+        "name": "Evidence",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/hearing.py": {
+    "classes": [
+      {
+        "name": "Hearing",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/litigation_timeline.py": {
+    "classes": [
+      {
+        "name": "LitigationTimeline",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/note.py": {
+    "classes": [
+      {
+        "name": "Note",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/task.py": {
+    "classes": [
+      {
+        "name": "Task",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/models/user.py": {
+    "classes": [
+      {
+        "name": "User",
+        "bases": [
+          "Base"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.database.database"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/monitoring/metrics.py": {
+    "classes": [
+      {
+        "name": "Metrics",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "collections"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/orchestrator/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/orchestrator/executor.py": {
+    "classes": [
+      {
+        "name": "AgentExecutor",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.context",
+      "app.orchestrator.router"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/orchestrator/planner.py": {
+    "classes": [
+      {
+        "name": "TaskPlanner",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.task"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/orchestrator/router.py": {
+    "classes": [
+      {
+        "name": "AgentRouter",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.agents.base.context",
+      "app.agents.base.registry"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/orchestrator/session.py": {
+    "classes": [
+      {
+        "name": "AgentSession",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "AgentSession"
+    ],
+    "pydantic_models": []
+  },
+  "app/repositories/case_repository.py": {
+    "classes": [
+      {
+        "name": "CaseRepository",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.models.case"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/repositories/client_repository.py": {
+    "classes": [
+      {
+        "name": "ClientRepository",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.models.client"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/repositories/document_repository.py": {
+    "classes": [
+      {
+        "name": "DocumentRepository",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "sqlalchemy.orm",
+      "app.models.document"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/repositories/user_repository.py": {
+    "classes": [
+      {
+        "name": "UserRepository",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.models.user"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/repositories/workspace_repository.py": {
+    "classes": [
+      {
+        "name": "WorkspaceRepository",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.models.hearing",
+      "app.models.task"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/schemas/case.py": {
+    "classes": [
+      {
+        "name": "CaseCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "CaseUpdate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "CaseResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "CaseCreate",
+      "CaseUpdate",
+      "CaseResponse"
+    ]
+  },
+  "app/schemas/client.py": {
+    "classes": [
+      {
+        "name": "ClientCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "ClientResponse",
+        "bases": [
+          "ClientCreate"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "ClientCreate"
+    ]
+  },
+  "app/schemas/document.py": {
+    "classes": [
+      {
+        "name": "DocumentCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "DocumentResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "DocumentCreate",
+      "DocumentResponse"
+    ]
+  },
+  "app/schemas/hearing.py": {
+    "classes": [
+      {
+        "name": "HearingCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "HearingResponse",
+        "bases": [
+          "HearingCreate"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "HearingCreate"
+    ]
+  },
+  "app/schemas/task.py": {
+    "classes": [
+      {
+        "name": "TaskCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "TaskResponse",
+        "bases": [
+          "TaskCreate"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "TaskCreate"
+    ]
+  },
+  "app/schemas/user.py": {
+    "classes": [
+      {
+        "name": "UserCreate",
+        "bases": [
+          "BaseModel"
+        ]
+      },
+      {
+        "name": "UserResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "UserCreate",
+      "UserResponse"
+    ]
+  },
+  "app/security/api_key.py": {
+    "classes": [],
+    "functions": [
+      "verify_api_key"
+    ],
+    "async_functions": [],
+    "imports": [
+      "fastapi"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/case_service.py": {
+    "classes": [
+      {
+        "name": "CaseService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.repositories.case_repository"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/client_service.py": {
+    "classes": [
+      {
+        "name": "ClientService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.repositories.client_repository"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/dashboard_service.py": {
+    "classes": [
+      {
+        "name": "DashboardService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy",
+      "app.models.case",
+      "app.models.client",
+      "app.models.document",
+      "app.models.hearing",
+      "app.models.task"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/document_service.py": {
+    "classes": [
+      {
+        "name": "DocumentService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.document_processing",
+      "app.tasks.document_tasks",
+      "app.repositories.document_repository",
+      "app.utils.file_storage",
+      "app.core.logging"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/user_service.py": {
+    "classes": [
+      {
+        "name": "UserService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.auth.password",
+      "app.repositories.user_repository"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/services/workspace_service.py": {
+    "classes": [
+      {
+        "name": "WorkspaceService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.repositories.workspace_repository"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tasks/document_tasks.py": {
+    "classes": [
+      {
+        "name": "DocumentTasks",
+        "bases": []
+      }
+    ],
+    "functions": [
+      "enqueue_document_index"
+    ],
+    "async_functions": [],
+    "imports": [
+      "pathlib",
+      "app.document_processing",
+      "app.jobs.job",
+      "app.workers.job_queue"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tasks/email_tasks.py": {
+    "classes": [],
+    "functions": [
+      "enqueue_email"
+    ],
+    "async_functions": [],
+    "imports": [
+      "app.jobs.job",
+      "app.workers.job_queue"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tasks/reminder_tasks.py": {
+    "classes": [],
+    "functions": [
+      "enqueue_reminder"
+    ],
+    "async_functions": [],
+    "imports": [
+      "app.jobs.job",
+      "app.workers.job_queue"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/base/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/base/registry.py": {
+    "classes": [
+      {
+        "name": "ToolRegistry",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.tools.base.tool"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/base/result.py": {
+    "classes": [
+      {
+        "name": "ToolResult",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "dataclasses",
+      "typing"
+    ],
+    "routers": false,
+    "dataclasses": [
+      "ToolResult"
+    ],
+    "pydantic_models": []
+  },
+  "app/tools/base/tool.py": {
+    "classes": [
+      {
+        "name": "BaseTool",
+        "bases": [
+          "ABC"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "abc",
+      "typing",
+      "app.tools.base.result"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/court/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/court/search_tool.py": {
+    "classes": [
+      {
+        "name": "CourtSearchTool",
+        "bases": [
+          "BaseTool"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "app.integrations.courts.ecourts",
+      "app.tools.base.result",
+      "app.tools.base.tool"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/database/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/documents/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/llm/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/tools/web/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/utils/file_storage.py": {
+    "classes": [
+      {
+        "name": "FileStorage",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "pathlib",
+      "shutil",
+      "uuid",
+      "fastapi"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workers/job_queue.py": {
+    "classes": [
+      {
+        "name": "JobQueue",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "queue",
+      "app.jobs.job"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workflows/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workflows/schemas/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workflows/schemas/dashboard_response.py": {
+    "classes": [
+      {
+        "name": "DashboardResponse",
+        "bases": [
+          "BaseModel"
+        ]
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "pydantic"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": [
+      "DashboardResponse"
+    ]
+  },
+  "app/workflows/workflow_service.py": {
+    "classes": [
+      {
+        "name": "WorkflowService",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "datetime",
+      "app.analytics.case_analytics",
+      "app.automation.reminder_service",
+      "app.workflows.schemas.dashboard_response"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workspaces/__init__.py": {
+    "classes": [],
+    "functions": [],
+    "async_functions": [],
+    "imports": [],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  },
+  "app/workspaces/case_workspace.py": {
+    "classes": [
+      {
+        "name": "CaseWorkspace",
+        "bases": []
+      }
+    ],
+    "functions": [],
+    "async_functions": [],
+    "imports": [
+      "sqlalchemy.orm",
+      "app.services.case_service"
+    ],
+    "routers": false,
+    "dataclasses": [],
+    "pydantic_models": []
+  }
+}

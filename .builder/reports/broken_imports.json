@@ -1,0 +1,567 @@
+[
+  {
+    "module": "services.document_service",
+    "imports": "app.document_processing",
+    "file": "services/document_service.py"
+  },
+  {
+    "module": "services.document_ingestion_service",
+    "imports": "app.ai.embeddings.service",
+    "file": "services/document_ingestion_service.py"
+  },
+  {
+    "module": "tasks.document_tasks",
+    "imports": "app.document_processing",
+    "file": "tasks/document_tasks.py"
+  },
+  {
+    "module": "verification.engine",
+    "imports": "app.verification.checks",
+    "file": "verification/engine.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.mock",
+    "imports": "app.ai.embeddings.base",
+    "file": "legacy/ai/embeddings/mock.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.registry",
+    "imports": "app.ai.embeddings.base",
+    "file": "legacy/ai/embeddings/registry.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.loader",
+    "imports": "app.ai.embeddings.mock",
+    "file": "legacy/ai/embeddings/loader.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.loader",
+    "imports": "app.ai.embeddings.registry",
+    "file": "legacy/ai/embeddings/loader.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.embedding_selector",
+    "imports": "app.ai.embeddings.loader",
+    "file": "legacy/ai/embeddings/embedding_selector.py"
+  },
+  {
+    "module": "legacy.ai.embeddings.embedding_selector",
+    "imports": "app.ai.embeddings.registry",
+    "file": "legacy/ai/embeddings/embedding_selector.py"
+  },
+  {
+    "module": "legacy.ai.integration.rag_pipeline",
+    "imports": "app.ai.search.service",
+    "file": "legacy/ai/integration/rag_pipeline.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.registry",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/registry.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.factory",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/factory.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.factory",
+    "imports": "app.document_processing.embeddings.registry",
+    "file": "legacy/document_processing/embeddings/factory.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.adapter",
+    "imports": "app.document_processing.embeddings.factory",
+    "file": "legacy/document_processing/embeddings/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.adapter",
+    "imports": "app.document_processing.embeddings.registry",
+    "file": "legacy/document_processing/embeddings/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.openai_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/openai_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.ollama_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/ollama_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.huggingface_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/huggingface_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.nvidia_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/nvidia_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.mock_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/mock_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.sentence_transformers_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/sentence_transformers_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.openrouter_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/openrouter_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.gemini_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/gemini_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.cohere_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/cohere_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.jina_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/jina_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.voyage_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/voyage_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.mistral_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/mistral_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.cerebras_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/cerebras_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.together_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/together_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.fireworks_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/fireworks_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.deepinfra_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/deepinfra_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.azure_openai_provider",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/azure_openai_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.aws_bedrock_provider",
+    "imports": "app.document_processing.embeddings.provider",
+    "file": "legacy/document_processing/embeddings/aws_bedrock_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.registry",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.mock_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.ollama_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.openai_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.openrouter_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.gemini_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.huggingface_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.sentence_transformers_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.cohere_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.jina_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.voyage_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.mistral_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.cerebras_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.together_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.fireworks_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.deepinfra_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.azure_openai_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.aws_bedrock_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.bootstrap",
+    "imports": "app.document_processing.embeddings.nvidia_provider",
+    "file": "legacy/document_processing/embeddings/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.service",
+    "imports": "app.document_processing.embeddings.adapter",
+    "file": "legacy/document_processing/embeddings/service.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.service",
+    "imports": "app.document_processing.embeddings.bootstrap",
+    "file": "legacy/document_processing/embeddings/service.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.health",
+    "imports": "app.document_processing.embeddings.bootstrap",
+    "file": "legacy/document_processing/embeddings/health.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.embedding_ingestion_service",
+    "imports": "app.document_processing.embeddings.service",
+    "file": "legacy/document_processing/embeddings/embedding_ingestion_service.py"
+  },
+  {
+    "module": "legacy.document_processing.embeddings.embedding_ingestion_service",
+    "imports": "app.document_processing.vector_index.service",
+    "file": "legacy/document_processing/embeddings/embedding_ingestion_service.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.registry",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/registry.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.factory",
+    "imports": "app.document_processing.vector_index.registry",
+    "file": "legacy/document_processing/vector_index/factory.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.adapter",
+    "imports": "app.document_processing.vector_index.factory",
+    "file": "legacy/document_processing/vector_index/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.adapter",
+    "imports": "app.document_processing.vector_index.registry",
+    "file": "legacy/document_processing/vector_index/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.registry",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.sqlite_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.faiss_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.chromadb_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.qdrant_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.lancedb_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.milvus_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.pgvector_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.weaviate_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.pinecone_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.elasticsearch_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.bootstrap",
+    "imports": "app.document_processing.vector_index.opensearch_provider",
+    "file": "legacy/document_processing/vector_index/bootstrap.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.service",
+    "imports": "app.document_processing.vector_index.adapter",
+    "file": "legacy/document_processing/vector_index/service.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.service",
+    "imports": "app.document_processing.vector_index.bootstrap",
+    "file": "legacy/document_processing/vector_index/service.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.health",
+    "imports": "app.document_processing.vector_index.bootstrap",
+    "file": "legacy/document_processing/vector_index/health.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.faiss_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/faiss_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.chromadb_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/chromadb_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.qdrant_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/qdrant_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.milvus_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/milvus_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.pgvector_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/pgvector_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.sqlite_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/sqlite_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.lancedb_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/lancedb_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.weaviate_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/weaviate_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.pinecone_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/pinecone_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.elasticsearch_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/elasticsearch_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.vector_index.opensearch_provider",
+    "imports": "app.document_processing.vector_index.provider",
+    "file": "legacy/document_processing/vector_index/opensearch_provider.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.registry",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/registry.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.factory",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/factory.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.factory",
+    "imports": "app.document_processing.ocr.registry",
+    "file": "legacy/document_processing/ocr/factory.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.adapter",
+    "imports": "app.document_processing.ocr.factory",
+    "file": "legacy/document_processing/ocr/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.adapter",
+    "imports": "app.document_processing.ocr.registry",
+    "file": "legacy/document_processing/ocr/adapter.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.tesseract",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/tesseract.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.paddleocr",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/paddleocr.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.easyocr",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/easyocr.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.google_vision",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/google_vision.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.azure_vision",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/azure_vision.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.aws_textract",
+    "imports": "app.document_processing.ocr.provider",
+    "file": "legacy/document_processing/ocr/aws_textract.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.service",
+    "imports": "app.document_processing.ocr.ocr_engine",
+    "file": "legacy/document_processing/ocr/service.py"
+  },
+  {
+    "module": "legacy.document_processing.ocr.service",
+    "imports": "app.document_processing.ocr.vision_engine",
+    "file": "legacy/document_processing/ocr/service.py"
+  },
+  {
+    "module": "legacy.document_processing.semantic_search.vector_retriever",
+    "imports": "app.ai.embeddings.service",
+    "file": "legacy/document_processing/semantic_search/vector_retriever.py"
+  },
+  {
+    "module": "legacy.document_processing.semantic_search.vector_retriever",
+    "imports": "app.document_processing.semantic_search.retriever",
+    "file": "legacy/document_processing/semantic_search/vector_retriever.py"
+  },
+  {
+    "module": "legacy.document_processing.semantic_search.hybrid_retriever",
+    "imports": "app.document_processing.semantic_search.vector_retriever",
+    "file": "legacy/document_processing/semantic_search/hybrid_retriever.py"
+  },
+  {
+    "module": "legacy.document_processing.semantic_search.service",
+    "imports": "app.document_processing.semantic_search.pipeline",
+    "file": "legacy/document_processing/semantic_search/service.py"
+  },
+  {
+    "module": "verification.checks.rag_pipeline_check",
+    "imports": "app.ai.embeddings.service",
+    "file": "verification/checks/rag_pipeline_check.py"
+  },
+  {
+    "module": "verification.checks.embedding_provider_check",
+    "imports": "app.ai.embeddings.service",
+    "file": "verification/checks/embedding_provider_check.py"
+  },
+  {
+    "module": "legal.explainability.explainer",
+    "imports": "app.legal.reasoning.strategies",
+    "file": "legal/explainability/explainer.py"
+  },
+  {
+    "module": "legal.research.core.research_pipeline",
+    "imports": "app.legal.reasoning.analysis",
+    "file": "legal/research/core/research_pipeline.py"
+  },
+  {
+    "module": "legal.research.core.research_pipeline",
+    "imports": "app.legal.judgments.analysis",
+    "file": "legal/research/core/research_pipeline.py"
+  },
+  {
+    "module": "legal.research.core.research_pipeline",
+    "imports": "app.legal.drafting.intelligence",
+    "file": "legal/research/core/research_pipeline.py"
+  },
+  {
+    "module": "legal.research.core.research_pipeline",
+    "imports": "app.agents.orchestration",
+    "file": "legal/research/core/research_pipeline.py"
+  },
+  {
+    "module": "ai.integration.rag_engine",
+    "imports": "app.ai.search",
+    "file": "ai/integration/rag_engine.py"
+  }
+]

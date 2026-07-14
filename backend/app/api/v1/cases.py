@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import get_current_user
+from app.auth.rbac import require_permission
 from app.database.database import get_db
 from app.models.user import User
 from app.schemas.case import CaseCreate, CaseUpdate, CaseResponse
@@ -15,6 +16,7 @@ def create_case(
     case: CaseCreate,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    _: User = Depends(require_permission("cases")),
 ):
     try:
         data = case.model_dump()

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pathlib import Path
 import sys
 
@@ -21,5 +23,17 @@ logger.add(
 )
 
 
-def get_logger():
+def get_logger(
+    name: str | None = None,
+):
+    """
+    Return the application's shared logger.
+
+    If a module name is supplied, return a logger bound to that module.
+    Existing calls to get_logger() continue to work unchanged.
+    """
+
+    if name:
+        return logger.bind(module=name)
+
     return logger

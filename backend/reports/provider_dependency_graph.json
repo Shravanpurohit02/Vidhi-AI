@@ -1,0 +1,2612 @@
+{
+  "modules": 498,
+  "dependencies": {
+    "app.activity.service": [
+      "datetime",
+      "typing"
+    ],
+    "app.agents.base.__init__": [
+      "agent",
+      "context",
+      "registry",
+      "result",
+      "task"
+    ],
+    "app.agents.base.agent": [
+      "abc",
+      "app.agents.base.context",
+      "app.agents.base.result"
+    ],
+    "app.agents.base.context": [
+      "dataclasses",
+      "typing"
+    ],
+    "app.agents.base.exceptions": [
+      "__future__"
+    ],
+    "app.agents.base.registry": [
+      "__future__",
+      "app.agents.base.agent",
+      "app.agents.base.exceptions",
+      "typing"
+    ],
+    "app.agents.base.result": [
+      "dataclasses",
+      "typing"
+    ],
+    "app.agents.base.task": [
+      "dataclasses",
+      "typing"
+    ],
+    "app.agents.bootstrap": [
+      "app.agents.base.registry",
+      "app.agents.drafting.agent",
+      "app.agents.reasoning.agent",
+      "app.agents.research.agent"
+    ],
+    "app.agents.court.agent": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.agents.court.parser",
+      "app.tools.court.search_tool"
+    ],
+    "app.agents.court.parser": [
+      "dataclasses",
+      "re"
+    ],
+    "app.agents.court.workflow": [
+      "dataclasses",
+      "typing"
+    ],
+    "app.agents.drafting.agent": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.agents.drafting.parser",
+      "app.legal.drafting.drafting_service"
+    ],
+    "app.agents.drafting.parser": [
+      "app.legal.templates.templates",
+      "dataclasses"
+    ],
+    "app.agents.orchestration.__init__": [
+      "workflow_engine"
+    ],
+    "app.agents.orchestration.agent_selector": [
+      "__future__"
+    ],
+    "app.agents.orchestration.task_classifier": [
+      "__future__"
+    ],
+    "app.agents.orchestration.workflow_engine": [
+      "__future__",
+      "app.agents.orchestration.agent_selector",
+      "app.agents.orchestration.task_classifier"
+    ],
+    "app.agents.reasoning.agent": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.legal.reasoning.reasoning_service"
+    ],
+    "app.agents.research.agent": [
+      "app.agents.base.agent",
+      "app.agents.base.context",
+      "app.agents.base.result",
+      "app.legal.research.research_service"
+    ],
+    "app.ai.bm25.document_loader": [
+      "__future__",
+      "app.database.database",
+      "app.models.document_chunk"
+    ],
+    "app.ai.bm25.engine": [
+      "__future__",
+      "app.ai.bm25.document_loader",
+      "app.ai.bm25.index"
+    ],
+    "app.ai.bm25.index": [
+      "__future__",
+      "collections",
+      "math"
+    ],
+    "app.ai.bm25.tokenizer": [
+      "__future__",
+      "re"
+    ],
+    "app.ai.cache.__init__": [
+      "cache_manager",
+      "decorators"
+    ],
+    "app.ai.cache.cache_manager": [
+      "__future__",
+      "time"
+    ],
+    "app.ai.cache.decorators": [
+      "__future__",
+      "app.ai.cache.cache_manager",
+      "functools"
+    ],
+    "app.ai.cache.embedding_cache": [
+      "hashlib"
+    ],
+    "app.ai.citations.citation_engine": [
+      "app.legal.research.schemas.research_response"
+    ],
+    "app.ai.config": [
+      "os"
+    ],
+    "app.ai.config.__init__": [
+      "__future__",
+      "os"
+    ],
+    "app.ai.core.__init__": [
+      "bootstrap",
+      "capabilities",
+      "config_manager",
+      "dispatcher",
+      "embedding_manager",
+      "embeddings",
+      "exceptions",
+      "failover",
+      "health",
+      "health_monitor",
+      "loader",
+      "manager",
+      "metrics",
+      "provider",
+      "provider_config",
+      "provider_factory",
+      "provider_pool",
+      "provider_priority",
+      "registry",
+      "request",
+      "reranker",
+      "reranker_manager",
+      "response",
+      "router",
+      "routing",
+      "selector",
+      "stream",
+      "stream_manager",
+      "telemetry",
+      "types"
+    ],
+    "app.ai.core.capabilities": [
+      "__future__",
+      "enum",
+      "pydantic"
+    ],
+    "app.ai.core.health": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "app.ai.core.metrics": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "app.ai.core.provider_config": [
+      "__future__",
+      "pydantic"
+    ],
+    "app.ai.core.request": [
+      "__future__",
+      "pydantic",
+      "typing"
+    ],
+    "app.ai.core.response": [
+      "__future__",
+      "pydantic",
+      "typing"
+    ],
+    "app.ai.core.types": [
+      "__future__",
+      "enum"
+    ],
+    "app.ai.embeddings.__init__": [
+      "service"
+    ],
+    "app.ai.embeddings.base": [
+      "abc"
+    ],
+    "app.ai.embeddings.embedding_selector": [
+      "app.ai.embeddings.loader",
+      "app.ai.embeddings.registry"
+    ],
+    "app.ai.embeddings.loader": [
+      "app.ai.embeddings.mock",
+      "app.ai.embeddings.registry"
+    ],
+    "app.ai.embeddings.mock": [
+      "app.ai.embeddings.base"
+    ],
+    "app.ai.embeddings.registry": [
+      "__future__",
+      "app.ai.embeddings.base"
+    ],
+    "app.ai.embeddings.service": [
+      "__future__",
+      "app.ai.providers.provider_selector"
+    ],
+    "app.ai.index.index_manager": [
+      "__future__",
+      "app.ai.cache.embedding_cache",
+      "app.ai.embeddings.embedding_selector",
+      "app.ai.storage.vector_store"
+    ],
+    "app.ai.integration.__init__": [
+      "chat_service",
+      "conversation_manager",
+      "rag_pipeline"
+    ],
+    "app.ai.integration.chat_service": [
+      "__future__",
+      "app.ai.integration.citation_manager",
+      "app.ai.integration.context_builder",
+      "app.ai.integration.conversation_manager",
+      "app.ai.integration.hallucination_guard",
+      "app.ai.integration.prompt_builder",
+      "app.ai.integration.provider_router",
+      "app.ai.integration.rag_pipeline",
+      "app.ai.integration.response_validator"
+    ],
+    "app.ai.integration.citation_manager": [
+      "__future__"
+    ],
+    "app.ai.integration.config": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.ai.integration.context_builder": [
+      "__future__"
+    ],
+    "app.ai.integration.conversation_manager": [
+      "__future__",
+      "app.ai.integration.memory_manager"
+    ],
+    "app.ai.integration.hallucination_guard": [
+      "__future__"
+    ],
+    "app.ai.integration.memory_manager": [
+      "__future__"
+    ],
+    "app.ai.integration.prompt_builder": [
+      "__future__"
+    ],
+    "app.ai.integration.provider_router": [
+      "__future__",
+      "app.ai.providers.provider_selector"
+    ],
+    "app.ai.integration.rag_pipeline": [
+      "__future__",
+      "app.document_processing.semantic_search.service"
+    ],
+    "app.ai.integration.response_validator": [
+      "__future__"
+    ],
+    "app.ai.integration.streaming": [
+      "__future__"
+    ],
+    "app.ai.integration.tool_executor": [
+      "__future__",
+      "app.ai.integration.tool_registry"
+    ],
+    "app.ai.integration.tool_registry": [
+      "__future__"
+    ],
+    "app.ai.interfaces.base_provider": [
+      "__future__",
+      "abc",
+      "collections.abc",
+      "typing"
+    ],
+    "app.ai.memory.__init__": [
+      "conversation_memory",
+      "session_manager"
+    ],
+    "app.ai.memory.conversation": [
+      "collections",
+      "typing"
+    ],
+    "app.ai.memory.conversation_memory": [
+      "__future__",
+      "collections"
+    ],
+    "app.ai.memory.session_manager": [
+      "__future__",
+      "uuid"
+    ],
+    "app.ai.providers.anthropic_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.base.bootstrap": [
+      "__future__",
+      "app.ai.providers.base.discovery",
+      "app.ai.providers.base.registry",
+      "importlib",
+      "logging"
+    ],
+    "app.ai.providers.base.cost_manager": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.ai.providers.base.discovery": [
+      "__future__",
+      "app.ai.providers.base.registry",
+      "os"
+    ],
+    "app.ai.providers.base.health_manager": [
+      "__future__",
+      "datetime"
+    ],
+    "app.ai.providers.base.metrics": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.ai.providers.base.provider": [
+      "__future__",
+      "abc",
+      "app.ai.providers.capabilities"
+    ],
+    "app.ai.providers.base.quota_manager": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.ai.providers.base.registry": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "collections"
+    ],
+    "app.ai.providers.base.router": [
+      "__future__",
+      "app.ai.providers.base.health_manager",
+      "app.ai.providers.base.metrics",
+      "app.ai.providers.base.registry",
+      "app.ai.providers.capabilities",
+      "time"
+    ],
+    "app.ai.providers.capabilities": [
+      "__future__",
+      "enum"
+    ],
+    "app.ai.providers.cerebras_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.embeddings.huggingface_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "huggingface_hub",
+      "os"
+    ],
+    "app.ai.providers.gemini_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.groq_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.http.__init__": [
+      "base",
+      "client"
+    ],
+    "app.ai.providers.http.base": [
+      "__future__",
+      "abc",
+      "app.ai.providers.http.client"
+    ],
+    "app.ai.providers.http.client": [
+      "__future__",
+      "httpx"
+    ],
+    "app.ai.providers.huggingface_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.llm.anthropic_provider": [
+      "__future__",
+      "anthropic",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "os"
+    ],
+    "app.ai.providers.llm.cerebras_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "openai",
+      "os"
+    ],
+    "app.ai.providers.llm.gemini_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "google.generativeai",
+      "os"
+    ],
+    "app.ai.providers.llm.groq_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "groq",
+      "os"
+    ],
+    "app.ai.providers.llm.mistral_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "openai",
+      "os"
+    ],
+    "app.ai.providers.llm.nvidia_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "openai",
+      "os"
+    ],
+    "app.ai.providers.llm.openai_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "openai",
+      "os"
+    ],
+    "app.ai.providers.llm.openrouter_provider": [
+      "__future__",
+      "app.ai.providers.base.provider",
+      "app.ai.providers.capabilities",
+      "openai",
+      "os"
+    ],
+    "app.ai.providers.loader": [
+      "__future__",
+      "app.ai.providers.anthropic_provider",
+      "app.ai.providers.cerebras_provider",
+      "app.ai.providers.gemini_provider",
+      "app.ai.providers.groq_provider",
+      "app.ai.providers.huggingface_provider",
+      "app.ai.providers.mistral_provider",
+      "app.ai.providers.mock_provider",
+      "app.ai.providers.nvidia_provider",
+      "app.ai.providers.ollama_provider",
+      "app.ai.providers.openrouter_provider",
+      "app.ai.providers.registry",
+      "app.core.logging"
+    ],
+    "app.ai.providers.mistral_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.mock_provider": [
+      "app.ai.interfaces.base_provider"
+    ],
+    "app.ai.providers.nvidia_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.ollama_provider": [
+      "app.ai.interfaces.base_provider",
+      "httpx"
+    ],
+    "app.ai.providers.openai_compatible": [
+      "__future__",
+      "app.ai.interfaces.base_provider",
+      "collections.abc",
+      "openai",
+      "os",
+      "time",
+      "typing"
+    ],
+    "app.ai.providers.openrouter_provider": [
+      "app.ai.providers.openai_compatible"
+    ],
+    "app.ai.providers.provider_selector": [
+      "__future__",
+      "app.ai.providers.registry"
+    ],
+    "app.ai.providers.registry": [
+      "__future__",
+      "app.ai.interfaces.base_provider"
+    ],
+    "app.ai.ranking.hybrid_ranker": [
+      "__future__"
+    ],
+    "app.ai.reranker.__init__": [
+      "factory"
+    ],
+    "app.ai.reranker.cross_encoder": [
+      "__future__"
+    ],
+    "app.ai.reranker.factory": [
+      "__future__",
+      "app.ai.reranker.service"
+    ],
+    "app.ai.reranker.service": [
+      "__future__",
+      "app.ai.reranker.cross_encoder"
+    ],
+    "app.ai.retrieval.retriever": [
+      "__future__",
+      "app.ai.embeddings.embedding_selector",
+      "app.document_processing.schemas.vector",
+      "app.document_processing.vector_index.service"
+    ],
+    "app.ai.search.hybrid_search": [
+      "__future__",
+      "app.ai.bm25.bm25",
+      "app.ai.ranking.hybrid_ranker",
+      "app.ai.reranker.reranker",
+      "app.ai.storage.vector_store"
+    ],
+    "app.ai.services.ai_service": [
+      "__future__",
+      "app.ai.citations.citation_engine",
+      "app.ai.config",
+      "app.ai.memory.conversation",
+      "app.ai.prompts.system",
+      "app.ai.providers.base.bootstrap",
+      "app.ai.providers.base.router",
+      "app.ai.providers.capabilities",
+      "app.ai.providers.loader",
+      "app.ai.providers.provider_selector",
+      "app.ai.retrieval.retriever"
+    ],
+    "app.ai.services.chat_service": [
+      "__future__",
+      "app.ai.services.routing_service",
+      "typing"
+    ],
+    "app.ai.services.conversation_service": [
+      "__future__",
+      "app.ai.services.routing_service",
+      "typing"
+    ],
+    "app.ai.services.routing_service": [
+      "__future__",
+      "app.ai.providers.loader",
+      "app.ai.providers.provider_selector"
+    ],
+    "app.ai.storage.vector_store": [
+      "__future__",
+      "json",
+      "math",
+      "pathlib",
+      "sqlite3"
+    ],
+    "app.ai.vectorstore.memory": [
+      "__future__",
+      "math"
+    ],
+    "app.ai_observability.api.router": [
+      "app.ai_observability.services.metrics",
+      "app.ai_observability.storage.trace_store",
+      "fastapi"
+    ],
+    "app.ai_observability.models.trace": [
+      "dataclasses",
+      "datetime",
+      "typing"
+    ],
+    "app.ai_observability.services.metrics": [
+      "app.ai_observability.storage.trace_store"
+    ],
+    "app.ai_observability.services.tracing": [
+      "__future__",
+      "app.ai_observability.models.trace",
+      "app.ai_observability.storage.trace_store",
+      "contextlib",
+      "time",
+      "uuid"
+    ],
+    "app.ai_observability.storage.trace_store": [
+      "app.ai_observability.models.trace",
+      "collections"
+    ],
+    "app.analytics.case_analytics": [
+      "app.models.case",
+      "app.models.document",
+      "app.models.hearing",
+      "app.models.task",
+      "sqlalchemy"
+    ],
+    "app.api.v1.ai": [
+      "app.agents.base.context",
+      "app.agents.base.registry",
+      "app.agents.court.agent",
+      "app.ai.services.ai_service",
+      "app.orchestrator.executor",
+      "app.orchestrator.router",
+      "fastapi",
+      "pydantic",
+      "typing"
+    ],
+    "app.api.v1.auth": [
+      "app.database.database",
+      "app.security.dependencies",
+      "app.services.auth_service",
+      "fastapi",
+      "pydantic",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.branding": [
+      "app.database.database",
+      "app.schemas.branding",
+      "app.services.branding_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.branding_upload": [
+      "app.database.database",
+      "app.repositories.branding_repository",
+      "fastapi",
+      "os",
+      "shutil",
+      "sqlalchemy.orm",
+      "uuid"
+    ],
+    "app.api.v1.cases": [
+      "app.auth.dependencies",
+      "app.auth.rbac",
+      "app.database.database",
+      "app.models.user",
+      "app.schemas.case",
+      "app.services.case_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.chat": [
+      "__future__",
+      "app.ai.integration.chat_service",
+      "app.schemas.chat",
+      "fastapi"
+    ],
+    "app.api.v1.client_ledger": [
+      "app.database.database",
+      "app.repositories.client_ledger_repository",
+      "app.schemas.client_ledger",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.clients": [
+      "app.database.database",
+      "app.schemas.client",
+      "app.services.client_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.dashboard": [
+      "app.database.database",
+      "app.services.dashboard_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.documents": [
+      "app.database.database",
+      "app.schemas.document",
+      "app.services.document_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.drafting": [
+      "app.legal.drafting.drafting_service",
+      "app.legal.drafting.schemas.draft_request",
+      "app.legal.drafting.schemas.draft_response",
+      "fastapi"
+    ],
+    "app.api.v1.invoice_items": [
+      "app.database.database",
+      "app.schemas.invoice_item",
+      "app.services.invoice_item_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.invoice_pdf": [
+      "app.database.database",
+      "app.repositories.invoice_repository",
+      "app.services.pdf_service",
+      "fastapi",
+      "fastapi.responses",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.invoices": [
+      "app.database.database",
+      "app.schemas.invoice",
+      "app.services.invoice_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.jobs": [
+      "app.workers.job_queue",
+      "fastapi"
+    ],
+    "app.api.v1.payments": [
+      "app.database.database",
+      "app.schemas.payment",
+      "app.services.payment_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.profile": [
+      "app.auth.dependencies",
+      "app.models.user",
+      "fastapi"
+    ],
+    "app.api.v1.reasoning": [
+      "app.legal.reasoning.reasoning_service",
+      "app.legal.reasoning.schemas.reasoning_request",
+      "app.legal.reasoning.schemas.reasoning_response",
+      "fastapi"
+    ],
+    "app.api.v1.reports": [
+      "app.database.database",
+      "app.schemas.report",
+      "app.services.report_service",
+      "fastapi",
+      "sqlalchemy.orm",
+      "typing"
+    ],
+    "app.api.v1.research": [
+      "app.legal.research.research_service",
+      "app.legal.research.schemas.research_request",
+      "app.legal.research.schemas.research_response",
+      "fastapi"
+    ],
+    "app.api.v1.system": [
+      "app.audit.audit_log",
+      "app.monitoring.metrics",
+      "fastapi"
+    ],
+    "app.api.v1.users": [
+      "app.database.database",
+      "app.schemas.user",
+      "app.services.user_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.workflow": [
+      "app.database.database",
+      "app.workflows.schemas.dashboard_response",
+      "app.workflows.workflow_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.api.v1.workspace": [
+      "app.database.database",
+      "app.schemas.hearing",
+      "app.schemas.task",
+      "app.services.workspace_service",
+      "fastapi",
+      "sqlalchemy.orm"
+    ],
+    "app.audit.audit_log": [
+      "__future__",
+      "datetime",
+      "json",
+      "pathlib"
+    ],
+    "app.auth.dependencies": [
+      "app.auth.security",
+      "app.database.database",
+      "app.models.user",
+      "app.repositories.user_repository",
+      "fastapi",
+      "fastapi.security",
+      "sqlalchemy.orm"
+    ],
+    "app.auth.password": [
+      "hashlib",
+      "passlib.context",
+      "secrets"
+    ],
+    "app.auth.rbac": [
+      "app.auth.dependencies",
+      "fastapi"
+    ],
+    "app.auth.security": [
+      "app.core.config",
+      "datetime",
+      "jwt",
+      "jwt.exceptions",
+      "uuid"
+    ],
+    "app.auth.session": [
+      "__future__",
+      "app.repositories.refresh_token_repository"
+    ],
+    "app.auth.session_rotation": [
+      "__future__",
+      "app.auth.session_validation",
+      "app.repositories.refresh_token_repository",
+      "datetime",
+      "uuid"
+    ],
+    "app.auth.session_validation": [
+      "__future__",
+      "app.models.refresh_token",
+      "datetime"
+    ],
+    "app.auth.token_hash": [
+      "__future__",
+      "hashlib",
+      "hmac"
+    ],
+    "app.automation.reminder_service": [
+      "app.models.hearing",
+      "app.models.task",
+      "datetime"
+    ],
+    "app.constants.invoice_status": [
+      "enum"
+    ],
+    "app.core.config": [
+      "functools",
+      "os",
+      "pydantic",
+      "pydantic_settings"
+    ],
+    "app.core.logging": [
+      "__future__",
+      "loguru",
+      "pathlib",
+      "sys"
+    ],
+    "app.core.startup_validation": [
+      "app.core.config",
+      "pathlib"
+    ],
+    "app.court.api": [
+      "app.court.captcha",
+      "app.court.schemas",
+      "app.court.service",
+      "app.court.session",
+      "fastapi",
+      "fastapi.responses"
+    ],
+    "app.court.captcha": [
+      "app.court.session"
+    ],
+    "app.court.models": [
+      "dataclasses"
+    ],
+    "app.court.provider": [
+      "app.integrations.courts.ecourts"
+    ],
+    "app.court.schemas": [
+      "pydantic"
+    ],
+    "app.court.service": [
+      "app.court.provider"
+    ],
+    "app.court.session": [
+      "dataclasses",
+      "requests",
+      "secrets",
+      "threading",
+      "time"
+    ],
+    "app.database.database": [
+      "app.core.config",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.database.init_db": [
+      "app.core.config",
+      "app.core.logging",
+      "app.database.database",
+      "app.models",
+      "sqlalchemy"
+    ],
+    "app.dependencies.database": [
+      "app.database.database",
+      "sqlalchemy.orm"
+    ],
+    "app.document_processing.__init__": [
+      "document_processing_service"
+    ],
+    "app.document_processing.chunking.__init__": [
+      "chunk_metadata",
+      "chunk_storage",
+      "pipeline",
+      "semantic_chunker",
+      "sentence_splitter",
+      "text_cleaner",
+      "token_chunker"
+    ],
+    "app.document_processing.chunking.chunk_metadata": [
+      "__future__",
+      "dataclasses",
+      "hashlib"
+    ],
+    "app.document_processing.chunking.chunk_storage": [
+      "__future__",
+      "app.repositories.document_chunk_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.document_processing.chunking.document_chunk_service": [
+      "__future__",
+      "app.ai.chunking.chunker",
+      "app.database.database",
+      "app.models.document_chunk",
+      "sqlalchemy.orm"
+    ],
+    "app.document_processing.chunking.pipeline": [
+      "__future__",
+      "app.document_processing.chunking.chunk_metadata",
+      "app.document_processing.chunking.semantic_chunker",
+      "app.document_processing.chunking.text_cleaner",
+      "app.document_processing.chunking.token_chunker"
+    ],
+    "app.document_processing.chunking.semantic_chunker": [
+      "__future__",
+      "app.document_processing.chunking.sentence_splitter"
+    ],
+    "app.document_processing.chunking.sentence_splitter": [
+      "__future__",
+      "re"
+    ],
+    "app.document_processing.chunking.text_cleaner": [
+      "__future__",
+      "re"
+    ],
+    "app.document_processing.chunking.token_chunker": [
+      "__future__",
+      "app.document_processing.chunking.sentence_splitter"
+    ],
+    "app.document_processing.classifiers.ai_classifier": [
+      "__future__"
+    ],
+    "app.document_processing.classifiers.confidence": [
+      "__future__"
+    ],
+    "app.document_processing.classifiers.ensemble": [
+      "__future__",
+      "app.document_processing.classifiers.ai_classifier",
+      "app.document_processing.classifiers.rule_based"
+    ],
+    "app.document_processing.classifiers.rule_based": [
+      "__future__"
+    ],
+    "app.document_processing.config": [
+      "pathlib"
+    ],
+    "app.document_processing.document_classifier": [
+      "__future__",
+      "app.document_processing.classifiers.rule_based",
+      "pathlib"
+    ],
+    "app.document_processing.document_processing_service": [
+      "app.document_processing.chunking.document_chunk_service",
+      "app.document_processing.embeddings.embedding_ingestion_service",
+      "app.document_processing.schemas.document_analysis",
+      "app.legal.citations.extractor",
+      "app.legal.entities.entity_extractor",
+      "app.legal.reasoning.summarizer",
+      "datetime"
+    ],
+    "app.document_processing.docx_parser": [
+      "__future__",
+      "docx",
+      "pathlib"
+    ],
+    "app.document_processing.embeddings.__init__": [
+      "adapter",
+      "bootstrap",
+      "factory",
+      "health",
+      "provider",
+      "registry",
+      "service"
+    ],
+    "app.document_processing.embeddings.adapter": [
+      "__future__",
+      "app.document_processing.embeddings.factory",
+      "app.document_processing.embeddings.registry"
+    ],
+    "app.document_processing.embeddings.aws_bedrock_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.azure_openai_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.bootstrap": [
+      "__future__",
+      "app.document_processing.embeddings.aws_bedrock_provider",
+      "app.document_processing.embeddings.azure_openai_provider",
+      "app.document_processing.embeddings.cerebras_provider",
+      "app.document_processing.embeddings.cohere_provider",
+      "app.document_processing.embeddings.deepinfra_provider",
+      "app.document_processing.embeddings.fireworks_provider",
+      "app.document_processing.embeddings.gemini_provider",
+      "app.document_processing.embeddings.huggingface_provider",
+      "app.document_processing.embeddings.jina_provider",
+      "app.document_processing.embeddings.mistral_provider",
+      "app.document_processing.embeddings.mock_provider",
+      "app.document_processing.embeddings.nvidia_provider",
+      "app.document_processing.embeddings.ollama_provider",
+      "app.document_processing.embeddings.openai_provider",
+      "app.document_processing.embeddings.openrouter_provider",
+      "app.document_processing.embeddings.registry",
+      "app.document_processing.embeddings.sentence_transformers_provider",
+      "app.document_processing.embeddings.together_provider",
+      "app.document_processing.embeddings.voyage_provider"
+    ],
+    "app.document_processing.embeddings.cerebras_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.cohere_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.deepinfra_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.embedding_ingestion_service": [
+      "__future__",
+      "app.database.database",
+      "app.document_processing.embeddings.service",
+      "app.document_processing.schemas.vector",
+      "app.document_processing.vector_index.service",
+      "app.models.document_chunk",
+      "app.models.document_embedding",
+      "sqlalchemy.orm"
+    ],
+    "app.document_processing.embeddings.factory": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "app.document_processing.embeddings.registry"
+    ],
+    "app.document_processing.embeddings.fireworks_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.gemini_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.health": [
+      "__future__",
+      "app.document_processing.embeddings.bootstrap"
+    ],
+    "app.document_processing.embeddings.huggingface_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.jina_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.mistral_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.mock_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider"
+    ],
+    "app.document_processing.embeddings.nvidia_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.ollama_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.openai_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.openrouter_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.provider": [
+      "__future__",
+      "abc"
+    ],
+    "app.document_processing.embeddings.registry": [
+      "__future__",
+      "app.document_processing.embeddings.provider"
+    ],
+    "app.document_processing.embeddings.sentence_transformers_provider": [
+      "__future__",
+      "app.document_processing.embeddings.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.embeddings.service": [
+      "__future__",
+      "app.document_processing.embeddings.adapter",
+      "app.document_processing.embeddings.bootstrap"
+    ],
+    "app.document_processing.embeddings.together_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.embeddings.voyage_provider": [
+      "__future__",
+      "app.document_processing.embeddings.openai_provider"
+    ],
+    "app.document_processing.exceptions": [
+      "__future__"
+    ],
+    "app.document_processing.file_upload_manager": [
+      "__future__",
+      "app.document_processing.config",
+      "fastapi",
+      "hashlib",
+      "pathlib",
+      "shutil",
+      "uuid"
+    ],
+    "app.document_processing.metadata_extractor": [
+      "__future__",
+      "datetime",
+      "hashlib",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.__init__": [
+      "service"
+    ],
+    "app.document_processing.ocr.adapter": [
+      "__future__",
+      "app.document_processing.ocr.factory",
+      "app.document_processing.ocr.registry",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.aws_textract": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "importlib.util",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.azure_vision": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "importlib.util",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.easyocr": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "easyocr",
+      "importlib.util",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.factory": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "app.document_processing.ocr.registry"
+    ],
+    "app.document_processing.ocr.google_vision": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "google.cloud",
+      "importlib.util",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.ocr_engine": [
+      "__future__"
+    ],
+    "app.document_processing.ocr.paddleocr": [
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "importlib.util",
+      "paddleocr",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.provider": [
+      "__future__",
+      "abc",
+      "pathlib"
+    ],
+    "app.document_processing.ocr.registry": [
+      "__future__",
+      "app.document_processing.ocr.provider"
+    ],
+    "app.document_processing.ocr.service": [
+      "__future__",
+      "app.document_processing.ocr.ocr_engine",
+      "app.document_processing.ocr.vision_engine"
+    ],
+    "app.document_processing.ocr.tesseract": [
+      "PIL",
+      "__future__",
+      "app.document_processing.ocr.provider",
+      "pathlib",
+      "pytesseract",
+      "shutil"
+    ],
+    "app.document_processing.ocr.vision_engine": [
+      "__future__"
+    ],
+    "app.document_processing.ocr_adapter": [
+      "__future__",
+      "abc",
+      "pathlib"
+    ],
+    "app.document_processing.pdf_parser": [
+      "__future__",
+      "pathlib",
+      "pypdf"
+    ],
+    "app.document_processing.router": [
+      "__future__"
+    ],
+    "app.document_processing.schemas.__init__": [
+      "document_analysis",
+      "vector"
+    ],
+    "app.document_processing.schemas.document_analysis": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.document_processing.schemas.search_filter": [
+      "__future__",
+      "pydantic",
+      "typing"
+    ],
+    "app.document_processing.schemas.vector": [
+      "__future__",
+      "app.document_processing.schemas.search_filter",
+      "pydantic",
+      "typing"
+    ],
+    "app.document_processing.semantic_search.__init__": [
+      "pipeline",
+      "request",
+      "result",
+      "retriever",
+      "service"
+    ],
+    "app.document_processing.semantic_search.citation_builder": [
+      "__future__",
+      "app.document_processing.semantic_search.result"
+    ],
+    "app.document_processing.semantic_search.confidence": [
+      "__future__"
+    ],
+    "app.document_processing.semantic_search.config": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.document_processing.semantic_search.hybrid_retriever": [
+      "__future__",
+      "app.document_processing.semantic_search.request",
+      "app.document_processing.semantic_search.result",
+      "app.document_processing.semantic_search.vector_retriever"
+    ],
+    "app.document_processing.semantic_search.hybrid_search_service": [
+      "__future__",
+      "app.ai.bm25.engine",
+      "app.ai.retrieval.retriever",
+      "app.document_processing.semantic_search.rrf"
+    ],
+    "app.document_processing.semantic_search.metadata_filter": [
+      "__future__"
+    ],
+    "app.document_processing.semantic_search.pipeline": [
+      "__future__",
+      "app.document_processing.semantic_search.confidence",
+      "app.document_processing.semantic_search.hybrid_search_service",
+      "app.document_processing.semantic_search.metadata_filter",
+      "app.document_processing.semantic_search.rrf",
+      "app.document_processing.semantic_search.score_normalizer"
+    ],
+    "app.document_processing.semantic_search.query_expander": [
+      "__future__"
+    ],
+    "app.document_processing.semantic_search.request": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.document_processing.semantic_search.reranker": [
+      "__future__",
+      "app.document_processing.semantic_search.result"
+    ],
+    "app.document_processing.semantic_search.result": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.document_processing.semantic_search.retriever": [
+      "__future__",
+      "abc",
+      "app.document_processing.semantic_search.request",
+      "app.document_processing.semantic_search.result"
+    ],
+    "app.document_processing.semantic_search.rrf": [
+      "__future__"
+    ],
+    "app.document_processing.semantic_search.score_normalizer": [
+      "__future__"
+    ],
+    "app.document_processing.semantic_search.service": [
+      "__future__",
+      "app.document_processing.semantic_search.pipeline",
+      "app.document_processing.semantic_search.request"
+    ],
+    "app.document_processing.semantic_search.vector_retriever": [
+      "__future__",
+      "app.document_processing.embeddings.service",
+      "app.document_processing.semantic_search.request",
+      "app.document_processing.semantic_search.result",
+      "app.document_processing.semantic_search.retriever",
+      "app.document_processing.vector_index.service"
+    ],
+    "app.document_processing.txt_parser": [
+      "__future__",
+      "pathlib"
+    ],
+    "app.document_processing.vector_index.__init__": [
+      "adapter",
+      "bootstrap",
+      "factory",
+      "health",
+      "provider",
+      "registry",
+      "service"
+    ],
+    "app.document_processing.vector_index.adapter": [
+      "__future__",
+      "app.document_processing.schemas.vector",
+      "app.document_processing.vector_index.factory",
+      "app.document_processing.vector_index.registry"
+    ],
+    "app.document_processing.vector_index.bootstrap": [
+      "__future__",
+      "app.document_processing.vector_index.chromadb_provider",
+      "app.document_processing.vector_index.elasticsearch_provider",
+      "app.document_processing.vector_index.faiss_provider",
+      "app.document_processing.vector_index.lancedb_provider",
+      "app.document_processing.vector_index.milvus_provider",
+      "app.document_processing.vector_index.opensearch_provider",
+      "app.document_processing.vector_index.pgvector_provider",
+      "app.document_processing.vector_index.pinecone_provider",
+      "app.document_processing.vector_index.qdrant_provider",
+      "app.document_processing.vector_index.registry",
+      "app.document_processing.vector_index.sqlite_provider",
+      "app.document_processing.vector_index.weaviate_provider"
+    ],
+    "app.document_processing.vector_index.chromadb_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.elasticsearch_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.factory": [
+      "__future__",
+      "app.document_processing.vector_index.registry"
+    ],
+    "app.document_processing.vector_index.faiss_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.health": [
+      "__future__",
+      "app.document_processing.vector_index.bootstrap"
+    ],
+    "app.document_processing.vector_index.lancedb_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.milvus_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.opensearch_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.pgvector_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.pinecone_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.provider": [
+      "__future__",
+      "abc",
+      "app.document_processing.schemas.vector"
+    ],
+    "app.document_processing.vector_index.qdrant_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.document_processing.vector_index.registry": [
+      "__future__",
+      "app.document_processing.vector_index.provider"
+    ],
+    "app.document_processing.vector_index.service": [
+      "__future__",
+      "app.document_processing.schemas.vector",
+      "app.document_processing.vector_index.adapter",
+      "app.document_processing.vector_index.bootstrap"
+    ],
+    "app.document_processing.vector_index.sqlite_provider": [
+      "__future__",
+      "app.database.database",
+      "app.document_processing.schemas.vector",
+      "app.document_processing.vector_index.provider",
+      "app.models.document_embedding",
+      "sqlalchemy.orm"
+    ],
+    "app.document_processing.vector_index.weaviate_provider": [
+      "__future__",
+      "app.document_processing.vector_index.provider",
+      "importlib.util"
+    ],
+    "app.events.bus": [
+      "collections",
+      "typing"
+    ],
+    "app.evidence.api.evidence_router": [
+      "__future__",
+      "app.evidence.services.evidence_service",
+      "fastapi",
+      "pathlib"
+    ],
+    "app.evidence.config": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.evidence.hashing.checksum": [
+      "__future__",
+      "hashlib"
+    ],
+    "app.evidence.hashing.hash_service": [
+      "__future__",
+      "app.evidence.hashing.checksum"
+    ],
+    "app.evidence.models.evidence_hash": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.evidence.models.evidence_metadata": [
+      "__future__",
+      "dataclasses",
+      "datetime"
+    ],
+    "app.evidence.repositories.evidence_repository": [
+      "__future__"
+    ],
+    "app.evidence.schemas.chain_of_custody": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "app.evidence.schemas.evidence": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "app.evidence.services.evidence_service": [
+      "__future__",
+      "app.evidence.hashing.hash_service",
+      "app.evidence.repositories.evidence_repository",
+      "app.evidence.timeline.timeline_service",
+      "uuid"
+    ],
+    "app.evidence.storage.azure_blob_storage": [
+      "__future__",
+      "app.evidence.storage.storage_provider",
+      "importlib.util"
+    ],
+    "app.evidence.storage.gcs_storage": [
+      "__future__",
+      "app.evidence.storage.storage_provider",
+      "importlib.util"
+    ],
+    "app.evidence.storage.local_storage": [
+      "__future__",
+      "app.evidence.storage.storage_provider",
+      "os",
+      "shutil"
+    ],
+    "app.evidence.storage.s3_storage": [
+      "__future__",
+      "app.evidence.storage.storage_provider",
+      "importlib.util"
+    ],
+    "app.evidence.storage.storage_factory": [
+      "__future__",
+      "app.evidence.storage.azure_blob_storage",
+      "app.evidence.storage.gcs_storage",
+      "app.evidence.storage.local_storage",
+      "app.evidence.storage.s3_storage",
+      "app.evidence.storage.storage_provider",
+      "typing"
+    ],
+    "app.evidence.storage.storage_provider": [
+      "__future__",
+      "abc"
+    ],
+    "app.evidence.timeline.timeline_service": [
+      "__future__",
+      "datetime"
+    ],
+    "app.evidence.verification.integrity_checker": [
+      "__future__",
+      "app.evidence.verification.verifier"
+    ],
+    "app.evidence.verification.verifier": [
+      "__future__",
+      "app.evidence.hashing.hash_service"
+    ],
+    "app.integrations.courts.base": [
+      "abc"
+    ],
+    "app.integrations.courts.bootstrap": [
+      "app.court.session",
+      "bs4",
+      "re"
+    ],
+    "app.integrations.courts.ecourts": [
+      "app.court.captcha",
+      "app.court.session",
+      "app.integrations.courts.bootstrap",
+      "json",
+      "re"
+    ],
+    "app.jobs.job": [
+      "dataclasses",
+      "datetime",
+      "uuid"
+    ],
+    "app.legal.citations.extractor": [
+      "re"
+    ],
+    "app.legal.citations.formatter": [
+      "__future__",
+      "app.legal.citations.styles"
+    ],
+    "app.legal.citations.graph": [
+      "__future__"
+    ],
+    "app.legal.citations.inserter": [
+      "__future__",
+      "app.legal.citations.formatter"
+    ],
+    "app.legal.citations.matcher": [
+      "__future__",
+      "app.legal.citations.normalizer"
+    ],
+    "app.legal.citations.normalizer": [
+      "__future__",
+      "re"
+    ],
+    "app.legal.citations.service": [
+      "__future__",
+      "app.legal.citations.extractor",
+      "app.legal.citations.graph",
+      "app.legal.citations.matcher"
+    ],
+    "app.legal.citations.styles": [
+      "__future__",
+      "enum"
+    ],
+    "app.legal.citations.validator": [
+      "__future__",
+      "re"
+    ],
+    "app.legal.drafting.api.drafting_router": [
+      "__future__",
+      "app.legal.drafting.generators.document_generator",
+      "app.legal.drafting.review.reviewer",
+      "fastapi",
+      "pydantic",
+      "time"
+    ],
+    "app.legal.drafting.clauses.__init__": [
+      "base",
+      "engine",
+      "registry"
+    ],
+    "app.legal.drafting.clauses.base": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.legal.drafting.clauses.defaults": [
+      "app.legal.drafting.clauses.base",
+      "app.legal.drafting.clauses.registry"
+    ],
+    "app.legal.drafting.clauses.engine": [
+      "__future__",
+      "app.legal.drafting.clauses.registry"
+    ],
+    "app.legal.drafting.clauses.registry": [
+      "__future__",
+      "app.legal.drafting.clauses.base"
+    ],
+    "app.legal.drafting.config": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.legal.drafting.drafting_service": [
+      "app.ai.services.ai_service",
+      "app.core.logging",
+      "app.legal.citations.extractor",
+      "app.legal.citations.inserter",
+      "app.legal.citations.validator",
+      "app.legal.drafting.clauses.defaults",
+      "app.legal.drafting.clauses.engine",
+      "app.legal.drafting.schemas.draft_response",
+      "app.legal.templates.templates",
+      "app.legal.templates.validator",
+      "datetime",
+      "time"
+    ],
+    "app.legal.drafting.generators.clause_generator": [
+      "__future__"
+    ],
+    "app.legal.drafting.generators.document_generator": [
+      "__future__",
+      "app.legal.drafting.services.drafting_service"
+    ],
+    "app.legal.drafting.generators.title_generator": [
+      "__future__"
+    ],
+    "app.legal.drafting.intelligence.__init__": [
+      "drafting_engine"
+    ],
+    "app.legal.drafting.intelligence.clause_recommender": [
+      "__future__"
+    ],
+    "app.legal.drafting.intelligence.drafting_engine": [
+      "__future__",
+      "app.legal.drafting.intelligence.clause_recommender",
+      "app.legal.drafting.intelligence.template_selector"
+    ],
+    "app.legal.drafting.intelligence.template_selector": [
+      "__future__"
+    ],
+    "app.legal.drafting.prompts.base": [
+      "__future__"
+    ],
+    "app.legal.drafting.review.improvement_engine": [
+      "__future__"
+    ],
+    "app.legal.drafting.review.reviewer": [
+      "__future__",
+      "app.legal.drafting.validators.drafting_validator",
+      "app.legal.drafting.validators.legal_validator"
+    ],
+    "app.legal.drafting.schemas.draft_request": [
+      "pydantic"
+    ],
+    "app.legal.drafting.schemas.draft_response": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.legal.drafting.services.citation_service": [
+      "__future__"
+    ],
+    "app.legal.drafting.services.drafting_service": [
+      "__future__",
+      "app.ai.integration.chat_service",
+      "app.legal.drafting.services.citation_service",
+      "app.legal.drafting.services.prompt_service"
+    ],
+    "app.legal.drafting.services.prompt_service": [
+      "__future__",
+      "app.legal.drafting.prompts.base"
+    ],
+    "app.legal.drafting.services.template_service": [
+      "__future__"
+    ],
+    "app.legal.drafting.validators.drafting_validator": [
+      "__future__"
+    ],
+    "app.legal.drafting.validators.legal_validator": [
+      "__future__"
+    ],
+    "app.legal.entities.entity_extractor": [
+      "re"
+    ],
+    "app.legal.explainability.explainer": [
+      "app.legal.reasoning.strategies"
+    ],
+    "app.legal.judgments.analysis.__init__": [
+      "judgment_analyzer"
+    ],
+    "app.legal.judgments.analysis.court_extractor": [
+      "__future__"
+    ],
+    "app.legal.judgments.analysis.judgment_analyzer": [
+      "__future__",
+      "app.legal.judgments.analysis.court_extractor",
+      "app.legal.judgments.analysis.outcome_classifier"
+    ],
+    "app.legal.judgments.analysis.outcome_classifier": [
+      "__future__"
+    ],
+    "app.legal.knowledge.corpus.corpus_manager": [
+      "app.legal.knowledge.knowledge_base"
+    ],
+    "app.legal.knowledge.knowledge_base": [
+      "__future__",
+      "app.ai.services.ai_service",
+      "app.legal.parsers.legal_parser",
+      "pathlib",
+      "time"
+    ],
+    "app.legal.models.judgment": [
+      "dataclasses",
+      "datetime"
+    ],
+    "app.legal.parsers.legal_parser": [
+      "app.legal.citations.extractor",
+      "docx",
+      "pathlib",
+      "pypdf"
+    ],
+    "app.legal.precedents.precedent_extractor": [
+      "app.legal.citations.extractor"
+    ],
+    "app.legal.reasoning.analysis.__init__": [
+      "reasoning_engine"
+    ],
+    "app.legal.reasoning.analysis.issue_identifier": [
+      "__future__"
+    ],
+    "app.legal.reasoning.analysis.reasoning_engine": [
+      "__future__",
+      "app.legal.reasoning.analysis.issue_identifier",
+      "app.legal.reasoning.analysis.statute_mapper"
+    ],
+    "app.legal.reasoning.analysis.statute_mapper": [
+      "__future__"
+    ],
+    "app.legal.reasoning.reasoning_service": [
+      "app.ai.services.ai_service",
+      "app.core.logging",
+      "app.legal.explainability.explainer",
+      "app.legal.precedents.precedent_extractor",
+      "app.legal.reasoning.schemas.reasoning_response",
+      "app.legal.reasoning.summarizer",
+      "datetime",
+      "time"
+    ],
+    "app.legal.reasoning.schemas.reasoning_request": [
+      "pydantic"
+    ],
+    "app.legal.reasoning.schemas.reasoning_response": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.legal.reasoning.strategies.__init__": [
+      "base",
+      "registry"
+    ],
+    "app.legal.reasoning.strategies.base": [
+      "__future__",
+      "abc"
+    ],
+    "app.legal.reasoning.strategies.general": [
+      "app.legal.reasoning.strategies.base"
+    ],
+    "app.legal.reasoning.strategies.irac": [
+      "app.legal.reasoning.strategies.general"
+    ],
+    "app.legal.reasoning.strategies.judgment": [
+      "app.legal.reasoning.strategies.general"
+    ],
+    "app.legal.reasoning.strategies.registry": [
+      "app.legal.reasoning.strategies.general",
+      "app.legal.reasoning.strategies.irac",
+      "app.legal.reasoning.strategies.judgment",
+      "app.legal.reasoning.strategies.statutory"
+    ],
+    "app.legal.reasoning.strategies.statutory": [
+      "app.legal.reasoning.strategies.general"
+    ],
+    "app.legal.research.confidence": [
+      "__future__"
+    ],
+    "app.legal.research.core.__init__": [
+      "research_pipeline"
+    ],
+    "app.legal.research.core.intent_classifier": [
+      "__future__"
+    ],
+    "app.legal.research.core.query_analyzer": [
+      "__future__"
+    ],
+    "app.legal.research.core.query_expander": [
+      "__future__"
+    ],
+    "app.legal.research.core.research_orchestrator": [
+      "app.legal.research.pipeline.research_pipeline",
+      "app.legal.research.schemas.research_response",
+      "datetime",
+      "time"
+    ],
+    "app.legal.research.core.research_pipeline": [
+      "__future__",
+      "app.agents.orchestration",
+      "app.ai.reranker.service",
+      "app.document_processing.semantic_search.pipeline",
+      "app.legal.drafting.intelligence",
+      "app.legal.judgments.analysis",
+      "app.legal.reasoning.analysis",
+      "app.legal.research.core.intent_classifier",
+      "app.legal.research.core.query_analyzer",
+      "app.legal.research.core.query_expander",
+      "app.legal.research.core.result_deduplicator",
+      "app.legal.research.core.result_formatter"
+    ],
+    "app.legal.research.core.result_deduplicator": [
+      "__future__"
+    ],
+    "app.legal.research.core.result_formatter": [
+      "__future__"
+    ],
+    "app.legal.research.pipeline.research_pipeline": [
+      "app.ai.services.ai_service"
+    ],
+    "app.legal.research.research_service": [
+      "app.ai.services.ai_service",
+      "app.core.logging",
+      "app.legal.entities.entity_extractor",
+      "app.legal.history.history",
+      "app.legal.ranking.ranker",
+      "app.legal.research.confidence",
+      "app.legal.research.schemas.research_response",
+      "app.legal.search.semantic_search",
+      "app.legal.session.session",
+      "datetime",
+      "time",
+      "uuid"
+    ],
+    "app.legal.research.schemas.research_request": [
+      "pydantic"
+    ],
+    "app.legal.research.schemas.research_response": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.legal.search.semantic_search": [
+      "app.ai.services.ai_service"
+    ],
+    "app.legal.session.session": [
+      "dataclasses",
+      "datetime"
+    ],
+    "app.legal.templates.validator": [
+      "__future__",
+      "app.legal.templates.templates",
+      "string"
+    ],
+    "app.main": [
+      "app.ai_observability.api.router",
+      "app.api.v1.ai",
+      "app.api.v1.auth",
+      "app.api.v1.branding",
+      "app.api.v1.branding_upload",
+      "app.api.v1.cases",
+      "app.api.v1.chat",
+      "app.api.v1.client_ledger",
+      "app.api.v1.clients",
+      "app.api.v1.dashboard",
+      "app.api.v1.documents",
+      "app.api.v1.drafting",
+      "app.api.v1.invoice_items",
+      "app.api.v1.invoice_pdf",
+      "app.api.v1.invoices",
+      "app.api.v1.jobs",
+      "app.api.v1.payments",
+      "app.api.v1.profile",
+      "app.api.v1.reasoning",
+      "app.api.v1.reports",
+      "app.api.v1.research",
+      "app.api.v1.system",
+      "app.api.v1.users",
+      "app.api.v1.workflow",
+      "app.api.v1.workspace",
+      "app.core.config",
+      "app.core.logging",
+      "app.core.startup_validation",
+      "app.database.init_db",
+      "app.evidence.api.evidence_router",
+      "app.legal.drafting.api.drafting_router",
+      "app.middleware.logging",
+      "app.middleware.request_id",
+      "app.middleware.security",
+      "app.monitoring.prometheus",
+      "app.monitoring.tracing",
+      "contextlib",
+      "fastapi",
+      "fastapi.middleware.cors"
+    ],
+    "app.middleware.logging": [
+      "__future__",
+      "app.core.logging",
+      "starlette.middleware.base",
+      "time"
+    ],
+    "app.middleware.request_id": [
+      "__future__",
+      "starlette.middleware.base",
+      "time",
+      "uuid"
+    ],
+    "app.middleware.security": [
+      "__future__",
+      "starlette.middleware.base"
+    ],
+    "app.models.__init__": [
+      "app.models.annotation",
+      "app.models.bookmark",
+      "app.models.branding",
+      "app.models.case",
+      "app.models.cause_list",
+      "app.models.client",
+      "app.models.contact_log",
+      "app.models.court_schedule",
+      "app.models.document",
+      "app.models.document_chunk",
+      "app.models.document_embedding",
+      "app.models.evidence",
+      "app.models.hearing",
+      "app.models.invoice",
+      "app.models.invoice_item",
+      "app.models.litigation_timeline",
+      "app.models.note",
+      "app.models.payment",
+      "app.models.refresh_token",
+      "app.models.task",
+      "app.models.user"
+    ],
+    "app.models.annotation": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.bookmark": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.branding": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.case": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.cause_list": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.client": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.client_ledger": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.contact_log": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.court_schedule": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.document": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.document_chunk": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.document_embedding": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.evidence": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.hearing": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.invoice": [
+      "app.constants.invoice_status",
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.invoice_item": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.litigation_timeline": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.note": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.payment": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.refresh_token": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.task": [
+      "app.database.database",
+      "datetime",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.models.user": [
+      "app.database.database",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.monitoring.metrics": [
+      "__future__",
+      "collections",
+      "json",
+      "pathlib"
+    ],
+    "app.monitoring.prometheus": [
+      "fastapi",
+      "prometheus_client"
+    ],
+    "app.monitoring.tracing": [
+      "opentelemetry",
+      "opentelemetry.instrumentation.fastapi",
+      "opentelemetry.sdk.resources",
+      "opentelemetry.sdk.trace"
+    ],
+    "app.orchestrator.executor": [
+      "app.agents.base.context",
+      "app.agents.base.exceptions",
+      "app.orchestrator.router"
+    ],
+    "app.orchestrator.planner": [
+      "app.agents.base.task"
+    ],
+    "app.orchestrator.router": [
+      "app.agents.base.context",
+      "app.agents.base.registry"
+    ],
+    "app.pdf.base_template": [
+      "abc",
+      "io"
+    ],
+    "app.pdf.template_factory": [
+      "app.pdf.templates.classic",
+      "app.pdf.templates.modern"
+    ],
+    "app.pdf.templates.classic": [
+      "app.pdf.base_template",
+      "io",
+      "reportlab.pdfgen"
+    ],
+    "app.pdf.templates.modern": [
+      "app.pdf.base_template",
+      "io",
+      "reportlab.lib.colors",
+      "reportlab.pdfgen"
+    ],
+    "app.repositories.branding_repository": [
+      "app.models.branding",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.case_repository": [
+      "app.models.case",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.client_ledger_repository": [
+      "app.models.client_ledger",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.client_repository": [
+      "app.models.client",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.document_chunk_repository": [
+      "__future__",
+      "app.models.document_chunk",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.document_embedding_repository": [
+      "__future__",
+      "app.models.document_embedding",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.document_repository": [
+      "app.models.document",
+      "sqlalchemy",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.invoice_item_repository": [
+      "app.models.invoice_item",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.invoice_repository": [
+      "app.models.invoice",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.payment_repository": [
+      "app.models.payment",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.refresh_token_repository": [
+      "__future__",
+      "app.models.refresh_token",
+      "datetime",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.report_repository": [
+      "app.models.invoice",
+      "datetime",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.user_repository": [
+      "app.models.user",
+      "sqlalchemy.orm"
+    ],
+    "app.repositories.workspace_repository": [
+      "app.models.hearing",
+      "app.models.task",
+      "sqlalchemy.orm"
+    ],
+    "app.schemas.branding": [
+      "pydantic"
+    ],
+    "app.schemas.case": [
+      "pydantic"
+    ],
+    "app.schemas.chat": [
+      "__future__",
+      "pydantic"
+    ],
+    "app.schemas.client": [
+      "pydantic"
+    ],
+    "app.schemas.client_ledger": [
+      "datetime",
+      "decimal",
+      "pydantic"
+    ],
+    "app.schemas.document": [
+      "pydantic"
+    ],
+    "app.schemas.hearing": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.schemas.invoice": [
+      "app.constants.invoice_status",
+      "datetime",
+      "decimal",
+      "pydantic"
+    ],
+    "app.schemas.invoice_item": [
+      "pydantic"
+    ],
+    "app.schemas.payment": [
+      "datetime",
+      "decimal",
+      "pydantic"
+    ],
+    "app.schemas.report": [
+      "datetime",
+      "decimal",
+      "pydantic"
+    ],
+    "app.schemas.session": [
+      "__future__",
+      "datetime",
+      "pydantic"
+    ],
+    "app.schemas.task": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.schemas.user": [
+      "pydantic"
+    ],
+    "app.security.api_key": [
+      "fastapi"
+    ],
+    "app.security.dependencies": [
+      "__future__",
+      "app.security.rate_limit",
+      "fastapi"
+    ],
+    "app.security.rate_limit": [
+      "__future__",
+      "collections",
+      "threading",
+      "time"
+    ],
+    "app.services.auth_service": [
+      "__future__",
+      "app.auth.password",
+      "app.auth.security",
+      "app.auth.session_rotation",
+      "app.auth.session_validation",
+      "app.auth.token_hash",
+      "app.models.refresh_token",
+      "app.repositories.refresh_token_repository",
+      "app.repositories.user_repository",
+      "datetime",
+      "sqlalchemy.orm"
+    ],
+    "app.services.branding_service": [
+      "app.repositories.branding_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.case_service": [
+      "app.repositories.case_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.client_ledger_service": [
+      "app.models.client_ledger",
+      "app.repositories.client_ledger_repository",
+      "decimal",
+      "sqlalchemy.orm"
+    ],
+    "app.services.client_service": [
+      "app.repositories.client_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.dashboard_service": [
+      "app.models.case",
+      "app.models.client",
+      "app.models.document",
+      "app.models.hearing",
+      "app.models.task",
+      "sqlalchemy"
+    ],
+    "app.services.document_ingestion_service": [
+      "__future__",
+      "app.document_processing.chunking.pipeline",
+      "app.document_processing.embeddings.service",
+      "app.repositories.document_chunk_repository",
+      "app.repositories.document_embedding_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.document_service": [
+      "app.core.logging",
+      "app.document_processing",
+      "app.repositories.document_repository",
+      "app.tasks.document_tasks",
+      "app.utils.file_storage",
+      "sqlalchemy.orm"
+    ],
+    "app.services.invoice_calculation_service": [
+      "app.models.invoice",
+      "app.models.invoice_item",
+      "decimal",
+      "sqlalchemy.orm"
+    ],
+    "app.services.invoice_item_service": [
+      "app.repositories.invoice_item_repository",
+      "app.services.invoice_calculation_service",
+      "sqlalchemy.orm"
+    ],
+    "app.services.invoice_number_service": [
+      "app.models.invoice",
+      "datetime",
+      "sqlalchemy.orm"
+    ],
+    "app.services.invoice_service": [
+      "app.repositories.invoice_repository",
+      "app.services.client_ledger_service",
+      "app.services.invoice_number_service",
+      "sqlalchemy.orm"
+    ],
+    "app.services.payment_service": [
+      "app.constants.invoice_status",
+      "app.repositories.invoice_repository",
+      "app.repositories.payment_repository",
+      "app.services.client_ledger_service",
+      "decimal",
+      "sqlalchemy.orm"
+    ],
+    "app.services.pdf_service": [
+      "app.models.branding",
+      "io",
+      "reportlab.lib.colors",
+      "reportlab.pdfgen"
+    ],
+    "app.services.report_service": [
+      "app.repositories.report_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.user_service": [
+      "app.auth.password",
+      "app.repositories.user_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.services.workspace_service": [
+      "app.repositories.workspace_repository",
+      "sqlalchemy.orm"
+    ],
+    "app.tasks.document_tasks": [
+      "app.document_processing",
+      "app.jobs.job",
+      "app.workers.job_queue",
+      "logging",
+      "pathlib"
+    ],
+    "app.tasks.email_tasks": [
+      "app.jobs.job",
+      "app.workers.job_queue"
+    ],
+    "app.tasks.reminder_tasks": [
+      "app.jobs.job",
+      "app.workers.job_queue"
+    ],
+    "app.tools.base.registry": [
+      "app.tools.base.tool"
+    ],
+    "app.tools.base.result": [
+      "dataclasses",
+      "typing"
+    ],
+    "app.tools.base.tool": [
+      "abc",
+      "app.tools.base.result",
+      "typing"
+    ],
+    "app.tools.court.search_tool": [
+      "app.integrations.courts.ecourts",
+      "app.tools.base.result",
+      "app.tools.base.tool"
+    ],
+    "app.utils.file_storage": [
+      "__future__",
+      "fastapi",
+      "pathlib",
+      "shutil",
+      "uuid"
+    ],
+    "app.verification.__init__": [
+      "engine"
+    ],
+    "app.verification.check": [
+      "__future__",
+      "abc",
+      "app.verification.result"
+    ],
+    "app.verification.checks.__init__": [
+      "alembic_check",
+      "compile_check",
+      "configuration_check",
+      "database_connection_check",
+      "document_processing_check",
+      "embedding_provider_check",
+      "end_to_end_check",
+      "import_check",
+      "model_check",
+      "performance_check",
+      "rag_pipeline_check",
+      "repository_check",
+      "retriever_check",
+      "route_check",
+      "security_check",
+      "service_check",
+      "vector_index_check"
+    ],
+    "app.verification.checks.alembic_check": [
+      "__future__",
+      "app.core.config",
+      "app.verification.check",
+      "app.verification.result",
+      "sqlalchemy"
+    ],
+    "app.verification.checks.compile_check": [
+      "__future__",
+      "app.verification.check",
+      "app.verification.result",
+      "compileall"
+    ],
+    "app.verification.checks.configuration_check": [
+      "__future__",
+      "app.core.config",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.database_connection_check": [
+      "__future__",
+      "app.database.database",
+      "app.verification.check",
+      "app.verification.result",
+      "sqlalchemy"
+    ],
+    "app.verification.checks.document_processing_check": [
+      "__future__",
+      "app.document_processing.document_processing_service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.embedding_provider_check": [
+      "__future__",
+      "app.document_processing.embeddings.service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.end_to_end_check": [
+      "__future__",
+      "app.ai.services.ai_service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.import_check": [
+      "__future__",
+      "app.verification.check",
+      "app.verification.result",
+      "importlib"
+    ],
+    "app.verification.checks.model_check": [
+      "__future__",
+      "app.database.database",
+      "app.models",
+      "app.verification.check",
+      "app.verification.result",
+      "importlib"
+    ],
+    "app.verification.checks.performance_check": [
+      "__future__",
+      "app.ai.retrieval.retriever",
+      "app.verification.check",
+      "app.verification.result",
+      "time"
+    ],
+    "app.verification.checks.rag_integration_check": [
+      "__future__",
+      "app.ai.services.ai_service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.rag_pipeline_check": [
+      "__future__",
+      "app.ai.chunking.chunker",
+      "app.document_processing.embeddings.service",
+      "app.document_processing.vector_index.service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.repository_check": [
+      "__future__",
+      "app.verification.check",
+      "app.verification.result",
+      "importlib",
+      "pathlib"
+    ],
+    "app.verification.checks.retriever_check": [
+      "__future__",
+      "app.ai.retrieval.retriever",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.route_check": [
+      "__future__",
+      "app.main",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.security_check": [
+      "__future__",
+      "app.core.config",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.checks.service_check": [
+      "__future__",
+      "app.verification.check",
+      "app.verification.result",
+      "importlib",
+      "pathlib"
+    ],
+    "app.verification.checks.vector_index_check": [
+      "__future__",
+      "app.document_processing.vector_index.service",
+      "app.verification.check",
+      "app.verification.result"
+    ],
+    "app.verification.engine": [
+      "__future__",
+      "app.verification.checks",
+      "app.verification.registry",
+      "time"
+    ],
+    "app.verification.registry": [
+      "__future__",
+      "app.verification.check"
+    ],
+    "app.verification.result": [
+      "__future__",
+      "dataclasses"
+    ],
+    "app.verification.run": [
+      "app.verification.engine"
+    ],
+    "app.workers.job_queue": [
+      "app.jobs.job",
+      "queue"
+    ],
+    "app.workflows.schemas.dashboard_response": [
+      "datetime",
+      "pydantic"
+    ],
+    "app.workflows.workflow_service": [
+      "app.analytics.case_analytics",
+      "app.automation.reminder_service",
+      "app.workflows.schemas.dashboard_response",
+      "datetime"
+    ],
+    "app.workspaces.case_workspace": [
+      "app.services.case_service",
+      "sqlalchemy.orm"
+    ]
+  }
+}

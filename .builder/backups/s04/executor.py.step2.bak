@@ -1,0 +1,49 @@
+import time
+
+from builder.execution.result import ExecutionResult
+from builder.planning.executor import executor as planning_executor
+from builder.autonomous.executor import executor as autonomous_executor
+
+
+class Executor:
+
+    def execute(self, context):
+
+        started = time.perf_counter()
+
+        stages = []
+
+        try:
+
+            planning_result = planning_executor.execute(context)
+
+            stages.append("planning")
+
+            autonomous_result = autonomous_executor.execute(context)
+
+            stages.append("autonomous")
+
+            elapsed = round(
+                time.perf_counter() - started,
+                6,
+            )
+
+            return ExecutionResult(
+                success=True,
+                message=f"completed ({elapsed}s) stages={','.join(stages)}",
+            )
+
+        except Exception as exc:
+
+            elapsed = round(
+                time.perf_counter() - started,
+                6,
+            )
+
+            return ExecutionResult(
+                success=False,
+                message=f"{exc} ({elapsed}s)",
+            )
+
+
+executor = Executor()

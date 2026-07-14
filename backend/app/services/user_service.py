@@ -21,4 +21,5 @@ class UserService:
             full_name=full_name,
             email=email,
             password=hashed_password,
+            role="lawyer",
         )

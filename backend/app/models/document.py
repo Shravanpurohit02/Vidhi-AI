@@ -31,3 +31,9 @@ class Document(Base):
     )
 
     case = relationship("Case")
+
+    chunks = relationship(
+        "DocumentChunk",
+        back_populates="document",
+        cascade="all, delete-orphan",
+    )

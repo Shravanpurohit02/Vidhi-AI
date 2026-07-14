@@ -19,6 +19,13 @@ __all__ = [
     "CauseList",
     "CourtSchedule",
     "LitigationTimeline",
+    "RefreshToken",
+    "Invoice",
+    "InvoiceItem",
+    "Payment",
+    "Branding",
+    "DocumentChunk",
+    "DocumentEmbedding",
 ]
 
 from app.models.note import Note
@@ -30,3 +37,14 @@ from app.models.contact_log import ContactLog
 from app.models.cause_list import CauseList
 from app.models.court_schedule import CourtSchedule
 from app.models.litigation_timeline import LitigationTimeline
+
+from app.models.refresh_token import RefreshToken
+
+from app.models.invoice import Invoice
+from app.models.invoice_item import InvoiceItem
+from app.models.payment import Payment
+from app.models.branding import Branding
+
+
+from app.models.document_chunk import DocumentChunk
+from app.models.document_embedding import DocumentEmbedding

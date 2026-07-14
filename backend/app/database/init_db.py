@@ -3,6 +3,7 @@ from sqlalchemy import text
 from app.core.config import settings
 from app.core.logging import get_logger
 from app.database.database import Base, engine
+import app.models  # noqa: F401
 
 logger = get_logger()
 

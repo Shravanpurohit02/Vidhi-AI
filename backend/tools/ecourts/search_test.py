@@ -49,7 +49,7 @@ print("HTTP", r.status_code)
 
 text = r.text
 
-m = re.search(r'(\{.*\})', text, re.S)
+m = re.search(r"(\{.*\})", text, re.S)
 
 if m:
     obj = json.loads(m.group(1))

@@ -7,4 +7,4 @@ class SemanticSearch:
         self.ai = AIService()
 
     def search(self, query: str):
-        return self.ai.retriever.retrieve(query)
+        return self.ai.search.search(query)

@@ -1,0 +1,86 @@
+from .models import (
+    PipelineContext,
+    PipelineResult,
+)
+
+from builder.engineering.changeset import engine as ecs
+from builder.reflection.semantic_engine import engine as semantic
+from builder.planning import analyzer
+from builder.intelligence.impact import impact
+from .validator import validator
+from .testing import testing_pipeline
+from .finalizer import finalizer
+
+
+class PipelineEngine:
+
+    def start(
+        self,
+        objective:str,
+        workspace:str,
+    ):
+
+        ctx=PipelineContext(
+            objective=objective,
+            workspace=workspace,
+        )
+
+        result=PipelineResult(
+            success=True,
+            context=ctx,
+        )
+
+        ctx.changeset=ecs.create(
+            objective,
+            workspace,
+        )
+        result.stages.append("changeset")
+
+        ctx.semantic=semantic.build(
+            workspace,
+        )
+        result.stages.append("semantic")
+
+        ctx.plan=analyzer.analyze(
+            objective,
+            workspace,
+        )
+        result.stages.append("planning")
+
+        ctx.impact=impact.analyze(
+            workspace,
+            "pathlib",
+        )
+        result.stages.append("impact")
+
+        ctx.validation = validator.run(
+            workspace,
+        )
+        result.stages.append("validation")
+
+        ctx.testing = testing_pipeline.run(
+            workspace,
+        )
+
+        result.stages.append("testing")
+
+        ctx.finalization = finalizer.finish(
+            ctx,
+        )
+
+        result.stages.append("finalization")
+
+        ecs.report(
+            ctx.changeset,
+            summary="Pipeline initialized.",
+            recommendations=[
+                "Proceed to code generation",
+            ],
+        )
+
+        ecs.save(ctx.changeset)
+
+        return result
+
+
+engine=PipelineEngine()

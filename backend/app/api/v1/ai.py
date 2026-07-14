@@ -40,8 +40,8 @@ ai_service = AIService()
 @router.post("/ingest")
 async def ingest(request: IngestRequest):
     ai_service.ingest_document(
-        request.text,
-        request.metadata,
+        text=request.text,
+        metadata=request.metadata,
     )
     return {
         "success": True,

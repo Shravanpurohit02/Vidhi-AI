@@ -5,7 +5,26 @@ from pydantic import BaseModel, Field
 
 class Citation(BaseModel):
     title: str
-    source: str
+
+    citation: str = ""
+
+    court: str = ""
+
+    year: int | None = None
+
+    judge: str = ""
+
+    bench: str = ""
+
+    paragraphs: list[int] = Field(default_factory=list)
+
+    document_id: str = ""
+
+    source: str = ""
+
+    url: str = ""
+
+    score: float = 0.0
 
 
 class ResearchResponse(BaseModel):

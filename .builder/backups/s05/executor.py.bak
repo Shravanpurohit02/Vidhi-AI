@@ -1,0 +1,21 @@
+from builder.codegen import (
+    CodeGenerationRequest,
+    engine as codegen,
+)
+
+class Executor:
+
+    def execute(self, task):
+
+        result = codegen.generate(
+            CodeGenerationRequest(
+                instruction=task.objective,
+                context=str(task.context),
+            )
+        )
+
+        task.status = "completed"
+
+        return result
+
+executor = Executor()

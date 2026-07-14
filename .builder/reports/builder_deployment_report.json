@@ -1,0 +1,31 @@
+{
+  "workspace": {
+    "files": 1063
+  },
+  "project": {
+    "files": 0,
+    "python": 0,
+    "json": 0,
+    "markdown": 0
+  },
+  "project_index": 1335,
+  "dependencies": {
+    "packages": 148,
+    "installed": 56,
+    "missing": 92
+  },
+  "graph": {
+    "nodes": 1629,
+    "edges": 1313
+  },
+  "reflection": {
+    "modules": 679,
+    "symbols": 1742
+  },
+  "validation": {
+    "files": 679,
+    "passed": 679,
+    "failed": 0,
+    "errors": []
+  }
+}

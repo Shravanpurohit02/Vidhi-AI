@@ -13,6 +13,7 @@ import App from "./App";
 import "./index.css";
 
 import { AuthProvider } from "./providers/AuthProvider";
+import { LayoutProvider } from "./components/layout/LayoutContext";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -32,14 +33,16 @@ ReactDOM.createRoot(
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-          <Toaster />
+          <LayoutProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+            <Toaster />
+          </LayoutProvider>
         </AuthProvider>
-      </TooltipProvider>
 
-      <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </TooltipProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );

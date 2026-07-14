@@ -8,8 +8,7 @@ session = requests.Session()
 
 headers = {
     "User-Agent": (
-        "Mozilla/5.0 (X11; Linux x86_64) "
-        "AppleWebKit/537.36 Chrome/137 Safari/537.36"
+        "Mozilla/5.0 (X11; Linux x86_64) " "AppleWebKit/537.36 Chrome/137 Safari/537.36"
     )
 }
 
@@ -66,7 +65,7 @@ for script in soup.find_all("script", src=True):
 print("=" * 80)
 print("INLINE FUNCTIONS")
 
-matches = re.findall(r'function\s+([A-Za-z0-9_]+)', response.text)
+matches = re.findall(r"function\s+([A-Za-z0-9_]+)", response.text)
 
 for fn in sorted(set(matches)):
     print(fn)

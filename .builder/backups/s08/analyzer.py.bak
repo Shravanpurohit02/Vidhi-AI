@@ -1,0 +1,34 @@
+from pathlib import Path
+
+class Analyzer:
+
+    def analyze(self, workspace: str):
+
+        issues = []
+
+        for path in Path(workspace).rglob("*.py"):
+
+            text = path.read_text(
+                encoding="utf-8",
+                errors="ignore",
+            )
+
+            if "TODO" in text:
+                issues.append(
+                    (
+                        str(path),
+                        "TODO found",
+                    )
+                )
+
+            if "pass" in text:
+                issues.append(
+                    (
+                        str(path),
+                        "Incomplete implementation",
+                    )
+                )
+
+        return issues
+
+analyzer = Analyzer()

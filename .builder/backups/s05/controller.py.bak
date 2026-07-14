@@ -1,0 +1,20 @@
+from builder.autonomous.executor import executor
+from builder.autonomous.planner import planner
+
+class Controller:
+
+    def run(
+        self,
+        objective: str,
+        **context,
+    ):
+
+        task = planner.create(objective)
+
+        task.context.update(context)
+
+        result = executor.execute(task)
+
+        return task, result
+
+controller = Controller()

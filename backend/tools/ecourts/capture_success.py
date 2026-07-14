@@ -6,6 +6,7 @@ from app.integrations.courts.ecourts import ECourtsProvider
 
 CNR = "MHCC010142422024"
 
+
 async def main():
     provider = ECourtsProvider()
 
@@ -44,5 +45,6 @@ async def main():
     print("\n===== RESULT =====")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     print("\nSaved last_search.json")
+
 
 asyncio.run(main())

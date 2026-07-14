@@ -1,0 +1,27 @@
+from builder.codegen import (
+    CodeGenerationRequest,
+    engine,
+)
+from builder.context import engine as context
+
+class Generator:
+
+    def generate(
+        self,
+        workspace,
+        target,
+        objective,
+    ):
+
+        prompt=context.create(
+            workspace,
+            objective,
+        )
+
+        return engine.generate(
+            CodeGenerationRequest(
+                instruction=prompt,
+            )
+        )
+
+generator=Generator()

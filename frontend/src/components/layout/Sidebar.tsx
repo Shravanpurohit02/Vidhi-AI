@@ -9,11 +9,16 @@ import {
   PenSquare,
   Workflow,
   LogOut,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { useAuth } from "../../providers/AuthProvider";
+import { useLayout } from "./LayoutContext";
 
 const items = [
   { label: "Dashboard", icon: LayoutDashboard, to: "/" },
@@ -28,20 +33,43 @@ const items = [
 
 export default function Sidebar() {
   const { logout } = useAuth();
+  const { collapsed, toggle } = useLayout();
 
   return (
-    <aside className="flex h-screen w-64 flex-col border-r bg-background">
-      <div className="p-6">
-        <h1 className="text-2xl font-bold">⚖️ Vidhi AI</h1>
-        <p className="text-sm text-muted-foreground">
-          Legal Intelligence Platform
-        </p>
+    <aside
+      className={[
+        "hidden md:flex",
+        "sticky top-0 h-screen flex-col border-r bg-white shadow-sm transition-all duration-300",
+        collapsed ? "w-20" : "w-64",
+      ].join(" ")}
+    >
+      <div className="flex items-center justify-between border-b p-4">
+        {!collapsed && (
+          <div>
+            <h1 className="text-xl font-bold">
+              ⚖️ Vidhi AI
+            </h1>
+            <p className="text-xs text-muted-foreground">
+              Legal Intelligence
+            </p>
+          </div>
+        )}
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggle}
+        >
+          {collapsed ? (
+            <PanelLeftOpen className="h-5 w-5"/>
+          ) : (
+            <PanelLeftClose className="h-5 w-5"/>
+          )}
+        </Button>
       </div>
 
-      <Separator />
-
       <ScrollArea className="flex-1">
-        <nav className="space-y-1 p-4">
+        <nav className="space-y-2 p-3">
           {items.map((item) => {
             const Icon = item.icon;
 
@@ -51,29 +79,42 @@ export default function Sidebar() {
                 to={item.to}
                 className={({ isActive }) =>
                   [
-                    "flex items-center gap-3 rounded-lg px-3 py-2 transition-colors",
+                    "flex items-center rounded-lg transition-all",
+                    collapsed
+                      ? "justify-center p-3"
+                      : "gap-3 px-3 py-3",
                     isActive
                       ? "bg-primary text-primary-foreground"
                       : "hover:bg-muted",
                   ].join(" ")
                 }
               >
-                <Icon className="h-4 w-4" />
-                {item.label}
+                <Icon className="h-5 w-5 shrink-0"/>
+
+                {!collapsed && (
+                  <span>{item.label}</span>
+                )}
               </NavLink>
             );
           })}
         </nav>
       </ScrollArea>
 
-      <div className="border-t p-4">
+      <Separator />
+
+      <div className="p-3">
         <Button
           variant="outline"
-          className="w-full justify-start"
+          className="w-full"
           onClick={logout}
         >
-          <LogOut className="mr-2 h-4 w-4" />
-          Logout
+          <LogOut className="h-4 w-4"/>
+
+          {!collapsed && (
+            <span className="ml-2">
+              Logout
+            </span>
+          )}
         </Button>
       </div>
     </aside>

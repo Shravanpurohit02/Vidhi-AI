@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "workspace_files": 1065,
+    "project_files": 1335,
+    "python_files": 679,
+    "json_files": 6,
+    "markdown_files": 2,
+    "graph_nodes": 1629,
+    "graph_edges": 1313,
+    "modules": 679,
+    "symbols": 1742
+  },
+  "validation": {
+    "files": 679,
+    "passed": 679,
+    "failed": 0,
+    "errors": []
+  },
+  "dependencies": {
+    "total": 148,
+    "installed": 56,
+    "missing": 92,
+    "missing_packages": [
+      "adapter",
+      "agent",
+      "ai_service",
+      "alembic_check",
+      "anthropic",
+      "app",
+      "base",
+      "bootstrap",
+      "cache_manager",
+      "capabilities",
+      "chat_service",
+      "chunk_metadata",
+      "chunk_storage",
+      "client",
+      "compile_check",
+      "config_manager",
+      "configuration_check",
+      "context",
+      "conversation_manager",
+      "conversation_memory",
+      "database_connection_check",
+      "decorators",
+      "dispatcher",
+      "document_analysis",
+      "document_processing_check",
+      "document_processing_service",
+      "docx",
+      "drafting_engine",
+      "easyocr",
+      "embedding_manager",
+      "embedding_provider_check",
+      "embeddings",
+      "end_to_end_check",
+      "engine",
+      "exceptions",
+      "factory",
+      "failover",
+      "filter",
+      "google",
+      "groq",
+      "health",
+      "health_monitor",
+      "huggingface_hub",
+      "hybrid_search",
+      "import_check",
+      "judgment_analyzer",
+      "loader",
+      "manager",
+      "metrics",
+      "model_check",
+      "paddleocr",
+      "performance_check",
+      "pipeline",
+      "provider",
+      "provider_config",
+      "provider_factory",
+      "provider_pool",
+      "provider_priority",
+      "pytesseract",
+      "rag_engine",
+      "rag_engine_check",
+      "reasoning_engine",
+      "registry",
+      "report",
+      "repository_check",
+      "request",
+      "reranker",
+      "reranker_manager",
+      "research_pipeline",
+      "response",
+      "result",
+      "retriever",
+      "retriever_check",
+      "route_check",
+      "router",
+      "routing",
+      "security_check",
+      "selector",
+      "semantic_chunker",
+      "sentence_splitter",
+      "service",
+      "service_check",
+      "services",
+      "session_manager",
+      "stream",
+      "stream_manager",
+      "task",
+      "text_cleaner",
+      "token_chunker",
+      "vector",
+      "vectorstore_check",
+      "workflow_engine"
+    ]
+  },
+  "backlog": [
+    {
+      "priority": 1,
+      "title": "Resolve missing internal modules and packages"
+    },
+    {
+      "priority": 2,
+      "title": "Complete backend APIs"
+    },
+    {
+      "priority": 3,
+      "title": "Complete authentication and authorization"
+    },
+    {
+      "priority": 4,
+      "title": "Complete database models and repositories"
+    },
+    {
+      "priority": 5,
+      "title": "Complete AI/RAG pipeline"
+    },
+    {
+      "priority": 6,
+      "title": "Complete frontend integration"
+    },
+    {
+      "priority": 7,
+      "title": "Complete automated testing"
+    },
+    {
+      "priority": 8,
+      "title": "Prepare deployment and Android APK"
+    }
+  ]
+}

@@ -1,11 +1,17 @@
+from __future__ import annotations
+
 import json
+import math
 import sqlite3
 from pathlib import Path
 
 
 class PersistentVectorStore:
 
-    def __init__(self, db_path="vector_store.db"):
+    def __init__(
+        self,
+        db_path: str = "vector_store.db",
+    ):
 
         self.db_path = Path(db_path)
 
@@ -24,10 +30,10 @@ class PersistentVectorStore:
 
     def add(
         self,
-        text,
-        metadata,
-        embedding,
-    ):
+        text: str,
+        metadata: dict,
+        embedding: list[float],
+    ) -> None:
 
         self.conn.execute(
             """
@@ -47,15 +53,17 @@ class PersistentVectorStore:
 
         self.conn.commit()
 
-    def all(self):
+    def all(self) -> list[dict]:
 
-        cursor = self.conn.execute("SELECT text, metadata, embedding FROM vectors")
+        cursor = self.conn.execute("SELECT id,text,metadata,embedding FROM vectors")
 
         rows = []
 
-        for text, metadata, embedding in cursor.fetchall():
+        for row_id, text, metadata, embedding in cursor.fetchall():
+
             rows.append(
                 {
+                    "id": row_id,
                     "text": text,
                     "metadata": json.loads(metadata),
                     "embedding": json.loads(embedding),
@@ -64,18 +72,96 @@ class PersistentVectorStore:
 
         return rows
 
-    def close(self):
+    def count(self) -> int:
+
+        cursor = self.conn.execute("SELECT COUNT(*) FROM vectors")
+
+        return int(cursor.fetchone()[0])
+
+    def clear(self) -> None:
+
+        self.conn.execute("DELETE FROM vectors")
+        self.conn.commit()
+
+    def delete(
+        self,
+        vector_id: int,
+    ) -> None:
+
+        self.conn.execute(
+            "DELETE FROM vectors WHERE id=?",
+            (vector_id,),
+        )
+
+        self.conn.commit()
+
+    @staticmethod
+    def _cosine(
+        a: list[float],
+        b: list[float],
+    ) -> float:
+
+        if not a or not b:
+            return 0.0
+
+        dot = sum(x * y for x, y in zip(a, b))
+
+        na = math.sqrt(sum(x * x for x in a))
+        nb = math.sqrt(sum(y * y for y in b))
+
+        if na == 0 or nb == 0:
+            return 0.0
+
+        return dot / (na * nb)
+
+    def search(
+        self,
+        embedding: list[float],
+        top_k: int = 5,
+    ) -> list[dict]:
+
+        scored = []
+
+        for item in self.all():
+
+            score = self._cosine(
+                embedding,
+                item["embedding"],
+            )
+
+            item = dict(item)
+            item["score"] = score
+
+            scored.append(item)
+
+        scored.sort(
+            key=lambda x: x["score"],
+            reverse=True,
+        )
+
+        return scored[:top_k]
+
+    def close(self) -> None:
+
         if self.conn:
             self.conn.close()
 
     def __enter__(self):
+
         return self
 
-    def __exit__(self, exc_type, exc, tb):
+    def __exit__(
+        self,
+        exc_type,
+        exc,
+        tb,
+    ):
+
         self.close()
 
     def __del__(self):
+
         try:
             self.close()
-        except Exception:
-            pass
+        except Exception as exc:
+            print(exc)

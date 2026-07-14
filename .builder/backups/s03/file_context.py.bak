@@ -1,0 +1,19 @@
+from pathlib import Path
+
+class FileContext:
+
+    def build(self,path:str):
+
+        p=Path(path)
+
+        return {
+            "path":str(p),
+            "name":p.name,
+            "suffix":p.suffix,
+            "text":p.read_text(
+                encoding="utf-8",
+                errors="ignore",
+            ),
+        }
+
+context=FileContext()

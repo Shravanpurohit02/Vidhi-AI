@@ -1,0 +1,54 @@
+{
+  "id": "07cc88d6b7004eaead3b80a2cc83a8a3",
+  "created_at": "2026-07-12T21:09:05.144571",
+  "objective": "Builder ECS Integration Test",
+  "status": "draft",
+  "files": [
+    {
+      "path": ".builder/builder/engineering/changeset/models.py",
+      "action": "modify",
+      "reason": "Integration test"
+    }
+  ],
+  "repository": {
+    "project": "Vidhi-AI",
+    "python_files": 226,
+    "packages": 42,
+    "modules": [
+      "builder.engineering"
+    ],
+    "dependencies": [],
+    "entrypoints": []
+  },
+  "validation": {
+    "passed": false,
+    "checks": [],
+    "failures": []
+  },
+  "report": {
+    "summary": "Engineering Change Set generated successfully.",
+    "recommendations": [
+      "Proceed to next milestone"
+    ],
+    "notes": []
+  },
+  "approval": {
+    "status": "draft",
+    "approved_by": "",
+    "approved_at": "",
+    "remarks": ""
+  },
+  "rollback": {
+    "required": true,
+    "steps": []
+  },
+  "risks": [
+    {
+      "severity": "low",
+      "title": "Integration",
+      "description": "Testing ECS persistence",
+      "mitigation": "Compile after generation"
+    }
+  ],
+  "metadata": {}
+}

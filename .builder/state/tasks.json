@@ -1,0 +1,379 @@
+[
+  {
+    "id": "08dd6c80c66a40fb963f2f8643fc5713",
+    "created_at": "2026-07-13T00:02:00.385408",
+    "name": "Inspect backend architecture",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "2c59a43c935b439e98cac651f9e356b6",
+    "created_at": "2026-07-13T00:03:13.226042",
+    "name": "Queue Separation Test",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "42ca02e0d65340f798fb6f55f4621503",
+    "created_at": "2026-07-13T04:07:25.272671",
+    "name": "Queue Cleanup Test",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "ea08614f4f844474b2a2d9da10545cce",
+    "created_at": "2026-07-13T04:48:59.110653",
+    "name": "\nYou are implementing Builder milestone S-01.4.\n\nOBJECTIVE\nImplement a production-ready Live Progress Reporting subsystem.\n\nREQUIREMENTS\n\n1. Analyze the entire Builder repository.\n2. Reuse the existing architecture.\n3. Do not redesign unrelated components.\n4. Identify every file that must be created.\n5. Identify every file that must be modified.\n6. Generate complete production-ready source code.\n7. Generate complete tests.\n8. Generate migration steps.\n9. Generate verification commands.\n10. Generate Engineering Change Sets.\n11. No placeholders.\n12. No TODOs.\n13. No mock implementations.\n14. Preserve backward compatibility.\n15. Follow Builder coding conventions.\n\nFEATURES\n\n- Progress event model\n- Progress reporter\n- Progress renderer\n- Pipeline integration\n- Autonomous runtime integration\n- CLI integration\n- Progress history\n- Stage timing\n- Success/failure reporting\n- Recovery compatibility\n\nOUTPUT\n\nCreate:\n\n- Design specification\n- File modification list\n- New file list\n- Complete source code\n- Complete tests\n- Verification procedure\n- Rollback plan\n- Engineering Change Set\n\nReturn only production-ready implementation.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "192d6ac93bd3433e86e701b3b245711d",
+    "created_at": "2026-07-13T05:19:59.276628",
+    "name": "\nBuilder Milestone S-02.1\n\nImplement a production-grade Repair Planner.\n\nRequirements:\n- Analyze the complete Builder repository.\n- Reuse existing Planning, Pipeline, Validation, AutoPatch and Changeset subsystems.\n- Design a Repair Planner that converts validation failures into repair tasks.\n- Integrate with Autonomous Runtime.\n- Support retries.\n- Support rollback.\n- Support multiple failed files.\n- Preserve existing architecture.\n- Produce complete implementation plan.\n- Produce file modification list.\n- Produce new files list.\n- Produce engineering changeset.\n- Return only production-ready implementation.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "870ee4a2cbe24e7f93fda4b1ed2f5d69",
+    "created_at": "2026-07-13T05:20:53.422853",
+    "name": "\nBuilder Milestone S-02.2\n\nImplement Builder Output Generation.\n\nOBJECTIVE\n\nTransform Builder from a pipeline executor into a production engineering agent.\n\nREQUIREMENTS\n\n1. Analyze the complete Builder repository.\n2. Reuse existing architecture.\n3. Preserve backward compatibility.\n4. No redesign of unrelated components.\n\nIMPLEMENT\n\nCreate a Builder Output subsystem.\n\nThe subsystem shall automatically produce engineering artifacts for every completed task.\n\nGenerate and persist:\n\n- Design Specification\n- Architecture Summary\n- Repository Analysis\n- Engineering Plan\n- Milestones\n- File Modification List\n- New File List\n- Dependency Analysis\n- Complete Source Code\n- Complete Tests\n- Verification Commands\n- Rollback Plan\n- Engineering Change Set\n- Execution Metadata\n\nOUTPUT DIRECTORY\n\n.builder/output/<task-id>/\n\nExample\n\n.builder/output/<task-id>/\n    design.md\n    architecture.md\n    implementation.md\n    milestones.md\n    files.json\n    dependencies.json\n    verification.md\n    rollback.md\n    changeset.json\n    metadata.json\n    code/\n    tests/\n\nINTEGRATION\n\nIntegrate with:\n\n- Pipeline\n- Autonomous Runtime\n- Changesets\n- Planning\n- Validation\n- Testing\n- CLI\n\nAfter completion the Builder shall print:\n\nOutput Directory:\n<absolute path>\n\nReturn only production-ready implementation.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "260023224eaf409eadbe4d70bc0d3561",
+    "created_at": "2026-07-13T06:39:18.453023",
+    "name": "\nBuilder Stabilization Sprint 1\n\nTask 1\n\nReplace builder.execution.executor with a production implementation.\n\nRequirements\n\n- Reuse the existing architecture.\n- Preserve backward compatibility.\n- Do not redesign unrelated modules.\n\nImplement:\n\n1. Accept an execution context.\n2. Invoke Planning Executor.\n3. Invoke Autonomous Executor.\n4. Invoke AutoPatch.\n5. Invoke Validation.\n6. Invoke Testing.\n7. Invoke Repair when validation fails.\n8. Produce ExecutionResult with:\n   - success\n   - completed stages\n   - failed stages\n   - elapsed time\n   - generated artifacts\n   - changeset id\n   - validation summary\n   - testing summary\n\nReturn production-ready implementation only.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "0f3f743564204437893e17dd33f76ffb",
+    "created_at": "2026-07-13T06:49:32.310906",
+    "name": "\nBuilder Stabilization Sprint 2\n\nMilestone S-03\n\nImplement Grounded Repository Context.\n\nRequirements\n\nModify ONLY these files:\n\n- builder/context/engine.py\n- builder/context/file_context.py\n- builder/context/prompt_builder.py\n- builder/autopatch/generator.py\n\nDo NOT modify unrelated modules.\n\nImplement:\n\n1. ContextEngine.create() shall accept an optional target_file parameter.\n2. FileContext shall load the target file source code.\n3. PromptBuilder shall build repository context from:\n   - project summary\n   - module summary\n   - target file metadata\n   - target file source\n4. AutoPatch shall pass:\n   - instruction = engineering objective\n   - context = grounded repository context\n5. Preserve backward compatibility.\n6. No placeholders.\n7. No TODOs.\n8. Return production-ready implementation only.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "15d7206e9e7c44959abae78f34b5e792",
+    "created_at": "2026-07-13T09:49:58.783691",
+    "name": "Health check after S-05",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "5c68eec5d39b42319da3764a4c546f5c",
+    "created_at": "2026-07-13T09:56:29.045953",
+    "name": "S-07 Output Verification",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "3802240532384dfda45717e43bc22016",
+    "created_at": "2026-07-13T09:58:41.801429",
+    "name": "Output verification",
+    "status": "pending",
+    "payload": {}
+  },
+  {
+    "id": "0a493a32fa7440abadf225955ef7e37a",
+    "created_at": "2026-07-13T09:59:53.173653",
+    "name": "Output verification",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "b2b7474212c04a04b9a5084c842f2afd",
+    "created_at": "2026-07-13T10:02:31.197572",
+    "name": "S-08 Self Improvement Verification",
+    "status": "pending",
+    "payload": {}
+  },
+  {
+    "id": "16419109182a41de831856c9a2c134d2",
+    "created_at": "2026-07-13T10:12:10.568781",
+    "name": "S-08 Self Improvement Verification",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "self_improvement",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "6115f4890f5a4d22a9fe2dd26a2b3ff6",
+    "created_at": "2026-07-13T11:52:17.686740",
+    "name": "\nVIDHI AI SPRINT-01\nProduction Engineering Audit\n\nContext\n\nThe existing Vidhi AI backend is more than 95% production-ready.\n\nTreat the repository as a mature production codebase.\n\nBuilder is operating in maintenance mode.\n\nRules\n\nAnalyze the complete repository.\n\nReuse all existing architecture.\n\nDo not redesign existing subsystems.\n\nDo not regenerate existing modules.\n\nDo not replace working implementations.\n\nImplement only verified missing production work.\n\nPreserve backward compatibility.\n\nValidate every recommendation against the current architecture.\n\nInspection Scope\n\n- Backend\n- Frontend\n- API\n- Authentication\n- Authorization\n- Database\n- Models\n- Schemas\n- Services\n- Repositories\n- Middleware\n- AI\n- RAG\n- OCR\n- PDF\n- Background Workers\n- Scheduler\n- Configuration\n- Logging\n- Validation\n- Testing\n- Deployment\n- Documentation\n\nClassification\n\n- Production Complete\n- Production Complete With Minor Improvements\n- Missing Production Implementation\n- Integration Required\n- Production Bug\n- Security Improvement\n- Performance Improvement\n- Technical Debt\n\nGenerate\n\n- Engineering Audit Report\n- Architecture Verification Report\n- Dependency Verification Report\n- Integration Report\n- Security Report\n- Performance Report\n- Missing Production Tasks\n- Review Queue\n- Risk Assessment\n- Release Readiness Score\n\nDo not automatically apply patches.\n\nGenerate review tasks for every proposed implementation.\n\nReturn production-ready engineering analysis only.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "review_queue",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "6fbc927b2d394a6cbfa03622e38b38e1",
+    "created_at": "2026-07-13T11:54:08.721711",
+    "name": "\nBUILDER SPRINT-02\nProduction Audit Engine\n\nContext\n\nThe Builder must support mature production repositories.\n\nThe target repository (Vidhi AI) is assumed to be more than 95% production-ready.\n\nBuilder must operate in engineering audit mode instead of code generation mode.\n\nRequirements\n\nAnalyze the complete repository.\n\nIdentify every production subsystem.\n\nInspect all Python packages and project modules.\n\nBuild a repository inventory.\n\nBuild a dependency graph.\n\nDetect integration boundaries.\n\nDetect missing production implementations.\n\nDetect duplicate implementations.\n\nDetect placeholder implementations.\n\nDetect TODOs.\n\nDetect pass statements.\n\nDetect incomplete interfaces.\n\nDetect missing tests.\n\nDetect security risks.\n\nDetect performance risks.\n\nDetect architecture violations.\n\nClassify every component using:\n\n- Production Complete\n- Production Complete With Minor Improvements\n- Missing Production Implementation\n- Integration Required\n- Security Improvement\n- Performance Improvement\n- Technical Debt\n\nGenerate production engineering artifacts:\n\n.builder/output/<run-id>/engineering_audit.json\n.builder/output/<run-id>/architecture_report.json\n.builder/output/<run-id>/dependency_report.json\n.builder/output/<run-id>/security_report.json\n.builder/output/<run-id>/performance_report.json\n.builder/output/<run-id>/risk_report.json\n.builder/output/<run-id>/release_readiness.json\n\nReview Queue\n\nGenerate review tasks only for verified findings.\n\nDo not generate duplicate review tasks.\n\nMerge duplicate findings using:\n\n(target, issue)\n\nas the unique key.\n\nImplementation Rules\n\nReuse all existing Builder architecture.\n\nDo not redesign existing subsystems.\n\nDo not rewrite working code.\n\nImplement only missing production functionality.\n\nPreserve backward compatibility.\n\nDo not automatically apply patches.\n\nReturn production-ready implementation only.\n",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "review_queue",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "5afe3c17298a41bc8c915f7ac0cb52c5",
+    "created_at": "2026-07-14T16:21:46.464572",
+    "name": "Perform a comprehensive architecture audit of the Vidhi-AI repository. Analysis only. Do not modify files.",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "review_queue",
+          "complete"
+        ]
+      }
+    }
+  },
+  {
+    "id": "b4fbe98c74a0412d8d2d09d33df02b7e",
+    "created_at": "2026-07-14T18:01:09.659768",
+    "name": "Perform a comprehensive architecture audit of the Vidhi-AI repository. Analysis only. Do not modify files.",
+    "status": "completed",
+    "payload": {
+      "runtime": {
+        "success": true,
+        "attempts": 1,
+        "stages": [
+          "changeset",
+          "output",
+          "semantic",
+          "planning",
+          "impact",
+          "validation",
+          "testing",
+          "finalization",
+          "review_queue",
+          "complete"
+        ]
+      }
+    }
+  }
+]

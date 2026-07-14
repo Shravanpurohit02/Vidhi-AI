@@ -1,0 +1,27 @@
+class PromptBuilder:
+
+    def build(
+        self,
+        objective,
+        project,
+        modules,
+    ):
+
+        return f"""
+You are Vidhi Builder.
+
+Project Context:
+{project}
+
+Modules:
+{len(modules)}
+
+Task:
+{objective}
+
+Modify the existing project.
+Never regenerate the project.
+Return only production-ready code.
+""".strip()
+
+builder=PromptBuilder()

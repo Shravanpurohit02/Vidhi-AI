@@ -1,8 +1,12 @@
 from pathlib import Path
+import logging
+
 
 from app.document_processing import DocumentProcessingService
 from app.jobs.job import Job
 from app.workers.job_queue import queue
+
+logger = logging.getLogger(__name__)
 
 
 class DocumentTasks:
@@ -49,9 +53,14 @@ def enqueue_document_index(document):
     if isinstance(document, int):
         return job.id
 
+    logger = logging.getLogger(__name__)
+
     try:
         DocumentTasks.process_uploaded_document(document)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.exception(
+            "Document processing failed while enqueueing: %s",
+            exc,
+        )
 
     return job.id

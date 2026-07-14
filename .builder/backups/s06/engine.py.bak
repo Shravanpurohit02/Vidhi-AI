@@ -1,0 +1,40 @@
+from pathlib import Path
+
+from builder.patch.applier import applier
+from builder.patch.diff import diff_engine
+from builder.patch.models import Patch
+from builder.patch.validator import validator
+
+class PatchEngine:
+
+    def create(self, path: str, updated: str):
+
+        original = Path(path).read_text(
+            encoding="utf-8",
+            errors="ignore",
+        )
+
+        return Patch(
+            path=path,
+            original=original,
+            updated=updated,
+        )
+
+    def preview(self, patch: Patch):
+
+        return diff_engine.diff(
+            patch.original,
+            patch.updated,
+        )
+
+    def apply(self, patch: Patch):
+
+        if not validator.validate(patch.updated):
+            raise RuntimeError("Invalid Python source")
+
+        applier.apply(
+            patch.path,
+            patch.updated,
+        )
+
+engine = PatchEngine()

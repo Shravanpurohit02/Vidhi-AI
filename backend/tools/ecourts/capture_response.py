@@ -5,6 +5,7 @@ from app.integrations.courts.ecourts import ECourtsProvider
 
 provider = ECourtsProvider()
 
+
 async def main():
     sid = await provider.create_session()
 
@@ -35,5 +36,7 @@ async def main():
     print("=" * 70)
     print("Saved: last_search.json")
 
+
 import asyncio
+
 asyncio.run(main())

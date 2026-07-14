@@ -1,0 +1,79 @@
+import time
+
+from builder.execution.result import ExecutionResult
+from builder.planning.executor import executor as planning_executor
+from builder.autonomous.executor import executor as autonomous_executor
+from builder.validation import engine as validation
+from builder.testing import engine as testing
+from builder.autonomous_runtime.repair import repair
+
+
+class Executor:
+
+    MAX_REPAIRS = 3
+
+    def execute(self, context):
+
+        started = time.perf_counter()
+
+        result = ExecutionResult()
+
+        try:
+
+            planning_executor.execute(context)
+            result.completed_stages.append("planning")
+
+            autonomous_executor.execute(context)
+            result.completed_stages.append("autonomous")
+
+            repairs = 0
+
+            while True:
+
+                result.validation = validation.validate(".")
+
+                result.completed_stages.append("validation")
+
+                if result.validation.get("failed", 0) == 0:
+                    break
+
+                if repairs >= self.MAX_REPAIRS:
+                    result.failed_stages.append("validation")
+                    break
+
+                repair.repair(".")
+
+                repairs += 1
+
+                result.completed_stages.append(
+                    f"repair-{repairs}"
+                )
+
+            result.testing = testing.execute(".")
+
+            result.completed_stages.append("testing")
+
+            result.success = (
+                result.validation.get("failed", 0) == 0
+                and
+                result.testing.get("failed", 0) == 0
+            )
+
+        except Exception as exc:
+
+            result.success = False
+            result.failed_stages.append(type(exc).__name__)
+            result.message = str(exc)
+
+        result.elapsed = round(
+            time.perf_counter() - started,
+            6,
+        )
+
+        if result.success and not result.message:
+            result.message = "completed"
+
+        return result
+
+
+executor = Executor()

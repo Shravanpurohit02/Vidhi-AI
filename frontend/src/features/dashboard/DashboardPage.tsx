@@ -1,72 +1,93 @@
-import { useQuery } from "@tanstack/react-query";
 import {
   Users,
   FileText,
   Scale,
 } from "lucide-react";
 
-import api from "../../api/client";
+import { useDashboard } from "../../hooks/useDashboard";
 import StatCard from "../../components/dashboard/StatCard";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import QuickActions from "../../components/dashboard/QuickActions";
+import RecentActivity from "../../components/dashboard/RecentActivity";
 
 export default function DashboardPage() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["dashboard-summary"],
-    queryFn: async () => {
-      const res = await api.get("/dashboard/summary");
-      return res.data;
-    },
-  });
+
+  const {
+    data,
+    isLoading,
+    error,
+    refetch,
+  } = useDashboard();
 
   if (isLoading) {
-    return <h2>Loading dashboard...</h2>;
+    return (
+      <div className="flex h-[70vh] items-center justify-center">
+        Loading Dashboard...
+      </div>
+    );
   }
 
   if (error) {
-    return <h2>Unable to load dashboard.</h2>;
+    return (
+      <div className="space-y-4">
+
+        <h2 className="text-2xl font-semibold">
+          Unable to load dashboard
+        </h2>
+
+        <button
+          className="rounded border px-4 py-2"
+          onClick={() => refetch()}
+        >
+          Retry
+        </button>
+
+      </div>
+    );
   }
 
-  const summary = data ?? {};
-
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-8">
+
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-bold">
+          Dashboard
+        </h1>
+
         <p className="text-muted-foreground">
-          Welcome to Vidhi AI Legal Intelligence Platform
+          Welcome to Vidhi AI
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        <StatCard title="Clients" value={summary.clients ?? 0} icon={Users} />
-        <StatCard title="Documents" value={summary.documents ?? 0} icon={FileText} />
-        <StatCard title="Hearings" value={summary.hearings ?? 0} icon={Scale} />
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+
+        <StatCard
+          title="Clients"
+          value={data?.clients ?? 0}
+          icon={Users}
+        />
+
+        <StatCard
+          title="Documents"
+          value={data?.documents ?? 0}
+          icon={FileText}
+        />
+
+        <StatCard
+          title="Hearings"
+          value={data?.hearings ?? 0}
+          icon={Scale}
+        />
+
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>No activity yet.</p>
-          </CardContent>
-        </Card>
+      <div className="grid gap-6 xl:grid-cols-2">
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>Ready.</p>
-          </CardContent>
-        </Card>
+        <QuickActions />
+
+        <RecentActivity />
+
       </div>
+
     </div>
   );
 }

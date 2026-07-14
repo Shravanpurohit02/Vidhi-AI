@@ -1,0 +1,27 @@
+{
+  "project": "Vidhi-AI",
+  "workspace": "/data/data/com.termux/files/home/Vidhi-AI",
+  "project_summary": {
+    "files": 97871,
+    "python": 3404,
+    "json": 3090,
+    "markdown": 3300
+  },
+  "repository": {},
+  "ast": {
+    "modules": 681,
+    "imports": 681
+  },
+  "dependencies": {
+    "count": 149
+  },
+  "graph": {
+    "nodes": 108199,
+    "edges": 97711
+  },
+  "knowledge": {
+    "indexed": 24136
+  },
+  "validation": {},
+  "testing": {}
+}

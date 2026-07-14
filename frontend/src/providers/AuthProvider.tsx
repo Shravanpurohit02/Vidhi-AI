@@ -7,49 +7,135 @@ import {
   type ReactNode,
 } from "react";
 
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+} from "../types/auth";
+
+import { getCurrentUser } from "../api/profile";
+import type { UserProfile } from "../types/user";
+
 type AuthContextType = {
-  token: string | null;
+  accessToken: string | null;
+  refreshToken: string |null;
+  user: UserProfile | null;
+  loading: boolean;
   isAuthenticated: boolean;
-  login: (token: string) => void;
-  logout: () => void;
+
+  login: (accessToken: string, refreshToken: string) => Promise<void>;
+  logout: () => Promise<void>;
+  setTokens: (accessToken: string, refreshToken: string) => void;
 };
 
-const AuthContext = createContext<AuthContextType | undefined>(
-  undefined,
-);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [token, setToken] = useState<string | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem("access_token");
-    if (stored) {
-      setToken(stored);
+    const access = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const refresh = localStorage.getItem(REFRESH_TOKEN_KEY);
+
+    setAccessToken(access);
+    setRefreshToken(refresh);
+
+    async function bootstrap() {
+      if (!access || !refresh) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const profile = await getCurrentUser();
+        setUser(profile);
+      } catch {
+        localStorage.removeItem(ACCESS_TOKEN_KEY);
+        localStorage.removeItem(REFRESH_TOKEN_KEY);
+        setAccessToken(null);
+        setRefreshToken(null);
+        setUser(null);
+      }
+
+      setLoading(false);
     }
+
+    bootstrap();
   }, []);
 
-  const login = (newToken: string) => {
-    localStorage.setItem("access_token", newToken);
-    setToken(newToken);
+  const setTokens = (
+    newAccessToken: string,
+    newRefreshToken: string,
+  ) => {
+    localStorage.setItem(
+      ACCESS_TOKEN_KEY,
+      newAccessToken,
+    );
+
+    localStorage.setItem(
+      REFRESH_TOKEN_KEY,
+      newRefreshToken,
+    );
+
+    setAccessToken(newAccessToken);
+    setRefreshToken(newRefreshToken);
+  };
+  const login = async (
+    newAccessToken: string,
+    newRefreshToken: string,
+  ) => {
+    setTokens(
+      newAccessToken,
+      newRefreshToken,
+    );
+
+    const profile = await getCurrentUser();
+    setUser(profile);
   };
 
-  const logout = () => {
-    localStorage.removeItem("access_token");
-    setToken(null);
+  const logout = async () => {
+    const token = localStorage.getItem(
+      REFRESH_TOKEN_KEY,
+    );
+
+    try {
+      if (token) {
+        const { logout } = await import("../services/logout");
+        await logout(token);
+      }
+    } catch {}
+
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
+
+    setAccessToken(null);
+    setRefreshToken(null);
+    setUser(null);
   };
 
   const value = useMemo(
     () => ({
-      token,
-      isAuthenticated: !!token,
+      accessToken,
+      refreshToken,
+      user,
+      loading,
+      isAuthenticated: !!accessToken,
       login,
       logout,
+      setTokens,
     }),
-    [token],
+    [
+      accessToken,
+      refreshToken,
+      user,
+      loading,
+    ],
   );
 
   return (

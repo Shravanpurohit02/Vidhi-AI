@@ -1,0 +1,11 @@
+from builder.autonomous.task import AutonomousTask
+
+class Planner:
+
+    def create(self, objective: str):
+
+        return AutonomousTask(
+            objective=objective,
+        )
+
+planner = Planner()

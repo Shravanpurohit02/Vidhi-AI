@@ -1,0 +1,48 @@
+from pathlib import Path
+
+from builder.output.models import OutputArtifact
+from builder.output.writer import writer
+
+
+class OutputEngine:
+
+    ROOT = Path(".builder/output")
+
+    def create(
+        self,
+        objective,
+        workspace,
+        metadata=None,
+    ):
+
+        artifact = OutputArtifact(
+            objective=objective,
+            workspace=workspace,
+        )
+
+        directory = self.ROOT / artifact.id
+
+        artifact.output_directory = str(directory)
+
+        metadata = metadata or {}
+
+        artifact.files.append(
+            writer.write(
+                directory,
+                "metadata.json",
+                metadata,
+            )
+        )
+
+        artifact.files.append(
+            writer.write(
+                directory,
+                "objective.md",
+                objective,
+            )
+        )
+
+        return artifact
+
+
+engine = OutputEngine()

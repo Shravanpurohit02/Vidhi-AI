@@ -21,7 +21,7 @@ class ECourtsBootstrap:
 
         html = response.text
 
-        token = ""
+        token = ""  # nosec B105
 
         match = re.search(r'"app_token"\s*:\s*"([^"]+)"', html)
         if match:

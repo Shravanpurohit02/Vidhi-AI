@@ -3,15 +3,18 @@ from time import perf_counter
 from uuid import uuid4
 
 from app.ai.services.ai_service import AIService
+from app.core.logging import get_logger
 from app.legal.entities.entity_extractor import LegalEntityExtractor
 from app.legal.history.history import ResearchHistory
 from app.legal.ranking.ranker import LegalRanker
+from app.legal.research.confidence import ConfidenceEngine
 from app.legal.research.schemas.research_response import (
-    Citation,
     ResearchResponse,
 )
 from app.legal.search.semantic_search import SemanticSearch
 from app.legal.session.session import ResearchSession
+
+logger = get_logger()
 
 
 class LegalResearchService:
@@ -21,6 +24,7 @@ class LegalResearchService:
         self.entities = LegalEntityExtractor()
         self.search = SemanticSearch()
         self.ranker = LegalRanker()
+        self.confidence = ConfidenceEngine()
         self.history = ResearchHistory()
 
         self.session = ResearchSession(
@@ -30,85 +34,103 @@ class LegalResearchService:
 
     def _summary(self, answer: str) -> str:
         answer = answer.strip()
+
         if len(answer) <= 300:
             return answer
-        return answer[:297] + "..."
 
-    def _confidence(self, contexts_found: int) -> float:
-        if contexts_found <= 0:
-            return 0.0
-        return min(1.0, contexts_found / 10)
+        return answer[:297] + "..."
 
     def research(
         self,
         question: str,
     ) -> ResearchResponse:
 
+        logger.info(f"Research started: {question}")
+
         started = perf_counter()
 
-        self.session.add_query(question)
+        try:
 
-        entities = self.entities.extract(question)
+            self.session.add_query(question)
 
-        contexts = self.search.search(question)
+            entities = self.entities.extract(question)
 
-        ranked = self.ranker.rank(
-            question,
-            contexts,
-        )
+            logger.info(f"Extracted {len(entities)} entity groups.")
 
-        ai_result = self.ai.ask(question)
+            contexts = self.search.search(question)
 
-        elapsed = perf_counter() - started
+            logger.info(f"Retrieved {len(contexts)} contexts.")
 
-        provider = getattr(
-            self.ai.provider,
-            "name",
-            self.ai.provider.__class__.__name__,
-        )
-
-        model = getattr(
-            self.ai.provider,
-            "model",
-            "",
-        )
-
-        citations = []
-
-        for item in ai_result.get("citations", []):
-            citations.append(
-                Citation(
-                    title=str(item),
-                    source="retriever",
-                )
+            ranked = self.ranker.rank(
+                question,
+                contexts,
             )
 
-        response = ResearchResponse(
-            session_id=self.session.id,
-            question=question,
-            answer=ai_result["answer"],
-            summary=self._summary(
-                ai_result["answer"],
-            ),
-            entities=entities,
-            contexts_found=len(ranked),
-            citations=citations,
-            sources=["retriever"] if ranked else [],
-            confidence=self._confidence(
-                len(ranked),
-            ),
-            provider=provider,
-            model=model,
-            processing_time=elapsed,
-            created_at=datetime.now(UTC),
-        )
+            logger.info(f"Ranked {len(ranked)} contexts.")
 
-        self.history.add(
-            question,
-            response.model_dump(),
-        )
+            ai_result = self.ai.ask(question)
 
-        return response
+            logger.info("AI answer generated.")
+
+            elapsed = perf_counter() - started
+
+            provider = getattr(
+                self.ai.provider,
+                "name",
+                self.ai.provider.__class__.__name__,
+            )
+
+            model = getattr(
+                self.ai.provider,
+                "model",
+                "",
+            )
+
+            citations = ai_result.get(
+                "citations",
+                [],
+            )
+
+            response = ResearchResponse(
+                session_id=self.session.id,
+                question=question,
+                answer=ai_result["answer"],
+                summary=self._summary(
+                    ai_result["answer"],
+                ),
+                entities=entities,
+                contexts_found=len(ranked),
+                citations=citations,
+                sources=["retriever"] if ranked else [],
+                confidence=self.confidence.calculate(
+                    retrieval_score=1.0 if contexts else 0.0,
+                    rerank_score=1.0 if ranked else 0.0,
+                    citation_count=len(citations),
+                    context_count=len(ranked),
+                ),
+                provider=provider,
+                model=model,
+                processing_time=elapsed,
+                created_at=datetime.now(UTC),
+            )
+
+            self.history.add(
+                question,
+                response.model_dump(),
+            )
+
+            logger.info(
+                f"Research completed in {elapsed:.3f}s "
+                f"(confidence={response.confidence:.3f})"
+            )
+
+            return response
+
+        except Exception:
+
+            logger.exception("Legal research failed.")
+
+            raise
 
     def get_history(self):
         return self.history.all()

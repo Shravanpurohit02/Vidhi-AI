@@ -1,0 +1,22 @@
+from builder.context.module_context import context as modules
+from builder.context.project_context import context as project
+from builder.context.prompt_builder import builder
+
+class ContextEngine:
+
+    def create(
+        self,
+        workspace,
+        objective,
+    ):
+
+        p=project.build(workspace)
+        m=modules.build(workspace)
+
+        return builder.build(
+            objective,
+            p,
+            m,
+        )
+
+engine=ContextEngine()

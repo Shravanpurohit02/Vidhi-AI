@@ -1,27 +1,16 @@
-from app.ai.embeddings.loader import load_embeddings
-from app.ai.embeddings.registry import registry
+from __future__ import annotations
 
+class _Selector:
+    def select(self, *args, **kwargs):
+        try:
+            from app.ai.providers.embeddings.huggingface_provider import HuggingFaceEmbeddingProvider
+            return HuggingFaceEmbeddingProvider()
+        except Exception:
+            class _Fallback:
+                def create(self, text: str):
+                    raise RuntimeError(
+                        "No embedding provider is available. Configure an embedding provider first."
+                    )
+            return _Fallback()
 
-class EmbeddingSelector:
-
-    PRIORITY = [
-        "mock",
-    ]
-
-    def select(self):
-        load_embeddings()
-
-        for provider_name in self.PRIORITY:
-            try:
-                provider = registry.get(provider_name)
-
-                if provider.health():
-                    return provider
-
-            except Exception:
-                continue
-
-        raise RuntimeError("No embedding provider available.")
-
-
-selector = EmbeddingSelector()
+selector = _Selector()

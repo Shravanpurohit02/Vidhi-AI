@@ -1,36 +1,21 @@
-from app.ai.bm25.bm25 import BM25Search
-from app.ai.ranking.hybrid_ranker import HybridRanker
-from app.ai.reranker.reranker import Reranker
-from app.ai.storage.vector_store import PersistentVectorStore
+from __future__ import annotations
+
+from app.ai.bm25.engine import BM25Engine
+from app.ai.reranker.service import RerankerService
+from app.ai.vectorstore.service import VectorStoreService
 
 
 class HybridSearch:
 
     def __init__(self):
+        self.vector = VectorStoreService()
+        self.bm25 = BM25Engine()
+        self.reranker = RerankerService()
 
-        self.store = PersistentVectorStore()
-        self.reranker = Reranker()
-        self.bm25 = BM25Search()
-        self.hybrid = HybridRanker()
+    def search(self, query: str, limit: int = 10):
+        vector_results = self.vector.search(query, limit=limit)
+        keyword_results = self.bm25.search(query, limit=limit)
 
-    def search(
-        self,
-        query,
-    ):
+        merged = list(vector_results) + list(keyword_results)
 
-        semantic = self.store.all()
-
-        lexical = self.bm25.search(
-            query,
-            semantic,
-        )
-
-        merged = self.hybrid.combine(
-            lexical,
-            semantic,
-        )
-
-        return self.reranker.rerank(
-            query,
-            merged,
-        )
+        return self.reranker.rerank(query, merged)

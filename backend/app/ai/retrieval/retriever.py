@@ -1,38 +1,46 @@
-from app.ai.chunking.chunker import TextChunker
+from __future__ import annotations
+
 from app.ai.embeddings.embedding_selector import selector
-from app.ai.vectorstore.memory import MemoryVectorStore
+
+from app.document_processing.schemas.vector import (
+    VectorSearchRequest,
+)
+from app.ai.vectorstore.service import (
+    VectorStoreService,
+)
 
 
 class Retriever:
+    """
+    Read-only retrieval component.
+
+    Responsibilities:
+      - Embed user queries.
+      - Search the vector index.
+      - Return ranked results.
+
+    Document ingestion is handled by:
+      DocumentProcessingService ->
+      DocumentChunkService ->
+      EmbeddingIngestionService
+    """
 
     def __init__(self):
-        self.chunker = TextChunker()
         self.embedder = selector.select()
-        self.store = MemoryVectorStore()
-
-    def index_document(
-        self,
-        text: str,
-        metadata: dict,
-    ):
-
-        chunks = self.chunker.chunk(text)
-
-        for chunk in chunks:
-
-            embedding = self.embedder.embed(chunk)
-
-            self.store.add(
-                embedding,
-                metadata,
-                chunk,
-            )
+        self.index = VectorStoreService()
 
     def retrieve(
         self,
         query: str,
+        top_k: int = 5,
+        provider: str | None = None,
     ):
+        vector = self.embedder.create(query)
 
-        embedding = self.embedder.embed(query)
+        request = VectorSearchRequest(
+            query_vector=vector,
+            top_k=top_k,
+            provider=provider,
+        )
 
-        return self.store.search(embedding)
+        return self.index.search(request)

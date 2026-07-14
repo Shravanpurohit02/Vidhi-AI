@@ -1,0 +1,20 @@
+[Unit]
+Description=Vidhi AI Backend
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/vidhi-ai/backend
+
+EnvironmentFile=/opt/vidhi-ai/backend/.env
+
+ExecStart=/opt/vidhi-ai/backend/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Restart=always
+RestartSec=5
+
+User=vidhi
+Group=vidhi
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,7 @@ from app.jobs.job import Job
 class JobQueue:
 
     def __init__(self):
-        self.queue = Queue()
+        self.queue: Queue[Job] = Queue()
 
     def enqueue(self, job: Job):
         self.queue.put(job)

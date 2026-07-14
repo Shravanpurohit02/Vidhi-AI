@@ -35,6 +35,7 @@ class OllamaProvider(BaseAIProvider):
         self,
         prompt: str,
         system_prompt: str | None = None,
+        **kwargs,
     ) -> str:
 
         payload = {

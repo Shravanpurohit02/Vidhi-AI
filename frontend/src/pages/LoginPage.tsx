@@ -1,39 +1,53 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import api from "../api/client";
 import { useAuth } from "../providers/AuthProvider";
+import type {
+  LoginRequest,
+  LoginResponse,
+} from "../types/auth";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState<LoginRequest>({
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(
+    e: React.FormEvent,
+  ) {
     e.preventDefault();
+
+    setLoading(true);
     setError("");
 
     try {
-      const { data } = await api.post(
-        "/auth/login",
-        {
-          email,
-          password,
-        },
+      const { data } =
+        await api.post<LoginResponse>(
+          "/auth/login",
+          form,
+        );
+
+      login(
+        data.access_token,
+        data.refresh_token,
       );
 
-      login(data.access_token);
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (err: any) {
-      console.log("LOGIN ERROR", err);
-      console.log("RESPONSE", err?.response);
-      console.log("DATA", err?.response?.data);
-
       setError(
-        JSON.stringify(err?.response?.data ?? err.message)
+        err?.response?.data?.detail ??
+          "Login failed.",
       );
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -49,7 +63,7 @@ export default function LoginPage() {
       <form
         onSubmit={handleSubmit}
         style={{
-          width: 340,
+          width: 360,
           display: "flex",
           flexDirection: "column",
           gap: 12,
@@ -60,23 +74,32 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="Email"
-          value={email}
+          value={form.email}
           onChange={(e) =>
-            setEmail(e.target.value)
+            setForm({
+              ...form,
+              email: e.target.value,
+            })
           }
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
+          value={form.password}
           onChange={(e) =>
-            setPassword(e.target.value)
+            setForm({
+              ...form,
+              password: e.target.value,
+            })
           }
         />
 
-        <button type="submit">
-          Login
+        <button
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Signing in..." : "Login"}
         </button>
 
         {error && (

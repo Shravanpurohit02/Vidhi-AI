@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from pathlib import Path
+from time import perf_counter
 
 from app.ai.services.ai_service import AIService
 from app.legal.parsers.legal_parser import LegalParser
@@ -22,13 +25,14 @@ class KnowledgeBase:
         path: str,
         metadata: dict | None = None,
     ):
+
         metadata = metadata or {}
 
         parsed = self.parser.parse(path)
 
         self.ai.ingest_document(
-            parsed["text"],
-            metadata,
+            text=parsed["text"],
+            metadata=metadata,
         )
 
         parsed["status"] = "indexed"
@@ -41,20 +45,30 @@ class KnowledgeBase:
         self,
         directory: str,
     ):
+
+        started = perf_counter()
+
         directory_path = Path(directory)
 
-        processed = []
-        failed = []
+        processed: list[str] = []
+        failed: list[str] = []
+        skipped: list[str] = []
+
+        total = 0
 
         for file in directory_path.rglob("*"):
 
-            if (
-                not file.is_file()
-                or file.suffix.lower() not in self.SUPPORTED_EXTENSIONS
-            ):
+            if not file.is_file():
+                continue
+
+            total += 1
+
+            if file.suffix.lower() not in self.SUPPORTED_EXTENSIONS:
+                skipped.append(str(file))
                 continue
 
             try:
+
                 self.ingest_file(
                     str(file),
                     {
@@ -68,17 +82,25 @@ class KnowledgeBase:
             except Exception:
                 failed.append(str(file))
 
+        elapsed = perf_counter() - started
+
         return {
             "documents": len(processed),
+            "indexed": len(processed),
             "failed": len(failed),
+            "skipped": len(skipped),
+            "scanned": total,
+            "processing_time": elapsed,
             "files": processed,
             "failed_files": failed,
+            "skipped_files": skipped,
         }
 
     def statistics(
         self,
         directory: str,
     ):
+
         directory_path = Path(directory)
 
         files = [
@@ -88,6 +110,8 @@ class KnowledgeBase:
         ]
 
         return {
-            "supported_extensions": sorted(self.SUPPORTED_EXTENSIONS),
+            "supported_extensions": sorted(
+                self.SUPPORTED_EXTENSIONS,
+            ),
             "documents": len(files),
         }

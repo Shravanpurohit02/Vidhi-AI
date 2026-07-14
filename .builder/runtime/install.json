@@ -1,0 +1,9 @@
+{
+  "installed": true,
+  "workspace": "/data/data/com.termux/files/home/Vidhi-AI",
+  "backend": "/data/data/com.termux/files/home/Vidhi-AI/backend",
+  "frontend": "/data/data/com.termux/files/home/Vidhi-AI/frontend",
+  "builder_root": "/data/data/com.termux/files/home/Vidhi-AI/.builder",
+  "kernel": "/data/data/com.termux/files/home/Vidhi-AI/.builder/kernel",
+  "boot": true
+}

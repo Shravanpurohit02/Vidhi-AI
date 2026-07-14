@@ -1,3 +1,4 @@
+import os
 from functools import lru_cache
 
 from pydantic import field_validator
@@ -10,12 +11,16 @@ class Settings(BaseSettings):
     APP_ENV: str = "development"
     DEBUG: bool = True
 
-    HOST: str = "0.0.0.0"
+    HOST: str = os.getenv("HOST", "127.0.0.1")
     PORT: int = 8000
 
-    SECRET_KEY: str
+    SECRET_KEY: str = "change-me"
 
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 30
+
+    JWT_ISSUER: str = "Vidhi-AI"
+    JWT_AUDIENCE: str = "Vidhi-AI"
     ALGORITHM: str = "HS256"
 
     DATABASE_URL: str = "sqlite:///./vidhi_ai.db"
@@ -25,6 +30,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=True,
+        extra="ignore",
     )
 
     @field_validator("APP_ENV")

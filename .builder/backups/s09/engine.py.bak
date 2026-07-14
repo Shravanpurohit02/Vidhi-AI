@@ -1,0 +1,21 @@
+from builder.review.models import ReviewTask
+from builder.review.storage import storage
+
+
+class ReviewEngine:
+
+    def submit(self, improvement):
+
+        task = ReviewTask(
+            target=improvement.target,
+            issue=improvement.issue,
+            proposal=improvement.proposal,
+            priority=improvement.priority,
+        )
+
+        storage.append(task)
+
+        return task
+
+
+engine = ReviewEngine()

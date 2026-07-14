@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.auth.security import decode_access_token
 from app.database.database import get_db
 from app.models.user import User
+from app.repositories.user_repository import UserRepository
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
@@ -29,7 +30,7 @@ def get_current_user(
             detail="Invalid token",
         )
 
-    user = db.query(User).filter(User.email == email).first()
+    user = UserRepository.get_by_email(db, email)
 
     if user is None:
         raise HTTPException(

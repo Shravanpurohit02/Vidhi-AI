@@ -15,5 +15,6 @@ class MockAIProvider(BaseAIProvider):
         self,
         prompt: str,
         system_prompt: str | None = None,
+        **kwargs,
     ) -> str:
         return "Mock AI Response\n\n" f"Prompt: {prompt}"

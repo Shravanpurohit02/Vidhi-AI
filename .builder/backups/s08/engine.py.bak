@@ -1,0 +1,70 @@
+from .models import RuntimeContext, RuntimeResult
+from .decision import decision
+from .repair import repair
+from .history import history
+from .metrics import metrics
+
+from builder.pipeline import engine as pipeline
+
+
+class AutonomousRuntime:
+
+    MAX_ATTEMPTS = 3
+
+    def execute(
+        self,
+        objective: str,
+        workspace: str,
+    ):
+
+        history.clear()
+
+        ctx = RuntimeContext(
+            objective=objective,
+            workspace=workspace,
+        )
+
+        result = RuntimeResult(
+            context=ctx,
+        )
+
+        while ctx.attempts < self.MAX_ATTEMPTS:
+
+            ctx.attempts += 1
+
+            ctx.pipeline = pipeline.start(
+                objective,
+                workspace,
+            )
+
+            for stage in ctx.pipeline.stages:
+                history.add(stage)
+                result.history.append(stage)
+
+            action = decision.decide(result)
+
+            history.add(action)
+
+            result.history.append(action)
+
+            if action == "complete":
+                result.success = True
+                result.completed = True
+                break
+
+            repair_result = repair.repair(workspace)
+
+            history.add("repair")
+
+            result.history.append("repair")
+
+            if not repair_result.get("success", False):
+                break
+
+        ctx.metadata["events"] = len(history.all())
+        ctx.metadata["metrics"] = metrics.collect(result)
+
+        return result
+
+
+engine = AutonomousRuntime()

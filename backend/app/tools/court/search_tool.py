@@ -15,7 +15,9 @@ class CourtSearchTool(BaseTool):
 
         if kwargs.get("cnr"):
             result = await self.provider.search_by_cnr(
-                kwargs["cnr"],
+                session_id=kwargs["session_id"],
+                cnr=kwargs["cnr"],
+                captcha=kwargs.get("captcha", ""),
             )
 
         elif kwargs.get("case_number"):

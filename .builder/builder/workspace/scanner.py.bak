@@ -1,0 +1,25 @@
+from pathlib import Path
+
+from builder.workspace.file import WorkspaceFile
+
+class WorkspaceScanner:
+
+    def scan(self, root: str):
+        files = []
+
+        for path in Path(root).rglob("*"):
+            if not path.is_file():
+                continue
+
+            files.append(
+                WorkspaceFile(
+                    path=str(path),
+                    name=path.name,
+                    extension=path.suffix,
+                    size=path.stat().st_size,
+                )
+            )
+
+        return files
+
+scanner = WorkspaceScanner()

@@ -6,8 +6,18 @@ class CourtProvider:
     def __init__(self):
         self.provider = ECourtsProvider()
 
-    async def search_by_cnr(self, cnr: str):
-        return await self.provider.search_by_cnr(cnr)
+    async def search_by_cnr(
+        self,
+        *,
+        session_id: str,
+        cnr: str,
+        captcha: str = "",
+    ):
+        return await self.provider.search_by_cnr(
+            session_id=session_id,
+            cnr=cnr,
+            captcha=captcha,
+        )
 
     async def search_case(
         self,

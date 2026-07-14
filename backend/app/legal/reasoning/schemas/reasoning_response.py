@@ -10,6 +10,14 @@ class ReasoningResponse(BaseModel):
 
     citations: list[str] = Field(default_factory=list)
 
+    confidence: float = 0.0
+
+    reasoning_strategy: str = "general_analysis"
+
+    explainability_score: float = 0.0
+
+    citation_support: int = 0
+
     provider: str = ""
 
     model: str = ""

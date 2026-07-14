@@ -1,0 +1,33 @@
+import type { DocumentRow } from "../types";
+
+type Props = {
+  document: DocumentRow;
+};
+
+export default function DocumentCard({
+  document,
+}: Props) {
+  return (
+    <div className="rounded-xl border bg-white p-4 shadow-sm">
+      <h3 className="font-semibold">
+        {document.title}
+      </h3>
+
+      <p className="mt-2 text-sm text-slate-600">
+        {document.document_type}
+      </p>
+
+      <div className="mt-3 flex justify-between text-xs text-slate-500">
+        <span>
+          Case #{document.case_id ?? "-"}
+        </span>
+
+        <span>
+          {new Date(
+            document.created_at,
+          ).toLocaleDateString()}
+        </span>
+      </div>
+    </div>
+  );
+}

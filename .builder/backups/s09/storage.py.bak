@@ -1,0 +1,47 @@
+import json
+from dataclasses import asdict
+from pathlib import Path
+
+
+class ReviewStorage:
+
+    FILE = Path(".builder/state/review_queue.json")
+
+    def load(self):
+
+        if not self.FILE.exists():
+            return []
+
+        return json.loads(
+            self.FILE.read_text(
+                encoding="utf-8",
+            )
+        )
+
+    def save(self, tasks):
+
+        self.FILE.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        self.FILE.write_text(
+            json.dumps(
+                tasks,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+
+    def append(self, task):
+
+        tasks = self.load()
+
+        tasks.append(
+            asdict(task)
+        )
+
+        self.save(tasks)
+
+
+storage = ReviewStorage()

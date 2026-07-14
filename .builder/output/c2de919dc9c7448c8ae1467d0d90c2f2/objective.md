@@ -1,0 +1,1 @@
+Latest Pointer Verification

@@ -1,0 +1,11 @@
+from builder.execution.result import ExecutionResult
+
+class Executor:
+
+    def execute(self, context):
+        return ExecutionResult(
+            success=True,
+            message="completed",
+        )
+
+executor = Executor()

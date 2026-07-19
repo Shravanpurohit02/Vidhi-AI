@@ -1,12 +1,11 @@
-from pathlib import Path
+from builder.workspace.scanner import (
+    WorkspaceFile,
+    WorkspaceScanner,
+    scanner as workspace_scanner,
+)
 
-class WorkspaceScanner:
-
-    def scan(self, root: str):
-        return [
-            str(p)
-            for p in Path(root).rglob("*")
-            if p.is_file()
-        ]
-
-workspace_scanner = WorkspaceScanner()
+__all__ = [
+    "WorkspaceFile",
+    "WorkspaceScanner",
+    "workspace_scanner",
+]

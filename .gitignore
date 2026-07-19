@@ -63,3 +63,13 @@ Thumbs.db
 .builder/state/changesets/
 .builder/state/session.json
 .builder/state/review_queue.json
+
+# Builder runtime state
+.builder/engineering_memory/
+.builder/memory/
+.builder/output/
+.builder/staging/
+.builder/tmp/
+.builder/state/changesets/
+.builder/state/transactions/
+.builder/state/execution/

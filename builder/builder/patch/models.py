@@ -14,9 +14,18 @@ class Patch:
 
     updated: str = ""
 
+    # Integrity
+    original_hash: str = ""
+
+    updated_hash: str = ""
+
     created_at: str = field(
         default_factory=lambda: datetime.utcnow().isoformat()
     )
+
+    committed_at: str | None = None
+
+    rolled_back_at: str | None = None
 
     validated: bool = False
 

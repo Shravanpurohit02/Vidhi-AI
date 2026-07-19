@@ -1,6 +1,9 @@
 import typer
 
-from builder.core import environment, queue, runtime, state
+from builder.core import environment, queue, state
+from builder.core.session import load_session
+
+runtime = load_session()
 from builder.core.queue_worker import worker as queue_worker
 from builder.core.checkpoints import create_checkpoint
 from builder.version import __title__, __version__
@@ -80,29 +83,39 @@ def status():
 
 
 @app.command()
-def run(objective:str):
+def run(objective: str):
 
-    print("="*70)
+    from pathlib import Path
+
+    from builder.orchestrator.engine import engine
+    from builder.orchestrator.request import BuildRequest
+
+    print("=" * 70)
     print("VIDHI BUILDER")
-    print("="*70)
-    print("Objective :",objective)
+    print("=" * 70)
+    print("Objective :", objective)
     print()
 
-    task=queue.submit(objective)
+    result = engine.run(
+        BuildRequest(
+            objective=objective,
+            workspace=str(Path.cwd()),
+        )
+    )
 
-    runtime=task.payload["runtime"]
-
-    print("Status    :",task.status)
-    print("Attempts  :",runtime["attempts"])
-    print("Stages    :",len(runtime["stages"]))
+    print("Pipeline   :", result["pipeline"].success)
+    print("Execution  :", result["execution"].success)
+    print("Runtime    :", result["runtime"].success)
+    print("Generation :", result["generation"].success)
+    print("Changeset  :", result["changeset"].id)
 
     print()
-    print("Pipeline")
-    print("-"*70)
+    print("Stages")
+    print("-" * 70)
 
-    for stage in runtime["stages"]:
-        print("✓",stage)
+    for stage in result["pipeline"].stages:
+        print("✓", stage)
 
-    print("-"*70)
-    print("SUCCESS")
-    print("="*70)
+    print("-" * 70)
+    print("SUCCESS" if result["runtime"].success else "FAILED")
+    print("=" * 70)

@@ -28,20 +28,34 @@ class TestingEngine:
             runner.run(tests)
         )
 
-    def execute(self, workspace: str):
+    def execute(
+        self,
+        workspace: str,
+        transaction=None,
+    ):
 
         return self._run(
-            lambda: validator.validate(workspace),
+            lambda: validator.validate(
+                workspace,
+                transaction=transaction,
+            ),
             lambda: Path(workspace).exists()
             or (_ for _ in ()).throw(
                 RuntimeError("Workspace missing")
             ),
         )
 
-    def execute_files(self, paths):
+    def execute_files(
+        self,
+        paths,
+        transaction=None,
+    ):
 
         return self._run(
-            lambda: validator.validate_files(paths),
+            lambda: validator.validate_files(
+                paths,
+                transaction=transaction,
+            ),
             lambda: True,
         )
 

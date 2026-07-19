@@ -1,6 +1,6 @@
-import py_compile
-import shutil
 from pathlib import Path
+
+from builder.patch import engine as patch_engine
 
 
 class Applier:
@@ -15,35 +15,23 @@ class Applier:
                 "reason": "Target file not found.",
             }
 
-        backup = target.with_suffix(
-            target.suffix + ".bak"
-        )
-
-        shutil.copy2(target, backup)
-
         try:
 
-            target.write_text(
-                code,
-                encoding="utf-8",
+            patch = patch_engine.apply(
+                path=str(target),
+                updated=code,
             )
-
-            py_compile.compile(
-                str(target),
-                doraise=True,
-            )
-
-            backup.unlink(missing_ok=True)
 
             return {
                 "success": True,
                 "path": str(target),
+                "patch_id": patch.id,
+                "validated": patch.validated,
+                "compiled": patch.compiled,
+                "committed": patch.committed,
             }
 
         except Exception as exc:
-
-            shutil.copy2(backup, target)
-            backup.unlink(missing_ok=True)
 
             return {
                 "success": False,

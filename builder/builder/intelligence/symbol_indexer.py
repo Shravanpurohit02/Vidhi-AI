@@ -9,19 +9,51 @@ from .symbols import (
 
 class SymbolIndexer:
 
-    def build(
+    EXCLUDED = {
+        ".git",
+        ".builder",
+        "builder_backup",
+        "__pycache__",
+        ".venv",
+        "venv",
+        "node_modules",
+        "build",
+        "dist",
+        "reports",
+        "downloads",
+        "temp",
+    }
+
+    def _excluded(
         self,
-        workspace:str,
+        path: Path,
     ):
 
-        index=SymbolIndex()
+        parts = set(path.parts)
 
-        root=Path(workspace)
+        return bool(
+            parts & self.EXCLUDED
+        )
+
+    def build(
+        self,
+        workspace: str,
+    ):
+
+        index = SymbolIndex()
+
+        root = Path(workspace)
 
         for file in root.rglob("*.py"):
 
+            relative = file.relative_to(root)
+
+            if self._excluded(relative):
+                continue
+
             try:
-                tree=ast.parse(
+
+                tree = ast.parse(
                     file.read_text(
                         encoding="utf-8",
                         errors="ignore",
@@ -31,15 +63,15 @@ class SymbolIndexer:
             except Exception:
                 continue
 
-            module=".".join(
-                file.relative_to(root).with_suffix("").parts
+            module = ".".join(
+                relative.with_suffix("").parts
             )
 
-            index.modules[module]=str(file)
+            index.modules[module] = str(file)
 
             for node in ast.walk(tree):
 
-                if isinstance(
+                if not isinstance(
                     node,
                     (
                         ast.ClassDef,
@@ -47,22 +79,25 @@ class SymbolIndexer:
                         ast.AsyncFunctionDef,
                     ),
                 ):
+                    continue
 
-                    kind=type(node).__name__.replace(
-                        "Def",
-                        "",
-                    ).lower()
+                kind = (
+                    type(node)
+                    .__name__
+                    .replace("Def", "")
+                    .lower()
+                )
 
-                    index.symbols.append(
-                        Symbol(
-                            name=node.name,
-                            kind=kind,
-                            module=module,
-                            line=node.lineno,
-                        )
+                index.symbols.append(
+                    Symbol(
+                        name=node.name,
+                        kind=kind,
+                        module=module,
+                        line=node.lineno,
                     )
+                )
 
         return index
 
 
-indexer=SymbolIndexer()
+indexer = SymbolIndexer()

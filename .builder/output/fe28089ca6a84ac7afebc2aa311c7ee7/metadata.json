@@ -1,8 +1,0 @@
-{
-  "id": "fe28089ca6a84ac7afebc2aa311c7ee7",
-  "builder_version": "0.1.0-alpha.1",
-  "objective": "Perform a comprehensive architecture audit of the Vidhi-AI repository. Analysis only. Do not modify files.",
-  "workspace": "/data/data/com.termux/files/home/Vidhi-AI",
-  "created_at": "2026-07-14T18:01:09.986341",
-  "pipeline": "started"
-}

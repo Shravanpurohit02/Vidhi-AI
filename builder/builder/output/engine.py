@@ -1,9 +1,9 @@
-import json
 from datetime import datetime
 from pathlib import Path
 from uuid import uuid4
 
 from builder.output.writer import writer
+from builder.staging import engine as staging_engine
 
 
 class OutputEngine:
@@ -13,6 +13,7 @@ class OutputEngine:
         objective: str,
         workspace: str,
         metadata: dict | None = None,
+        transaction=None,
     ):
 
         run_id = uuid4().hex
@@ -34,6 +35,15 @@ class OutputEngine:
         if metadata:
             meta.update(metadata)
 
+        if (
+            transaction is not None
+            and getattr(transaction, "transaction", None) is not None
+        ):
+            try:
+                meta["transaction"] = transaction.id
+            except Exception:
+                pass
+
         writer.write(
             root,
             "metadata.json",
@@ -47,6 +57,7 @@ class OutputEngine:
         )
 
         latest = Path(".builder/output/latest")
+
         latest.mkdir(
             parents=True,
             exist_ok=True,
@@ -67,6 +78,70 @@ class OutputEngine:
             "path": str(root),
             "metadata": meta,
         }
+
+    def stage_generation(
+        self,
+        workspace: str,
+        generation,
+    ):
+
+        session = staging_engine.create(
+            workspace,
+        )
+
+        for directory in getattr(
+            generation,
+            "directories",
+            [],
+        ):
+            staging_engine.stage_directory(
+                session,
+                directory.path,
+            )
+
+        for artifact in getattr(
+            generation,
+            "artifacts",
+            [],
+        ):
+
+            for directory in artifact.directories:
+                staging_engine.stage_directory(
+                    session,
+                    directory.path,
+                )
+
+            for file in artifact.files:
+                staging_engine.stage_file(
+                    session,
+                    file.path,
+                    file.content,
+                    action=file.action,
+                )
+
+        return session
+
+    def apply_generation(
+        self,
+        workspace: str,
+        generation,
+    ):
+        """
+        Compatibility wrapper.
+        Stage → Commit → Return generation.
+        """
+
+        session = self.stage_generation(
+            workspace,
+            generation,
+        )
+
+        staging_engine.commit(
+            session,
+            workspace,
+        )
+
+        return generation
 
 
 engine = OutputEngine()

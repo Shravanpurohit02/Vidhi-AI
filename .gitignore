@@ -21,3 +21,55 @@ dist/
 .DS_Store
 .termux/
 *.swp
+
+# -----------------------------
+# Builder Runtime
+# -----------------------------
+.builder/output/
+.builder/tmp/
+.builder/staging/
+.builder/logs/
+.builder/cache/
+
+# Runtime generated state
+.builder/state/execution/
+.builder/state/transactions/
+
+# Python caches
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.bak
+*.orig
+*.rej
+*.old
+*.tmp
+*.transaction.bak
+*.conflict.bak
+*.create.bak
+
+# Editor temporary files
+*~
+*.swo
+
+# OS files
+Thumbs.db
+
+# Builder runtime
+.builder/output/
+.builder/reports/
+.builder/state/changesets/
+.builder/state/session.json
+.builder/state/review_queue.json
+
+# Builder runtime state
+.builder/engineering_memory/
+.builder/memory/
+.builder/output/
+.builder/staging/
+.builder/tmp/
+.builder/state/changesets/
+.builder/state/transactions/
+.builder/state/execution/

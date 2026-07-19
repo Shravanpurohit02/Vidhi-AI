@@ -16,17 +16,47 @@ class ValidationEngine:
             ],
         }
 
-    def validate(self, workspace: str):
+    def validate(
+        self,
+        workspace: str,
+        transaction=None,
+    ):
 
-        return self._summary(
+        result = self._summary(
             project.validate(workspace)
         )
 
-    def validate_files(self, paths):
+        if (
+            transaction is not None
+            and getattr(transaction, "transaction", None) is not None
+        ):
+            try:
+                transaction.transaction.validation = result
+            except Exception:
+                pass
 
-        return self._summary(
+        return result
+
+    def validate_files(
+        self,
+        paths,
+        transaction=None,
+    ):
+
+        result = self._summary(
             project.validate_files(paths)
         )
+
+        if (
+            transaction is not None
+            and getattr(transaction, "transaction", None) is not None
+        ):
+            try:
+                transaction.transaction.validation = result
+            except Exception:
+                pass
+
+        return result
 
 
 engine = ValidationEngine()

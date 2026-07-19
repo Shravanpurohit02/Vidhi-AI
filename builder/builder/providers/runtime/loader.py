@@ -3,17 +3,21 @@ from pathlib import Path
 
 from dotenv import dotenv_values
 
+from builder.providers.runtime.catalog import PROVIDERS
 from builder.providers.runtime.config import ProviderRuntime
 from builder.providers.runtime.registry import registry
 
-FILES = [
+
+FILES = (
     Path.home() / "Vidhi-Builder/.env",
     Path.home() / "Vidhi-AI/backend/.env",
-]
+)
+
 
 class ProviderLoader:
 
     def load(self):
+
         values = {}
 
         for file in FILES:
@@ -22,31 +26,50 @@ class ProviderLoader:
 
         values.update(os.environ)
 
-        providers = [
-            ("nvidia","NVIDIA"),
-            ("groq","GROQ"),
-            ("gemini","GOOGLE"),
-            ("openrouter","OPENROUTER"),
-            ("cerebras","CEREBRAS"),
-            ("mistral","MISTRAL"),
-            ("anthropic","ANTHROPIC"),
-            ("openai","OPENAI"),
-            ("huggingface","HUGGINGFACE"),
-        ]
-
         registry.providers.clear()
 
-        for name,prefix in providers:
+        for provider in PROVIDERS:
+
+            api_key = values.get(
+                f"{provider.env_prefix}_API_KEY",
+                "",
+            )
+
             registry.register(
                 ProviderRuntime(
-                    name=name,
-                    api_key=values.get(f"{prefix}_API_KEY",""),
-                    base_url=values.get(f"{prefix}_BASE_URL",""),
-                    model=values.get(f"{prefix}_MODEL",""),
-                    enabled=bool(values.get(f"{prefix}_API_KEY")),
+                    name=provider.name,
+                    display_name=provider.display_name,
+                    api_type=provider.api_type,
+
+                    api_key=api_key,
+
+                    base_url=values.get(
+                        f"{provider.env_prefix}_BASE_URL",
+                        provider.default_base_url,
+                    ),
+
+                    model=values.get(
+                        f"{provider.env_prefix}_MODEL",
+                        provider.default_model,
+                    ),
+
+                    enabled=bool(api_key),
+
+                    free_tier=provider.free_tier,
+                    priority=provider.priority,
+
+                    supports_streaming=provider.supports_streaming,
+                    supports_tools=provider.supports_tools,
+                    supports_vision=provider.supports_vision,
+                    supports_reasoning=provider.supports_reasoning,
+                    supports_embeddings=provider.supports_embeddings,
+
+                    context_window=provider.context_window,
+                    max_output_tokens=provider.max_output_tokens,
                 )
             )
 
         return registry
+
 
 loader = ProviderLoader()

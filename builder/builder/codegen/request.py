@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
 
 @dataclass(slots=True)
 class CodeGenerationRequest:
@@ -6,3 +7,8 @@ class CodeGenerationRequest:
     language: str = "python"
     context: str = ""
     model: str = ""
+
+    workspace: str = "."
+    overwrite: bool = False
+
+    metadata: dict = field(default_factory=dict)

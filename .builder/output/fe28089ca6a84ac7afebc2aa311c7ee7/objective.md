@@ -1,1 +1,0 @@
-Perform a comprehensive architecture audit of the Vidhi-AI repository. Analysis only. Do not modify files.

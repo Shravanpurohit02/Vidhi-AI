@@ -1,9 +1,10 @@
 from builder.config import settings
 from builder.constants import DIRECTORIES
-from builder.core.session import save_session
+from builder.core.session import create_runtime, save_session
 from builder.core.state import save_state, state
 from builder.filesystem import Workspace
 from builder.logging import configure_logging
+
 
 def bootstrap() -> None:
     for directory in DIRECTORIES:
@@ -19,6 +20,8 @@ def bootstrap() -> None:
     state.environment = settings.environment
 
     save_state(state)
-    save_session()
+
+    runtime = create_runtime()
+    save_session(runtime)
 
     log.info("Vidhi Builder bootstrapped successfully.")

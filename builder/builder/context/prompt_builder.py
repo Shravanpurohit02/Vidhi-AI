@@ -7,13 +7,16 @@ class PromptBuilder:
         objective,
         project,
         modules,
-        file=None,
+        files=None,
     ):
 
-        module_lines = []
+        if files is None:
+            files = []
 
-        for m in modules[:self.MAX_MODULES]:
-            module_lines.append(f"- {m.path}")
+        module_lines = [
+            f"- {m.path}"
+            for m in modules[:self.MAX_MODULES]
+        ]
 
         parts = [
             "You are Vidhi Builder.",
@@ -31,18 +34,16 @@ class PromptBuilder:
             *module_lines,
         ]
 
-        if file:
+        for file in files:
             parts.extend([
                 "",
-                "Target File",
-                "===========",
+                "Relevant File",
+                "=============",
                 f"Path: {file['path']}",
-                f"Name: {file['name']}",
-                f"Extension: {file['suffix']}",
                 f"Lines: {file['lines']}",
                 "",
-                "Source Code",
-                "===========",
+                "Source",
+                "======",
                 file["source"],
             ])
 
@@ -54,11 +55,11 @@ class PromptBuilder:
             "",
             "Requirements",
             "============",
-            "- Modify only the relevant modules.",
-            "- Preserve the existing architecture.",
-            "- Reuse existing services before creating new ones.",
-            "- Do not duplicate functionality.",
-            "- Return production-ready code only.",
+            "- Modify existing files whenever possible.",
+            "- Preserve unaffected code.",
+            "- Do not invent filenames.",
+            "- Update imports when required.",
+            "- Return Builder Output Specification JSON only.",
         ])
 
         return "\n".join(parts)

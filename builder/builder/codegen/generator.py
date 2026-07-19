@@ -1,10 +1,25 @@
 from builder.codegen.prompts import SYSTEM_PROMPT
+from builder.context import engine as context_engine
 from builder.providers.chat import Message
 from builder.providers.execution import ExecutionRequest, engine
+
 
 class CodeGenerator:
 
     def generate(self, request):
+
+        context = context_engine.create(
+            workspace=request.workspace,
+            objective=request.instruction,
+        )
+
+        if request.context:
+            context = (
+                f"{context}\n\n"
+                "Additional Context\n"
+                "==================\n"
+                f"{request.context}"
+            )
 
         execution = ExecutionRequest(
             model=request.model,
@@ -19,8 +34,11 @@ class CodeGenerator:
 Language:
 {request.language}
 
-Workspace Context:
-{request.context}
+Workspace:
+{request.workspace}
+
+Repository Context:
+{context}
 
 Instruction:
 {request.instruction}
@@ -30,5 +48,6 @@ Instruction:
         )
 
         return engine.execute(execution)
+
 
 generator = CodeGenerator()

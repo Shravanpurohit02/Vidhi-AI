@@ -10,6 +10,7 @@ from .metrics import metrics
 from builder.pipeline import engine as pipeline
 from builder.self_improvement import engine as improvement
 from builder.review import engine as review
+from builder.engineering.transaction.engine import engine as transactions
 
 
 class AutonomousRuntime:
@@ -31,6 +32,11 @@ class AutonomousRuntime:
 
         result = RuntimeResult(
             context=ctx,
+        )
+
+        transaction = transactions.begin(
+            objective=objective,
+            workspace=workspace,
         )
 
         while ctx.attempts < self.MAX_ATTEMPTS:
@@ -110,6 +116,9 @@ class AutonomousRuntime:
             ):
                 break
 
+        transactions.commit(transaction)
+
+        ctx.metadata["transaction"] = transaction.id
         ctx.metadata["events"] = len(history.all())
         ctx.metadata["metrics"] = metrics.collect(result)
 

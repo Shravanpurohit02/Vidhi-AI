@@ -5,9 +5,9 @@ from builder.models.project import Project
 
 class ProjectScanner:
 
-    def scan(self, root: Path) -> Project:
+    def scan(self, root: Path | str) -> Project:
 
-        root = root.resolve()
+        root = Path(root).resolve()
 
         pyprojects = sorted(root.rglob("pyproject.toml"))
 

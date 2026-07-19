@@ -1,38 +1,77 @@
 from builder.providers.execution.adapter import adapter
 from builder.providers.execution.response import ExecutionResponse
+from builder.providers.execution.normalizer import normalizer
+from builder.providers.execution.endpoints import router as endpoint_router
+from builder.providers.execution.payloads import builder as payload_builder
+from builder.providers.execution.failover import engine as failover
+from builder.providers.execution.streaming import engine as streaming
 
 class ExecutionEngine:
 
     def execute(self, request):
 
-        provider, client = adapter.client()
+        providers = failover.providers(adapter)
 
-        payload = {
-            "model": request.model or provider.model,
-            "messages": [
-                {
-                    "role": m.role,
-                    "content": m.content,
-                }
-                for m in request.messages
-            ],
-            "temperature": request.temperature,
-            "max_tokens": request.max_tokens,
-            "stream": request.stream,
-        }
+        if not providers:
+            provider, client = adapter.client()
+            providers = [provider]
 
-        response = client.post(
-            "/chat/completions",
-            payload,
+        last_response = None
+
+        for provider in providers:
+
+            _, client = adapter.client(provider)
+
+            payload = payload_builder.build(
+                provider,
+                request,
+            )
+
+            payload = streaming.prepare_payload(
+                provider,
+                payload,
+                request,
+            )
+
+            response = client.post(
+                endpoint_router.endpoint(
+                    provider,
+                    payload.get("model"),
+                ),
+                payload,
+            )
+
+            last_response = response
+
+            if failover.should_retry(response):
+                continue
+
+            normalized = normalizer.normalize(
+                provider,
+                response,
+            )
+
+            return ExecutionResponse(
+                success=normalized["success"],
+                provider=provider.name,
+                model=payload.get("model", provider.model),
+                text=normalized["text"],
+                usage=normalized["usage"],
+                raw=normalized["raw"],
+            )
+
+        normalized = normalizer.normalize(
+            provider,
+            last_response,
         )
 
         return ExecutionResponse(
-            success=response.is_success,
+            success=normalized["success"],
             provider=provider.name,
-            model=payload["model"],
-            text=response.text,
-            usage={},
-            raw=response.json() if response.content else {},
+            model=payload.get("model", provider.model),
+            text=normalized["text"],
+            usage=normalized["usage"],
+            raw=normalized["raw"],
         )
 
 engine = ExecutionEngine()

@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from builder.intelligence.workspace_index import workspace_indexer
 
 from .reference_index import indexer
@@ -21,7 +23,16 @@ class SemanticEngine:
         repo = SemanticRepository()
 
         repo.modules = idx.dependency_graph
-        repo.references = indexer.build(workspace)
+
+        raw_refs = indexer.build(workspace)
+
+        grouped = defaultdict(list)
+
+        for ref in raw_refs:
+            grouped[ref["symbol"]].append(ref)
+
+        repo.references = dict(grouped)
+
         repo.call_graph = call_graph.build(workspace)
 
         for symbol in idx.symbol_index.symbols:
@@ -39,11 +50,9 @@ class SemanticEngine:
                 ),
             )
 
-        
         repo.reverse_index = reverse_index.build(repo)
 
         return repo
-        
 
 
 engine = SemanticEngine()

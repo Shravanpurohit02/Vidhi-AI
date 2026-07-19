@@ -1,5 +1,7 @@
+import re
 from pathlib import Path
 
+from builder.context.selector import selector
 from builder.intelligence.impact import impact
 
 from .engine import engine
@@ -7,63 +9,109 @@ from .engine import engine
 
 class PlanAnalyzer:
 
+    VERBS = (
+        "delete",
+        "modify",
+        "update",
+        "rename",
+        "move",
+        "create",
+        "remove",
+    )
+
     def _target(self, objective: str):
 
-        words = [
-            w.strip(".,()[]{}")
-            for w in objective.split()
-        ]
+        text = objective.lower()
 
-        for word in reversed(words):
+        for verb in self.VERBS:
 
-            if len(word) > 2:
-                return word
+            m = re.search(
+                rf"{verb}\s+([A-Za-z0-9_./\\-]+\.[A-Za-z0-9_]+)",
+                text,
+            )
 
-        return objective
+            if m:
+                return m.group(1)
+
+        m = re.search(
+            r"([A-Za-z0-9_./\\-]+\.[A-Za-z0-9_]+)",
+            text,
+        )
+
+        if m:
+            return m.group(1)
+
+        return objective.strip()
 
     def analyze(
         self,
         objective: str,
         workspace: str,
+        transaction=None,
     ):
 
-        plan = engine.create(objective)
+        plan = engine.create(
+            objective,
+            workspace=workspace,
+        )
 
         milestone = plan.milestones[0]
         job = milestone.jobs[0]
 
+        target = self._target(objective)
+
         report = impact.analyze(
             workspace,
-            self._target(objective),
+            target,
         )
 
         plan.impact = report
 
-        if report.validation_scope:
+        added = set()
 
-            for module in report.validation_scope:
+        for module in report.validation_scope:
 
-                parts = [p for p in module.split(".") if p]
+            filename = (
+                module.replace(".", "/") + ".py"
+            )
 
-                filename = "/".join(parts) + ".py"
+            if filename not in added:
 
                 engine.add_task(
                     job,
                     title=filename,
-                    objective="Inspect " + filename,
+                    objective="Modify " + filename,
                 )
 
-            return plan
+                added.add(filename)
 
-        root = Path(workspace)
+        if not added:
 
-        for file in root.rglob("*.py"):
+            for module in selector.select(
+                workspace,
+                objective,
+            ):
 
-            engine.add_task(
-                job,
-                title=file.relative_to(root).as_posix(),
-                objective="Inspect " + file.name,
-            )
+                path = Path(module.path).relative_to(
+                    Path(workspace)
+                ).as_posix()
+
+                if path in added:
+                    continue
+
+                engine.add_task(
+                    job,
+                    title=path,
+                    objective="Modify " + path,
+                )
+
+                added.add(path)
+
+        if transaction is not None:
+            try:
+                plan.metadata["transaction"] = transaction.id
+            except Exception:
+                pass
 
         return plan
 

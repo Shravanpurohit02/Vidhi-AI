@@ -1,14 +1,9 @@
-from pathlib import Path
+from builder.filesystem.project import (
+    ProjectScanner,
+    scanner as project_scanner,
+)
 
-class ProjectScanner:
-
-    def scan(self, root: str):
-        root = Path(root)
-
-        return {
-            "name": root.name,
-            "pyproject": (root / "pyproject.toml").exists(),
-            "git": (root / ".git").exists(),
-        }
-
-project_scanner = ProjectScanner()
+__all__ = [
+    "ProjectScanner",
+    "project_scanner",
+]

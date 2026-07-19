@@ -73,3 +73,4 @@ Thumbs.db
 .builder/state/changesets/
 .builder/state/transactions/
 .builder/state/execution/
+!.builder/state/transactions/.gitkeep
